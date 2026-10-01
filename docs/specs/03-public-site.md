@@ -113,10 +113,9 @@ spec, vale a spec (divergências abaixo).
   "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
 ### Home (`/`, PUB-001)
-Hero sem consulta ao banco: H1 "Análises sobre investimentos, escritas pela equipe da Rio Negro.",
-subtítulo "Artigos e estudos para ajudar você a entender o mercado e decidir com mais informação."
-(`text-md`, `--color-text-muted`) e `Button` primário "Ver artigos" → `/artigos` (100% da largura
-no mobile).
+Hero sem consulta ao banco: H1 "Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.",
+**sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos` (100% da largura no mobile)
+([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
 
 ### Listagem (`/artigos`, PUB-002 a PUB-004)
 - H1 "Artigos"; card de destaque no topo e, abaixo, os demais em **coluna única**.
@@ -165,6 +164,7 @@ error boundary) e `Button` link "Ver artigos" → `/artigos`
   (PUB-003).
 - Rótulo "páginas 1 e 2 de 18" → só "Prévia": o total de páginas não existe no modelo de dados.
 - Rodapé com texto regulatório provisório → texto copiado de rionegroinvestimentos.com.br (F4-009).
+- Home com subtítulo no protótipo → só H1 e botão (CL-004).
 
 ## Fora de escopo
 

@@ -60,6 +60,10 @@ Definida pelo responsável do projeto (Rafael):
 - O restante de `design/` (readme, protótipos, UI kits) continua mostrando a marca original: é
   só referência visual de layout.
 
+## Home (CL-004)
+- `h1`: "Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas." (texto definido pelo Rafael).
+- O parágrafo de subtítulo foi removido; o botão "Ver artigos" fica.
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.

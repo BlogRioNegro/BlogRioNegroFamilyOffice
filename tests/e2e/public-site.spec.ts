@@ -11,9 +11,11 @@ test.describe('PUB-001 · Home', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: 'Análises sobre investimentos, escritas pela equipe da Rio Negro.',
+        name: 'Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.',
       }),
     ).toBeVisible()
+    // CL-004: a home não tem subtítulo; o hero é só o h1 e o CTA.
+    await expect(page.getByRole('main').getByRole('paragraph')).toHaveCount(0)
     await page.getByRole('main').getByRole('link', { name: 'Ver artigos' }).click()
     await expect(page).toHaveURL(webUrl('/artigos'))
   })
