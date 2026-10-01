@@ -8,7 +8,8 @@ trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`, 
 O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
-Tasks do clone em [tasks/clone-family-office.md](tasks/clone-family-office.md). CL-001 `[x]`.
+Tasks do clone em [tasks/clone-family-office.md](tasks/clone-family-office.md).
+Feito: base `9d72437`; CL-001 `43933eb`.
 
 ## Próxima tarefa
 CL-002 · azul de ação nos tokens. Ler: specs 06, 03 e 04; ADR 0042 e ADR 0023.
