@@ -4,7 +4,8 @@ _Sobrescrever inteiro ao fim de cada sessão. Máx. ~40 linhas. Sem histórico._
 
 ## Projeto
 Blog Rio Negro Family Office: clone do blog Rio Negro (commit `2e0ada6` do original), com a marca
-trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`, sem remote.
+trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`; remote `origin` =
+`github.com/BlogRioNegro/BlogRioNegroFamilyOffice` (privado), primeiro push em 2026-10-01.
 O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
@@ -29,7 +30,8 @@ Nenhuma task aberta. Próximo passo é do Rafael: conferir as capturas em `tests
 ## Regras do loop
 - Código de server é duplicado por app (ADR 0021): mudar nas duas cópias.
 - E2E: web :3100/:3102, admin :3101; parar servidores antes (`taskkill //PID <pid> //T //F`).
-- Nunca ler `.env*`, nunca editar migration existente, nunca push/deploy/criar infraestrutura.
+- Nunca ler `.env*`, nunca editar migration existente, nunca fazer deploy nem criar infraestrutura.
+  Push só quando o Rafael pedir.
 - `pnpm test` exige Docker + `pnpm exec supabase start` (parar antes o do original:
   `pnpm exec supabase stop --project-id rio-negro`).
 - `pnpm build` exige as envs dos apps: sem `.env.local`, falha em `lib/env.ts` (por desenho).
@@ -37,7 +39,7 @@ Nenhuma task aberta. Próximo passo é do Rafael: conferir as capturas em `tests
 ## Pendências para o Rafael
 - Criar `.env.local` dos dois apps (`NEXT_PUBLIC_RIO_NEGRO_URL=https://rionegromfo.com.br`) e
   conferir `apps/*/.env.example` (o agente não lê `.env*`).
-- Repositório novo no GitHub; projeto Supabase, Turnstile, domínios e hospedagem novos (a definir).
+- Projeto Supabase, Turnstile, domínios e hospedagem novos (a definir).
 - Dados "pendente" em `/privacidade`: razão social, CNPJ, endereço e contato do encarregado.
 - Validação jurídica dos textos pelo cliente (inclui a finalidade "contato comercial sobre
   investimentos", herdada do original).
