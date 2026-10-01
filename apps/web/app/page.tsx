@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { SiteHeader } from '@/components/site-header'
 
 // PUB-001 · Hero fixo no código, sem consulta ao banco. Ocupa a altura que sobra entre o header e
-// o rodapé; o filete e os anéis são decoração (aria-hidden), sem texto novo.
+// o rodapé; os anéis são decoração (aria-hidden), sem texto novo.
 export default function HomePage() {
   return (
     <>
@@ -20,7 +20,6 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto w-full max-w-(--layout-admin) px-4 py-16 md:px-6 md:py-24">
           <div className="flex flex-col items-start gap-8">
-            <span aria-hidden className="h-px w-16 bg-action-primary" />
             <h1 className="max-w-[20ch] font-serif text-3xl font-semibold text-balance md:text-5xl">
               Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.
             </h1>

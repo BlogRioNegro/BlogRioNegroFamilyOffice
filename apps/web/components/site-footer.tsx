@@ -24,11 +24,12 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-(--layout-admin) flex-col gap-8 px-4 pt-12 pb-8 md:px-6">
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
           <Logo alt="Rio Negro Family Office" />
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Button asChild variant="link">
+          <div className="flex w-full flex-wrap items-center gap-x-4 gap-y-4 md:w-auto">
+            {/* Primário, como o "Ver artigos": a única ação principal do rodapé. */}
+            <Button asChild className="w-full md:w-auto">
               <a href={env.NEXT_PUBLIC_RIO_NEGRO_URL} target="_blank" rel="noopener noreferrer">
                 Conheça a Rio Negro Family Office
-                <ArrowRight aria-hidden className="size-4" />
+                <ArrowRight aria-hidden className="size-5" />
                 <span className="sr-only">(abre em nova aba)</span>
               </a>
             </Button>
@@ -54,14 +55,11 @@ export function SiteFooter() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap justify-between gap-3 border-t border-border pt-4 text-xs text-text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs text-text-muted">
           <span>{RIGHTS_NOTICE}</span>
-          <Link
-            href="/privacidade"
-            className="text-link underline underline-offset-3 hover:decoration-2"
-          >
-            Privacidade
-          </Link>
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/privacidade">Privacidade</Link>
+          </Button>
         </div>
       </div>
     </footer>

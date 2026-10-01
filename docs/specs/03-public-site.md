@@ -115,18 +115,21 @@ spec, vale a spec (divergências abaixo).
   Mobile: igual, sem menu hambúrguer.
 - **Conteúdo**: coluna de leitura de `--layout-reading` (720 px), centralizada. Mobile: margem
   lateral de 16 px, sem rolagem horizontal.
-- **Rodapé** (`SiteFooter`, PUB-013): fundo `--color-surface-muted`; logotipo + "Conheça a Rio
-  Negro Family Office" (nova aba) seguido dos ícones das redes sociais (botões redondos de 44 px em
+- **Rodapé** (`SiteFooter`, PUB-013): fundo `--color-surface-muted`; logotipo + `Button` primário
+  "Conheça a Rio Negro Family Office" (nova aba, seta à direita, 100% da largura no mobile, igual ao
+  "Ver artigos" da home) seguido dos ícones das redes sociais (botões redondos de 44 px em
   `--color-action-primary`, ícone em `--color-action-primary-text`, texto `sr-only` com o nome da
   rede) e, abaixo de uma divisória, a linha de direitos reservados
-  (`text-xs`, `--color-text-muted`) e o link "Privacidade". Mobile: empilha logotipo/CTA, linha de
+  (`text-xs`, `--color-text-muted`) e o `Button` secundário compacto (`sm`) "Privacidade". Os links do
+  rodapé são botões, não texto sublinhado: um primário por área (spec 06) e o secundário para a ação
+  de apoio. Mobile: empilha logotipo/CTA, linha de
   direitos, "Privacidade".
 - **Tipografia**: H1 `--font-size-h1` (36 px mobile, 48 px ≥ 768 px), peso 700; datas no formato
   "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
 ### Home (`/`, PUB-001)
 Hero sem consulta ao banco, ocupando a altura entre o header e o rodapé, com o conteúdo centralizado
-na vertical: filete bege de 64 px (decorativo), H1 "Artigos, estudos e perspectivas da nossa equipe
+na vertical: H1 "Artigos, estudos e perspectivas da nossa equipe
 de consultores e especialistas." em `--font-serif` (36 px no mobile, `--font-size-5xl` ≥ 768 px, peso
 600, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
 (100% da largura no mobile). Fundo em degradê de `--color-bg` para `--color-surface-muted` e, a partir

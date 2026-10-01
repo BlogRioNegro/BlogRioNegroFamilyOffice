@@ -45,8 +45,8 @@ Implementação:
 - `color-scheme: dark` no `body` (controles nativos) e `theme: 'dark'` no widget do Turnstile.
 - Logo: `RIO-NEGRO-copy.png` (249×75, branca, a do rodapé do site) como `logo-branco.png` nos dois
   apps; `logo.tsx` passa de `h-7` para `h-10`.
-- Hero da home: H1 em `--font-serif`, novo `--font-size-5xl` (60 px) no desktop, filete bege e anéis
-  decorativos em CSS. Nenhum texto novo: o H1 continua o definido na CL-004.
+- Hero da home: H1 em `--font-serif`, novo `--font-size-5xl` (60 px) no desktop e anéis decorativos
+  em CSS (o filete bege acima do título saiu na CL-011, a pedido do Rafael). Nenhum texto novo: o H1 continua o definido na CL-004.
 
 ## Consequências
 - Contraste (WCAG 2.1) recalculado na spec 06: texto principal ≥ 8,13:1, texto secundário ≥ 6,13:1,

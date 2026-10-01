@@ -14,3 +14,4 @@ Specs: [00-overview](../specs/00-overview.md), [03-public-site](../specs/03-publ
 - [x] **CL-008** · DS-003, DS-006 · Tema azul em todo o sistema: tokens, logo branca de 40 px e Turnstile escuro ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md))
 - [x] **CL-009** · PUB-001 · Hero da home redesenhado, sem conteúdo novo
 - [x] **CL-010** · PUB-013, SEC-003 · Ícones de LinkedIn e Instagram no rodapé, com URL em env opcional ([ADR 0044](../adr/0044-redes-sociais-no-rodape-por-env.md))
+- [x] **CL-011** · PUB-001, PUB-013 · Hero sem o filete; "Conheça a Rio Negro Family Office" e "Privacidade" do rodapé como botões
