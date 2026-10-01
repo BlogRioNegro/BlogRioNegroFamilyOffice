@@ -8,9 +8,9 @@ trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`, 
 O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
-[tasks/clone-family-office.md](tasks/clone-family-office.md): CL-001 a CL-009 `[x]` (últimos commits:
-CL-008 `ea12105` tema azul, CL-009 `2a191da` hero da home). Verificado em 2026-10-01 com o tema azul:
-typecheck, lint, format:check, 377 unitários, build, test:e2e (73) e a11y (22, zero violações).
+[tasks/clone-family-office.md](tasks/clone-family-office.md): CL-001 a CL-010 `[x]` (últimos commits:
+CL-008 `ea12105` tema azul, CL-009 `2a191da` hero da home, CL-010 `dd03c69` redes sociais no rodapé).
+Verificado em 2026-10-01: typecheck, lint, format:check, 385 unitários, test:e2e (75) e a11y (22).
 
 ## Próxima tarefa
 Nenhuma task aberta. Próximo passo é do Rafael: conferir as capturas em `tests/e2e/__visual__/`
@@ -21,6 +21,7 @@ Nenhuma task aberta. Próximo passo é do Rafael: conferir as capturas em `tests
   superfície `#334a5c`, texto claro; ação, link e foco no bege `#d8d2b8` (hover `#ece7d1`).
 - Logo branca `RIO-NEGRO-copy.png` como `logo-branco.png`, 40 px de altura.
 - Home: só o hero (H1 em serifa, 60 px no desktop), sem consulta ao banco.
+- Redes sociais no rodapé só com `NEXT_PUBLIC_LINKEDIN_URL` / `NEXT_PUBLIC_INSTAGRAM_URL` (ADR 0044).
 - Rodapé: "2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS". CTA "Conheça a Rio Negro
   Family Office" → `NEXT_PUBLIC_RIO_NEGRO_URL`. `policy_version = blog-2026-10-v1`.
 
@@ -39,6 +40,7 @@ Nenhuma task aberta. Próximo passo é do Rafael: conferir as capturas em `tests
 - Dados "pendente" em `/privacidade`: razão social, CNPJ, endereço e contato do encarregado.
 - Validação jurídica dos textos pelo cliente (inclui a finalidade "contato comercial sobre
   investimentos", herdada do original).
-- Confirmar com o cliente: URLs de LinkedIn/Instagram (o site não publica) e o "2024" do rodapé.
+- Pedir ao cliente as URLs de LinkedIn e Instagram (o site não publica) e pôr nas duas envs; incluir
+  as duas linhas também no `apps/web/.env.example`. Confirmar o "2024" do rodapé.
 - Mudar cor é só nos tokens, nos três lugares que o `tokens.test.ts` compara (ui, export, spec 06).
 - Node local é v24; o projeto fixa 22 no `.nvmrc`.
