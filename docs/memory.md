@@ -9,10 +9,10 @@ O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
 Tasks do clone em [tasks/clone-family-office.md](tasks/clone-family-office.md).
-Feito: base `9d72437`; CL-001 `43933eb`; CL-002 `4fd0250` (azul `#233645`, hover `#192631`, `--color-link`); CL-003 `9cde0a7` (logo `RIO-NEGRO.png`); CL-004 `e91de04` (home); CL-005 `374dc3e` (rodapé e CTA).
+Feito: base `9d72437`; CL-001 `43933eb`; CL-002 `4fd0250` (azul `#233645`, hover `#192631`, `--color-link`); CL-003 `9cde0a7` (logo `RIO-NEGRO.png`); CL-004 `e91de04` (home); CL-005 `374dc3e` (rodapé e CTA); CL-006 `ae107ba` (nome da marca).
 
 ## Próxima tarefa
-CL-006 · nome da marca em metadata, OG, RSS, header, admin e seed. Ler: spec 03 (PUB-010, PUB-012), ADR 0029, ADR 0021.
+CL-007 · controlador em /privacidade e no aviso de lead; novo `policy_version`. Ler: spec 04 (LEAD-013), ADR 0012.
 
 ## Dados do cliente (só o que está em https://rionegromfo.com.br/, lido em 2026-10-01)
 - Azul principal do kit do site: `#233645`. Logo para fundo claro: `RIO-NEGRO.png` (em `#233645`).
