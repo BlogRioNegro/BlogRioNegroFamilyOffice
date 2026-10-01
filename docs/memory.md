@@ -8,8 +8,9 @@ trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`, 
 O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
-[tasks/clone-family-office.md](tasks/clone-family-office.md): CL-001 a CL-010 `[x]` (últimos commits:
-CL-008 `ea12105` tema azul, CL-009 `2a191da` hero da home, CL-010 `dd03c69` redes sociais no rodapé).
+[tasks/clone-family-office.md](tasks/clone-family-office.md): CL-001 a CL-011 `[x]` (últimos commits:
+CL-008 `ea12105` tema azul, CL-009 `2a191da` hero da home, CL-010 `dd03c69` redes sociais no rodapé,
+CL-011 `3de6ab3` botões no rodapé e hero sem filete).
 Verificado em 2026-10-01: typecheck, lint, format:check, 385 unitários, test:e2e (75) e a11y (22).
 
 ## Próxima tarefa
