@@ -24,7 +24,7 @@ import { listArticlesWithLeadCount, type ArticleRow } from '@/lib/services/artic
 import { requireAdminPage } from '@/lib/services/require-admin'
 
 export const metadata: Metadata = {
-  title: 'Artigos · Rio Negro Admin',
+  title: 'Artigos · Rio Negro Family Office Admin',
 }
 
 // Selo informativo do artigo em destaque no site (ADR 0004): badge de texto com ponto.

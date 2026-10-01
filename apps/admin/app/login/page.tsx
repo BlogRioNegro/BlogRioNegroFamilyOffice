@@ -3,7 +3,7 @@ import { Logo } from '@/components/logo'
 import { LoginForm } from './login-form'
 
 export const metadata: Metadata = {
-  title: 'Entrar · Rio Negro Admin',
+  title: 'Entrar · Rio Negro Family Office Admin',
 }
 
 // ADM-001 · Spec 05, UI · Login: card centralizado com logotipo, sem cadastro nem "esqueci a senha".

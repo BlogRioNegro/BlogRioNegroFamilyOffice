@@ -6,7 +6,7 @@ import { dateInputValue } from '@/lib/domain/admin-date'
 import { requireAdminPage } from '@/lib/services/require-admin'
 
 export const metadata: Metadata = {
-  title: 'Novo artigo · Rio Negro Admin',
+  title: 'Novo artigo · Rio Negro Family Office Admin',
 }
 
 // O id nasce aqui para que os arquivos do artigo usem o caminho <article_id>/... (DATA-007)

@@ -79,6 +79,32 @@ Definida pelo responsável do projeto (Rafael):
   `NEXT_PUBLIC_RIO_NEGRO_URL` (valor do cliente: `https://rionegromfo.com.br`). Ajusta a
   [ADR 0018](0018-cta-e-disclaimer-no-rodape.md).
 
+## Nome da marca no resto (CL-006)
+Varredura: `git grep -iE "rio negro|rionegro"` em `apps`, `packages`, `supabase` e `tests`.
+
+Mudou (o que o usuário vê):
+- `apps/web/app/layout.tsx`: título padrão e template "<página> · Blog Rio Negro Family Office";
+  `og:site_name` "Blog Rio Negro Family Office".
+- `apps/web/app/rss.xml/route.ts`: título do feed "Blog Rio Negro Family Office".
+- `BLOG_DESCRIPTION` (descrição de metadata, Open Graph e RSS): era o subtítulo da home, que saiu
+  na CL-004; passa a ser o `h1` da home (ajusta a [ADR 0029](0029-descricao-padrao-do-blog.md)).
+- `apps/web/app/privacidade/page.tsx`: `description` da página cita o "Blog Rio Negro Family Office".
+- Header do site e do admin: `aria-label` "Rio Negro Family Office, página inicial" / ", painel".
+- Admin: títulos "<tela> · Rio Negro Family Office Admin" (login, artigos, novo, editar, leads) e
+  "Rio Negro Family Office · Admin" no layout. `alt` das logos na CL-003.
+- CTA e rodapé na CL-005; aviso do modal, opt-in e `/privacidade` na CL-007.
+
+Ficou de propósito (nomes internos ou dado de teste, nada disso aparece para o visitante):
+- Pacotes `@rio-negro/*`, prefixo `--rn-*`, env `NEXT_PUBLIC_RIO_NEGRO_URL` e a prop `rioNegroUrl`.
+- Headers `X-RioNegro-Timestamp` e `X-RioNegro-Signature` do webhook (contrato com o CRM, LEAD-012).
+- Admin local do seed `admin@rionegro.local` / `rionegro-dev-local` e os e-mails `@rionegro.local`
+  dos testes de integração e e2e.
+- Fixtures de teste: `https://rionegro.example`, `rionegro.com.br`, `xp.com.br` (links de exemplo
+  em testes de rich text e de env) e `contato@rionegroinvestimentos.com.br` (login recusado no e2e).
+- Comentário de cabeçalho de `packages/ui/src/tokens.css`.
+- Textos do seed: os artigos de exemplo não citam a marca; só o e-mail do admin local, que fica.
+- `apps/*/.env.example`: o agente não lê `.env*`; conferir à mão.
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.

@@ -12,7 +12,7 @@ export async function GET() {
 
   const xml = buildRssFeed(
     {
-      title: 'Rio Negro Investimentos',
+      title: 'Blog Rio Negro Family Office',
       siteUrl: new URL('/', site).href,
       feedUrl: new URL('/rss.xml', site).href,
       description: BLOG_DESCRIPTION,

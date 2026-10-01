@@ -9,7 +9,7 @@ import { countFailedLeads, webhookConfigFromEnv } from '@/lib/services/lead-webh
 import { requireAdminPage } from '@/lib/services/require-admin'
 
 export const metadata: Metadata = {
-  title: 'Leads do artigo · Rio Negro Admin',
+  title: 'Leads do artigo · Rio Negro Family Office Admin',
 }
 
 // ADM-013 · Leads de um artigo, do mais recente para o mais antigo.

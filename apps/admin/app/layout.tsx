@@ -7,7 +7,7 @@ import { StyleNonce } from '@/components/style-nonce'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Rio Negro · Admin',
+  title: 'Rio Negro Family Office · Admin',
   robots: { index: false, follow: false },
 }
 

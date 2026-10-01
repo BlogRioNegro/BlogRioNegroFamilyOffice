@@ -8,7 +8,7 @@ import { countFailedLeads, webhookConfigFromEnv } from '@/lib/services/lead-webh
 import { requireAdminPage } from '@/lib/services/require-admin'
 
 export const metadata: Metadata = {
-  title: 'Leads · Rio Negro Admin',
+  title: 'Leads · Rio Negro Family Office Admin',
 }
 
 const pageHref = (page: number) => (page === 1 ? '/leads' : `/leads?pagina=${page}`)

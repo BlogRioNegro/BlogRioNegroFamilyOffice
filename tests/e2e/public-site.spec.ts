@@ -24,7 +24,7 @@ test.describe('PUB-001 · Home', () => {
     await page.goto(webUrl('/'))
 
     await expect(
-      page.getByRole('link', { name: 'Rio Negro Investimentos, página inicial' }),
+      page.getByRole('link', { name: 'Rio Negro Family Office, página inicial' }),
     ).toHaveAttribute('href', '/')
     const footer = page.getByRole('contentinfo')
     const cta = footer.getByRole('link', { name: /Conheça a Rio Negro Family Office/ })
@@ -285,7 +285,7 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
   test('artigo pdf com resumo: título, descrição, canonical, og e twitter', async ({ page }) => {
     await page.goto(webUrl('/artigos/carteira-recomendada-outubro'))
 
-    await expect(page).toHaveTitle('Carteira recomendada de outubro · Rio Negro Investimentos')
+    await expect(page).toHaveTitle('Carteira recomendada de outubro · Blog Rio Negro Family Office')
     const description = 'Alocação sugerida por perfil de risco para o próximo mês.'
     await expect(meta(page, 'name', 'description')).toHaveAttribute('content', description)
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(

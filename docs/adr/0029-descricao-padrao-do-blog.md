@@ -1,6 +1,8 @@
 # 0029 · Descrição padrão do blog = subtítulo da home
 
 - Status: accepted · Data: 2026-09-25
+- Ajustada neste clone pela [ADR 0042](0042-clone-rio-negro-family-office.md): a home não tem mais
+  subtítulo, a descrição padrão é o `h1` da home e o template é "<página> · Blog Rio Negro Family Office".
 - Specs: [PUB-001, PUB-010, PUB-012](../specs/03-public-site.md)
 
 ## Contexto

@@ -5,7 +5,7 @@ import { SiteHeader } from '@/components/site-header'
 
 export const metadata: Metadata = {
   title: 'Aviso de privacidade',
-  description: 'Como o blog da Rio Negro trata os dados de quem baixa artigos.',
+  description: 'Como o Blog Rio Negro Family Office trata os dados de quem baixa artigos.',
 }
 
 const FULL_POLICY_URL = 'https://rionegroinvestimentos.com.br/politica-de-privacidade/'

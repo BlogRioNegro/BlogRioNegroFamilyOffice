@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { buildRssFeed, FEED_SIZE, imageType, type FeedItem } from './rss'
 
 const feed = {
-  title: 'Rio Negro Investimentos',
+  title: 'Blog Rio Negro Family Office',
   siteUrl: 'https://blog.example/',
   feedUrl: 'https://blog.example/rss.xml',
   description: 'Descrição do blog',
@@ -26,7 +26,7 @@ describe('buildRssFeed', () => {
 
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true)
     expect(xml).toContain('<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">')
-    expect(xml).toContain('<title>Rio Negro Investimentos</title>')
+    expect(xml).toContain('<title>Blog Rio Negro Family Office</title>')
     expect(xml).toContain('<link>https://blog.example/</link>')
     expect(xml).toContain(
       '<atom:link href="https://blog.example/rss.xml" rel="self" type="application/rss+xml"/>',

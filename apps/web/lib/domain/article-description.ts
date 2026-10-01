@@ -4,7 +4,7 @@ import { parseRichTextPreview, type RichTextBlock, type RichTextInline } from '.
 // rich_text usa ~160 caracteres do texto da prévia e pdf usa a descrição padrão do blog.
 
 export const BLOG_DESCRIPTION =
-  'Artigos e estudos para ajudar você a entender o mercado e decidir com mais informação.'
+  'Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.'
 
 export const DESCRIPTION_MAX_LENGTH = 160
 

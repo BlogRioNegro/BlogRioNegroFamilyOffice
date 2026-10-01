@@ -9,5 +9,5 @@ Specs: [00-overview](../specs/00-overview.md), [03-public-site](../specs/03-publ
 - [x] **CL-003** · DS-001 · Logo do site institucional (versão para fundo claro) no web, no admin e no design system
 - [x] **CL-004** · PUB-001 · Home: novo `h1`, sem subtítulo
 - [x] **CL-005** · PUB-013, LEAD-010 · Rodapé copiado do site institucional e CTA "Conheça a Rio Negro Family Office"
-- [ ] **CL-006** · PUB-010, PUB-012 · Nome da marca em metadata, Open Graph, RSS, header, admin e seed
+- [x] **CL-006** · PUB-010, PUB-012 · Nome da marca em metadata, Open Graph, RSS, header, admin e seed
 - [ ] **CL-007** · LEAD-013, PUB-014 · Controlador nos textos de privacidade e no aviso de lead; novo `policy_version`

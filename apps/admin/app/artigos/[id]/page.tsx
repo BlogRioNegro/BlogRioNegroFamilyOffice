@@ -10,7 +10,7 @@ import { findArticleForEdit } from '@/lib/services/article-store'
 import { requireAdminPage } from '@/lib/services/require-admin'
 
 export const metadata: Metadata = {
-  title: 'Editar artigo · Rio Negro Admin',
+  title: 'Editar artigo · Rio Negro Family Office Admin',
 }
 
 // O JSON do banco passa pelo schema do editor; o que ele não reconhece não chega ao Tiptap.
