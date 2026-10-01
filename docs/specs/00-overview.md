@@ -9,8 +9,10 @@ depends_on: []
 
 ## Visão
 
-Blog institucional da **Rio Negro Assessoria de Investimentos** (parceira XP) para publicar
-artigos (majoritariamente PDFs) e captar leads. Dois lados:
+**Blog Rio Negro Family Office**: blog institucional da **Rio Negro Family Office**
+(https://rionegromfo.com.br/) para publicar artigos (majoritariamente PDFs) e captar leads. É um
+clone do blog da Rio Negro Investimentos, só com a marca trocada
+([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)). Dois lados:
 
 - **Site público** (`apps/web`): visitantes leem a prévia dos artigos sem conta e baixam o
   artigo completo após deixar nome, e-mail e telefone. Não é rede social: sem perfil,
@@ -26,7 +28,7 @@ artigos (majoritariamente PDFs) e captar leads. Dois lados:
 | Dados | Supabase: Postgres, Auth, Storage |
 | UI | Tailwind + shadcn/ui, tokens do Claude Design em `packages/ui` |
 | Validação | Zod no client e no server |
-| Hospedagem | StayCloud Pro ([ADR 0002](../adr/0002-hospedagem-staycloud.md)) |
+| Hospedagem | A definir pelo Rafael ([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)) |
 | Testes | Vitest + Playwright ([ADR 0017](../adr/0017-testes-vitest-playwright.md)) |
 
 ## Requisitos
@@ -54,10 +56,10 @@ Desenvolvimento e testes no Supabase local (CLI); um único projeto Supabase de 
 `.env.example` documenta todas as variáveis de [SEC-003](02-security-rls.md).
 
 ### OVW-004 · Deploy
-Dois projetos na StayCloud (web e admin), build `output: 'standalone'`, sem APIs exclusivas
-de uma hospedagem ([ADR 0002](../adr/0002-hospedagem-staycloud.md)), no Deploy Pro com Node 22
-([ADR 0038](../adr/0038-staycloud-deploy-pro-node-22.md)).
-**Aceite:** o spike da tarefa F3-002 comprova Node 20+, build pnpm do app em subpasta,
+Dois projetos (web e admin), build `output: 'standalone'`, Node 22 e sem APIs exclusivas de uma
+hospedagem. **Hospedagem a definir pelo Rafael**
+([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)); a escolha entra em nova ADR.
+**Aceite:** a hospedagem escolhida comprova Node 20+, build pnpm do app em subpasta,
 variáveis de ambiente, Server Action e geração de PDF em produção.
 
 ### OVW-005 · Testes
@@ -88,6 +90,9 @@ QA exploratório com Playwright MCP na fase 7.
 | 5 | Captura de lead | [fase-5](../tasks/fase-5.md) |
 | 6 | Painel admin | [fase-6](../tasks/fase-6.md) |
 | 7 | Security review, QA, deploy | [fase-7](../tasks/fase-7.md) |
+| Clone | Troca de marca para a Rio Negro Family Office | [clone-family-office](../tasks/clone-family-office.md) |
+
+As fases 0 a 7 são o histórico herdado do blog original; o trabalho deste cliente é a linha "Clone".
 
 ## Glossário
 
@@ -98,10 +103,13 @@ QA exploratório com Playwright MCP na fase 7.
 
 ## Pendências
 
-- Domínios do site público e do admin (serão da Rio Negro). Até lá: `NEXT_PUBLIC_SITE_URL`
-  e `ADMIN_SITE_URL` em env.
-- Contato do encarregado de dados (DPO) da Rio Negro, necessário para o texto de
-  [LEAD-013](04-lead-capture.md). Validação na F7-006.
+- Hospedagem, repositório no GitHub, projeto Supabase de produção e chaves do Turnstile deste
+  cliente: a criar pelo Rafael ([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
+- Domínios do site público e do admin (serão da Rio Negro Family Office). Até lá:
+  `NEXT_PUBLIC_SITE_URL` e `ADMIN_SITE_URL` em env.
+- Razão social, CNPJ, endereço e contato do encarregado de dados (DPO) da Rio Negro Family
+  Office, necessários para o texto de [LEAD-013](04-lead-capture.md): não constam no site
+  institucional. Validação jurídica dos textos pelo cliente.
 
 ## Fora de escopo
 

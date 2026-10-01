@@ -1,6 +1,6 @@
 # 0038 · Deploy no StayCloud Deploy Pro com Node 22
 
-- Status: accepted · Data: 2026-09-25
+- Status: superseded por [ADR 0042](0042-clone-rio-negro-family-office.md) (hospedagem a definir neste clone) · Data: 2026-09-25
 - Specs: [OVW-004](../specs/00-overview.md)
 - Complementa: [ADR 0002](0002-hospedagem-staycloud.md)
 

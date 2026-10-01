@@ -2,43 +2,36 @@
 
 _Sobrescrever inteiro ao fim de cada sessão. Máx. ~40 linhas. Sem histórico._
 
+## Projeto
+Blog Rio Negro Family Office: clone do blog Rio Negro (commit `2e0ada6` do original), com a marca
+trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Branch `main`, sem remote.
+O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
+
 ## Fase
-Fase 7 na branch `fase-7` (criada da `fase-6`). Fechando o gate do PR `fase-7` → `main` com as
-correções escolhidas pelo Rafael: QA-1, SEC-2, SEC-3. F7-001, F7-003 e F7-004 `[x]`. Sem push.
+Tasks do clone em [tasks/clone-family-office.md](tasks/clone-family-office.md). CL-001 `[x]`.
 
 ## Próxima tarefa
-Gate final do PR `fase-7` → `main`: `pnpm test` verde (467 + 90 de integração); faltam
-`pnpm build` e `pnpm test:e2e` (o build foi negado pela permissão do agente; rodar à mão).
-Com os dois verdes: código pronto para o PR; próximo: deploy com o Rafael.
+CL-002 · azul de ação nos tokens. Ler: specs 06, 03 e 04; ADR 0042 e ADR 0023.
 
-## Feito nesta rodada
-- Capa de até 5 MB otimizada no browser (ADR 0041): `c1fc6bb`.
-- QA-1: `StyleNonce` fixa o nonce do documento uma única vez: `2769954`.
-- SEC-2: logger só com `code` e `message` de erro do banco; nome por code points: `8ec72fd`.
-- SEC-3: `poweredByHeader: false` nos dois apps: `2b057df`.
-
-## Fora do escopo (decisão do Rafael)
-SEC-1, SEC-7, QA-2 a QA-4 e as tarefas de produção (F7-002, F7-005 a F7-009) ficam para depois.
+## Dados do cliente (só o que está em https://rionegromfo.com.br/, lido em 2026-10-01)
+- Azul principal do kit do site: `#233645`. Logo para fundo claro: `RIO-NEGRO.png` (em `#233645`).
+- Rodapé: "2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS" + "POLÍTICA DE PRIVACIDADE".
+- Não constam no site: razão social, CNPJ, endereço, contato do encarregado, URLs de LinkedIn/Instagram.
 
 ## Regras do loop
-- A skill `security-review` exige `origin/HEAD`; sem remote, a revisão do diff é manual.
-- Build de produção para QA: `pnpm build`; web `next start --port 3200`, admin `--port 3201`.
-  E2E: web :3100/:3102, admin :3101; parar servidores antes (`taskkill //PID <pid> //T //F`).
-- "Corrigido em `<hash>`" no `docs/revisao-final.md` entra no commit seguinte (`docs(memory)`),
-  porque um commit não contém o próprio hash.
+- Um commit por task; antes de cada um: `pnpm typecheck`, `pnpm lint`, `pnpm format:check` e os
+  testes dos arquivos alterados. Depois, `docs(memory)`.
+- Código de server é duplicado por app (ADR 0021): mudar nas duas cópias.
+- E2E: web :3100/:3102, admin :3101; parar servidores antes (`taskkill //PID <pid> //T //F`).
+- Nunca ler `.env*`, nunca editar migration existente, nunca push/deploy/criar infraestrutura.
+- `pnpm test` exige Docker + `pnpm exec supabase start` (o do projeto original precisa estar parado:
+  `pnpm exec supabase stop --project-id rio-negro`).
 - Scripts de investigação ficam no scratchpad da sessão, nunca no repo.
-- Nunca ler `.env*`. `pnpm test` exige Docker + `pnpm exec supabase start`.
-
-## Pendências pós-deploy
-- SEC-4: sem `Strict-Transport-Security`; adicionar no `next.config.ts` ou confirmar no Deploy Pro.
-- SEC-5: `[auth.email] enable_signup = true`; desligar no projeto de produção e testar signUp.
-- SEC-6: Turnstile sem checagem de `hostname`; validar o hostname de produção.
 
 ## Pendências para o Rafael
-- Rodar `pnpm build` e `pnpm test:e2e` (gate final); parar `pnpm dev` antes.
-- Artigo manual `teste` (criado às 10:08 de 28/09) removido do banco local: sujava a integração.
-- SEC-1 / F3-002: confirmar em qual header o Deploy entrega o IP real do visitante.
-- ADR 0039: reenvio de lead de artigo excluído manda `article.id = null`; confirmar com o CRM.
-- Deploy Pro: validar se o install do pnpm roda na raiz do monorepo; se falhar, VPS.
-- Comando de start no Deploy Pro: `node .next/standalone/server.js` (`next start` avisa).
-- Turnstile de teste no `.env.local`; DPO; aceites PUB-007/010/012; `corepack enable`; domínios.
+- Hospedagem a definir; repositório novo no GitHub; projeto Supabase, Turnstile e domínios novos.
+- Criar `.env.local` dos dois apps (`NEXT_PUBLIC_RIO_NEGRO_URL=https://rionegromfo.com.br`).
+- Conferir `apps/*/.env.example`: o agente não lê `.env*`, então o valor de exemplo de
+  `NEXT_PUBLIC_RIO_NEGRO_URL` pode ainda ser o do cliente original.
+- Dados "pendente" (razão social, CNPJ, endereço, DPO) e validação jurídica dos textos pelo cliente.
+- Node local é v24; o projeto fixa 22 no `.nvmrc`.

@@ -1,6 +1,6 @@
 # 0002 · Hospedagem na StayCloud, código agnóstico
 
-- Status: accepted · Data: 2026-09-23
+- Status: superseded por [ADR 0042](0042-clone-rio-negro-family-office.md) (hospedagem a definir neste clone) · Data: 2026-09-23
 - Complementada por: [ADR 0038](0038-staycloud-deploy-pro-node-22.md) (Deploy Pro com Node 22)
 - Specs: [OVW-004](../specs/00-overview.md)
 

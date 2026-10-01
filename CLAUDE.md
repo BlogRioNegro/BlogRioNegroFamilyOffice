@@ -1,7 +1,9 @@
-# Blog Rio Negro Investimentos
+# Blog Rio Negro Family Office
 
 Blog institucional (site público + painel admin) com captura de lead.
 Visão, stack e mapa de specs: [docs/specs/00-overview.md](docs/specs/00-overview.md).
+Clone do blog da Rio Negro Investimentos com a marca trocada: os nomes internos (`@rio-negro/*`,
+`--rn-*`, `NEXT_PUBLIC_RIO_NEGRO_URL`) ficam ([ADR 0042](docs/adr/0042-clone-rio-negro-family-office.md)).
 
 ## Protocolo de sessão
 
@@ -21,7 +23,7 @@ Visão, stack e mapa de specs: [docs/specs/00-overview.md](docs/specs/00-overvie
 
 ## Definição de pronto
 
-Uma task só é marcada `[x]` em `docs/tasks/fase-N.md` quando:
+Uma task só é marcada `[x]` no arquivo dela em `docs/tasks/` quando:
 1. `typecheck`, `lint` e os testes passam, sem erros e sem warnings novos.
 2. Os critérios de aceite do requisito referenciado estão atendidos.
 3. Regra de negócio nova em `lib/domain` e toda Server Action têm teste (Vitest).
