@@ -230,7 +230,7 @@ function LeadForm({ article, turnstileSiteKey, rioNegroUrl }: Props) {
             href="/privacidade"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-3 hover:decoration-2"
+            className="text-link underline underline-offset-3 hover:decoration-2"
           >
             aviso de privacidade
           </a>

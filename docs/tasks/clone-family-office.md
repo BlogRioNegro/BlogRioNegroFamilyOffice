@@ -5,7 +5,7 @@ Specs: [00-overview](../specs/00-overview.md), [03-public-site](../specs/03-publ
 [04-lead-capture](../specs/04-lead-capture.md), [06-design-system](../specs/06-design-system.md)
 
 - [x] **CL-001** · OVW-002 · Documentação do clone: ADR 0042, nome do projeto no `CLAUDE.md`, na spec 00 e no memory
-- [ ] **CL-002** · DS-003 · Azul de ação da marca nos tokens (`packages/ui`, export do design e spec 06), com contraste AA
+- [x] **CL-002** · DS-003 · Azul de ação da marca nos tokens (`packages/ui`, export do design e spec 06), com contraste AA
 - [ ] **CL-003** · DS-001 · Logo do site institucional (versão para fundo claro) no web, no admin e no design system
 - [ ] **CL-004** · PUB-001 · Home: novo `h1`, sem subtítulo
 - [ ] **CL-005** · PUB-013, LEAD-010 · Rodapé copiado do site institucional e CTA "Conheça a Rio Negro Family Office"

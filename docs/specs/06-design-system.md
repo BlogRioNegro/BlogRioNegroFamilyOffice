@@ -17,8 +17,9 @@ reimplementadas como componentes seguindo as specs 03, 04 e 05, não copiadas.
 ## Requisitos
 
 ### DS-001 · Design system no Claude Design (fase 1)
-Cores, tipografia, espaçamento, raio, sombras e componentes base, alinhados à identidade de
-rionegroinvestimentos.com.br.
+Cores, tipografia, espaçamento, raio, sombras e componentes base, herdados do blog original. A
+cor de ação é o azul principal de rionegromfo.com.br
+([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
 **Aceite:** design system publicado no Claude Design e aprovado pelo responsável do projeto.
 
 ### DS-002 · Protótipos (fase 1)
@@ -62,6 +63,8 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--rn-warm-600` | `#5c5854` | Paleta base (cinza quente). Não usar direto: usar os semânticos. |
 | `--rn-warm-800` | `#3a3735` | Paleta base (cinza quente). Não usar direto: usar os semânticos. |
 | `--rn-warm-900` | `#1d1c1b` | Paleta base (cinza quente). Não usar direto: usar os semânticos. |
+| `--rn-blue-800` | `#233645` | Azul da marca (rionegromfo.com.br). Não usar direto: usar os semânticos de ação. |
+| `--rn-blue-900` | `#192631` | Tom mais escuro do azul da marca (hover). Não usar direto: usar os semânticos de ação. |
 | `--rn-green-700` | `#2f6b3f` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-green-50` | `#e6f0e8` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-green-200` | `#b9d3bf` | Paleta de estado. Não usar direto: usar os semânticos. |
@@ -120,9 +123,10 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--color-text` | `var(--rn-warm-900)` | Texto principal |
 | `--color-text-muted` | `var(--rn-warm-600)` | Legenda, data, texto regulatório |
 | `--color-text-inverse` | `var(--rn-warm-50)` | Texto sobre ação primária |
-| `--color-action-primary` | `var(--rn-warm-900)` | Botão primário |
-| `--color-action-primary-hover` | `var(--rn-warm-800)` | Botão primário em hover |
+| `--color-action-primary` | `var(--rn-blue-800)` | Botão primário |
+| `--color-action-primary-hover` | `var(--rn-blue-900)` | Botão primário em hover |
 | `--color-action-primary-text` | `var(--rn-warm-50)` | Texto do botão primário |
+| `--color-link` | `var(--rn-blue-800)` | Links (no texto, `Button` link e navegação) |
 | `--color-disabled-bg` | `var(--rn-warm-100)` | Fundo de controle desabilitado |
 | `--color-disabled-text` | `var(--rn-warm-600)` | Texto de controle desabilitado |
 | `--color-success` | `var(--rn-green-700)` | Texto/ícone de sucesso |
@@ -134,7 +138,7 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--color-warning` | `var(--rn-amber-700)` | Texto/ícone de aviso |
 | `--color-warning-bg` | `var(--rn-amber-50)` | Fundo de alerta de aviso |
 | `--color-warning-border` | `var(--rn-amber-200)` | Borda de alerta de aviso |
-| `--color-focus-ring` | `var(--rn-warm-900)` | Anel de foco |
+| `--color-focus-ring` | `var(--rn-blue-800)` | Anel de foco |
 | `--color-overlay` | `rgba(29, 28, 27, 0.48)` | Fundo do modal |
 | `--font-sans` | `var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif` | Interface (Inter, via next/font) |
 | `--font-serif` | `var(--font-source-serif), 'Source Serif Pro', Georgia, 'Times New Roman', serif` | Corpo do artigo (Source Serif 4, via next/font) |
@@ -190,17 +194,22 @@ identifica o controle ≥ 3:1 (1.4.11). Superfícies de referência: `--color-su
 `--color-bg` (`#f2f0ef`). Controle desabilitado é isento (1.4.3).
 
 **Foco visível (todos):** `:focus-visible` global em `packages/ui/src/styles.css`, contorno de 2 px
-em `--color-focus-ring` (`#1d1c1b`) afastado 2 px: 17,02:1 sobre surface e 14,98:1 sobre bg. Nenhum
+em `--color-focus-ring` (`#233645`) afastado 2 px: 12,46:1 sobre surface e 10,97:1 sobre bg. Nenhum
 componente remove o `outline`.
+
+**Cor de ação (azul da marca, [ADR 0042](../adr/0042-clone-rio-negro-family-office.md)):** só em
+`--color-action-primary`, `--color-action-primary-hover`, `--color-focus-ring` e `--color-link`.
+Fundos, textos e bordas seguem nos neutros. Link `#233645`: 12,46:1 sobre surface, 10,97:1 sobre bg
+e 10,03:1 sobre `surface-muted` (rodapé).
 
 | Componente | Contraste (valores reais) | Foco e teclado | Label e nome acessível |
 |---|---|---|---|
-| `Button` | primary: texto `#f2f0ef` sobre `#1d1c1b` 14,98:1 (hover `#3a3735` 10,40:1); secondary/ghost/link: `#1d1c1b` sobre surface 17,02:1 e sobre `surface-muted` (hover) 13,70:1; borda do secondary `#8c8782` 3,56:1 | `<button>` nativo (Enter/Espaço); `type="button"` por padrão; desabilitado e `loading` saem da ordem de clique | texto visível; ícone com `aria-hidden`; botões só de ícone (`icon`, `icon-sm`) exigem `aria-label` ou texto `sr-only`; `loading` marca `aria-busy` |
+| `Button` | primary: texto `#f2f0ef` sobre `#233645` 10,97:1 (hover `#192631` 13,56:1); secondary/ghost: `#1d1c1b` sobre surface 17,02:1 e sobre `surface-muted` (hover) 13,70:1; link: `#233645` sobre surface 12,46:1 e sobre bg 10,97:1; borda do secondary `#8c8782` 3,56:1 | `<button>` nativo (Enter/Espaço); `type="button"` por padrão; desabilitado e `loading` saem da ordem de clique | texto visível; ícone com `aria-hidden`; botões só de ícone (`icon`, `icon-sm`) exigem `aria-label` ou texto `sr-only`; `loading` marca `aria-busy` |
 | `Label` | `#1d1c1b` sobre surface 17,02:1; "(opcional)" `#5c5854` 7,05:1 (6,21:1 sobre bg) | — | sempre visível, ligado por `htmlFor`; placeholder nunca substitui o label |
 | `Input` | texto `#1d1c1b` 17,02:1; placeholder `#5c5854` 7,05:1; borda `#8c8782` 3,56:1 (3,13:1 contra bg); borda de erro `#a8322d` 6,65:1 | nativo | só é usado com `Label` (via `TextField` ou `htmlFor`); erro com `aria-invalid` |
 | `FieldMessage` | ajuda `#5c5854` 7,05:1; erro `#a8322d` 6,65:1 sobre surface e 5,85:1 sobre bg | — | ligado ao campo por `aria-describedby`; erro tem ícone, não só cor (1.4.1) |
 | `TextField` | herda `Label`, `Input` e `FieldMessage` | nativo | liga `id`, `htmlFor`, `aria-describedby` e `aria-invalid` sozinho |
-| `Checkbox` | borda `#8c8782` 3,56:1; marcado: ícone `#f2f0ef` sobre `#1d1c1b` 14,98:1; label `#1d1c1b` 17,02:1 | Radix (`role="checkbox"`, Espaço alterna) | `<label htmlFor>` clicável; erro com `aria-invalid` + `aria-describedby`; nunca pré-marcado |
+| `Checkbox` | borda `#8c8782` 3,56:1; marcado: ícone `#f2f0ef` sobre `#233645` 10,97:1; label `#1d1c1b` 17,02:1 | Radix (`role="checkbox"`, Espaço alterna) | `<label htmlFor>` clicável; erro com `aria-invalid` + `aria-describedby`; nunca pré-marcado |
 | `Alert` | título: sucesso `#2f6b3f` sobre `#e6f0e8` 5,46:1, erro `#a8322d` sobre `#f8e6e4` 5,52:1, aviso `#8a5a00` sobre `#f7edd9` 5,10:1; corpo `#1d1c1b` ≥ 14,12:1 | não recebe foco | `role="alert"` (erro) ou `role="status"`; ícone decorativo, o título carrega o sentido |
 | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogClose` | título `#1d1c1b` 17,02:1; descrição `#5c5854` 7,05:1 | foco preso no conteúdo; **Esc** e clique no fundo fecham; o foco volta ao `DialogTrigger` (Radix) | `title` obrigatório → `aria-labelledby`; `description` → `aria-describedby`; "Fechar" de 44 px com texto `sr-only` |
 | `StatusBadge` | Pendente `#8a5a00`/`#f7edd9` 5,10:1; Enviado `#2f6b3f`/`#e6f0e8` 5,46:1; Falhou `#a8322d`/`#f8e6e4` 5,52:1; Desativado `#5c5854`/`#e9e6e4` 5,67:1 | não recebe foco | o texto do status sempre visível; ponto de cor com `aria-hidden` |

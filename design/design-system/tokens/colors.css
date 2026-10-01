@@ -1,4 +1,4 @@
-/* Rio Negro — cores. Base clara (off-white + cinza quente). Sem tema escuro. */
+/* Rio Negro Family Office — cores. Base clara (off-white + cinza quente) e azul da marca só como cor de ação (ADR 0042). Sem tema escuro. */
 :root{
 /* Paleta base */
 --rn-warm-0:#FFFFFF;
@@ -9,6 +9,8 @@
 --rn-warm-600:#5C5854;
 --rn-warm-800:#3A3735;
 --rn-warm-900:#1D1C1B;
+--rn-blue-800:#233645;
+--rn-blue-900:#192631;
 --rn-green-700:#2F6B3F;
 --rn-green-50:#E6F0E8;
 --rn-green-200:#B9D3BF;
@@ -32,9 +34,10 @@
 --color-text-inverse:var(--rn-warm-50);
 
 /* Semânticos: ação */
---color-action-primary:var(--rn-warm-900);
---color-action-primary-hover:var(--rn-warm-800);
+--color-action-primary:var(--rn-blue-800);
+--color-action-primary-hover:var(--rn-blue-900);
 --color-action-primary-text:var(--rn-warm-50);
+--color-link:var(--rn-blue-800);
 --color-disabled-bg:var(--rn-warm-100);
 --color-disabled-text:var(--rn-warm-600);
 
@@ -50,6 +53,6 @@
 --color-warning-border:var(--rn-amber-200);
 
 /* Foco e sobreposição */
---color-focus-ring:var(--rn-warm-900);
+--color-focus-ring:var(--rn-blue-800);
 --color-overlay:rgba(29,28,27,.48);
 }

@@ -27,7 +27,7 @@ export function SiteFooter() {
           <span>© {new Date().getFullYear()} Rio Negro Assessoria de Investimentos</span>
           <Link
             href="/privacidade"
-            className="text-text underline underline-offset-3 hover:decoration-2"
+            className="text-link underline underline-offset-3 hover:decoration-2"
           >
             Privacidade
           </Link>

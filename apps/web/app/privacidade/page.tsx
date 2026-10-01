@@ -45,7 +45,7 @@ const SECTIONS: { title: string; body: ReactNode }[] = [
         href={FULL_POLICY_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="break-words underline underline-offset-3 hover:decoration-2"
+        className="break-words text-link underline underline-offset-3 hover:decoration-2"
       >
         {FULL_POLICY_URL}
         <span className="sr-only"> (abre em nova aba)</span>

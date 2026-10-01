@@ -14,7 +14,7 @@ export const buttonVariants = cva(
         secondary:
           'border-border-strong bg-surface text-text hover:border-text-muted hover:bg-surface-muted aria-busy:border-border-strong aria-busy:bg-surface-muted aria-busy:text-text',
         ghost: 'text-text hover:bg-surface-muted',
-        link: 'text-text underline underline-offset-3 hover:decoration-2 disabled:bg-transparent',
+        link: 'text-link underline underline-offset-3 hover:decoration-2 disabled:bg-transparent',
       },
       size: {
         md: 'h-(--control-height) px-4',

@@ -11,7 +11,7 @@ import { IMAGE_ACCEPT, sizeError } from '@/lib/domain/upload-rules'
 
 // Tipografia próxima à do artigo no site (apps/web/components/rich-text.tsx).
 const CONTENT_CLASSES =
-  'min-h-80 rounded-b-control px-4 py-4 font-serif text-md leading-relaxed text-text md:px-6 [&_blockquote]:my-6 [&_blockquote]:border-l-2 [&_blockquote]:border-text [&_blockquote]:pl-6 [&_blockquote]:italic [&_h2]:mt-8 [&_h2]:mb-2 [&_h2]:font-sans [&_h2]:text-xl [&_h2]:font-semibold [&_h2:first-child]:mt-0 [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:font-sans [&_h3]:text-md [&_h3]:font-semibold [&_img]:my-6 [&_img]:max-w-full [&_img.ProseMirror-selectednode]:outline-2 [&_img.ProseMirror-selectednode]:outline-focus-ring [&_a]:underline [&_li]:mb-1 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5'
+  'min-h-80 rounded-b-control px-4 py-4 font-serif text-md leading-relaxed text-text md:px-6 [&_blockquote]:my-6 [&_blockquote]:border-l-2 [&_blockquote]:border-text [&_blockquote]:pl-6 [&_blockquote]:italic [&_h2]:mt-8 [&_h2]:mb-2 [&_h2]:font-sans [&_h2]:text-xl [&_h2]:font-semibold [&_h2:first-child]:mt-0 [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:font-sans [&_h3]:text-md [&_h3]:font-semibold [&_img]:my-6 [&_img]:max-w-full [&_img.ProseMirror-selectednode]:outline-2 [&_img.ProseMirror-selectednode]:outline-focus-ring [&_a]:text-link [&_a]:underline [&_li]:mb-1 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5'
 
 type Tool = {
   label: string

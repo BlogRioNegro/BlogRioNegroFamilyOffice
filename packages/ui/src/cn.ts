@@ -21,6 +21,7 @@ const twMerge = extendTailwindMerge({
         'action-primary',
         'action-primary-hover',
         'action-primary-text',
+        'link',
         'disabled-bg',
         'disabled-text',
         'success',

@@ -30,6 +30,23 @@ Definida pelo responsável do projeto (Rafael):
 - Repositório no GitHub, projeto Supabase de produção, chaves do Turnstile e domínios são novos
   para este cliente e criados pelo Rafael; o agente não faz push, deploy nem cria infraestrutura.
 
+## Azul de ação (CL-002)
+- Hex exato: **`#233645`**, a cor global `primary` do kit do site
+  (`--e-global-color-primary` em `wp-content/uploads/elementor/css/post-6.css`, lido em 2026-10-01).
+- Onde aparece no site: fundo do botão de envio do formulário de contato (texto branco), botão
+  "Estou Ciente" do aviso de cookies, títulos e textos de destaque, sublinhado do item ativo do menu,
+  ícones do rodapé, fundo do rodapé e a própria logo.
+- Outros azuis do site, descartados como cor de ação: `#334A5C` é a cor `secondary` do kit (só
+  fundo de seção e texto de lista); `#294152` aparece uma vez num fundo; `#1863DC` e `#0056A7`
+  são o padrão do plugin de cookies (CookieYes), não da marca.
+- Tokens: primitivos `--rn-blue-800: #233645` e `--rn-blue-900: #192631` (mesmo matiz e
+  saturação, luminosidade de 20% para 14,5%: é derivado, não vem do site). Semânticos:
+  `--color-action-primary` e `--color-focus-ring` = blue-800; `--color-action-primary-hover` =
+  blue-900; novo `--color-link` = blue-800 (`Button` link, links no texto e navegação do header).
+- Fundos, textos e bordas continuam nos neutros `--rn-warm-*`.
+- Contraste (WCAG 2.1): texto `#f2f0ef` sobre `#233645` 10,97:1 e sobre `#192631` 13,56:1; link
+  `#233645` sobre `#ffffff` 12,46:1, sobre `#f2f0ef` 10,97:1 e sobre `#e9e6e4` 10,03:1. Todos AA.
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.

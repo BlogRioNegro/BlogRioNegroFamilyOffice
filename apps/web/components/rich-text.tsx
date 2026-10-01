@@ -17,7 +17,7 @@ function renderInline(inline: RichTextInline): ReactNode {
       <a
         href={mark.href}
         rel={mark.external ? EXTERNAL_REL : undefined}
-        className="underline underline-offset-3 hover:decoration-2"
+        className="text-link underline underline-offset-3 hover:decoration-2"
       >
         {node}
       </a>
