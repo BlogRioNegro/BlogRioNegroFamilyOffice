@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/base.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/components/components.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/styles.css">
+<script src="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-surface-muted)}a{color:var(--color-text)}a:hover{text-decoration-thickness:2px}[data-m] .rn-header__inner{padding:0 var(--space-4)}[data-m] .rn-footer__inner{padding:var(--space-12) var(--space-4) var(--space-8)}[data-m] .rn-card--featured .rn-card__body{padding:var(--space-6)}[data-m] .rn-card--featured .rn-card__title{font-size:var(--font-size-xl);line-height:var(--line-height-xl)}[data-m]{--font-size-article:var(--font-size-md);--font-size-h1:var(--font-size-3xl)}</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-16);font-family:var(--font-sans);color:var(--color-text)">
+
+<header style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1440px">
+  <div style="display:flex;gap:var(--space-6);font-size:var(--font-size-sm)">
+    <strong>Site público</strong>
+    <a href="Modal%20de%20Lead.dc.html">Modal de lead</a>
+    <a href="Admin.dc.html">Admin</a>
+  </div>
+  <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Blog Rio Negro · Site público</h1>
+  <p style="margin:0;max-width:72ch;color:var(--color-text-muted);font-size:var(--font-size-md);line-height:var(--line-height-normal)">Cada tela em desktop (1440 px) e mobile (390 px). Todas as peças vêm do design system Rio Negro; o que não existe nele está listado abaixo e foi montado só com tokens e componentes existentes.</p>
+  <div style="display:flex;flex-direction:column;gap:var(--space-2);max-width:960px;padding:var(--space-4) var(--space-6);background:var(--color-warning-bg);border:1px solid var(--color-warning-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);line-height:var(--line-height-xs)">
+    <strong style="font-size:var(--font-size-sm);color:var(--color-warning)">Lacunas do design system (sinalizadas, não inventadas)</strong>
+    <span>1. Hero: não há componente. Montado com a escala tipográfica e o Button primário.</span>
+    <span>2. Visualizador de PDF: não há componente. Área neutra com esqueletos estáticos (rn-skel) no lugar do &lt;object&gt;/&lt;iframe&gt; do navegador.</span>
+    <span>3. Página de artigo: layout segue o UI kit do blog; resumo usa Source Serif 4 no tamanho do corpo.</span>
+    <span>4. Estado vazio da listagem: não há componente de estado vazio; usa superfície branca com borda, como o vazio do DataTable.</span>
+    <span>5. Rodapé: SiteFooter recebe o texto regulatório provisório de 3 linhas via prop legal. No mobile ele empilha sozinho: logotipo e "Conheça a Rio Negro", disclaimer, "Privacidade".</span>
+    <span>6. Frames mobile: o canvas é mais largo que o breakpoint de 768 px, então os frames de 390 px reaplicam as regras mobile do próprio DS (margem de 16 px no header e rodapé, H1 36 px, corpo 18/1.7, título do destaque 24 px). Nenhum valor novo.</span>
+    <span>7. LoadMoreButton: o componente fixa largura mínima de 240 px e não tem opção de largura total. Fica centralizado com 44 px de altura; não foi alterado.</span>
+  </div>
+</header>
+
+<!-- HOME -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">1. Home</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="home-d" data-screen-label="Home · padrão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Home · padrão · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-24) var(--space-6)">
+          <div style="max-width:var(--layout-reading);display:flex;flex-direction:column;gap:var(--space-6);align-items:flex-start">
+            <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700;text-wrap:balance">Análises sobre investimentos, escritas pela equipe da Rio Negro.</h1>
+            <p style="margin:0;max-width:60ch;font-size:var(--font-size-lg);line-height:var(--line-height-normal);color:var(--color-text-muted)">Artigos e estudos para ajudar você a entender o mercado e decidir com mais informação.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" href="#lista-d" icon-right="arrow-right" hint-size="140px,44px">Ver artigos</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="home-m" data-screen-label="Home · padrão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Home · padrão · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-16) var(--space-4);display:flex;flex-direction:column;gap:var(--space-6);align-items:flex-start">
+          <h1 style="margin:0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700;text-wrap:balance">Análises sobre investimentos, escritas pela equipe da Rio Negro.</h1>
+          <p style="margin:0;font-size:var(--font-size-md);line-height:var(--line-height-normal);color:var(--color-text-muted)">Artigos e estudos para ajudar você a entender o mercado e decidir com mais informação.</p>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" href="#lista-m" icon-right="arrow-right" block="{{ true }}" hint-size="100%,44px">Ver artigos</x-import>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTAGEM -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">2. Listagem /artigos</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="lista-d" data-screen-label="Listagem · com artigos · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Listagem · com artigos · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-16) 0 var(--space-24);display:flex;flex-direction:column;gap:var(--space-8)">
+          <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Artigos</h1>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.FeaturedArticleCard" href="#pdf-d" type="pdf" date="22 set. 2026" title="Cenário macro para o quarto trimestre de 2026" excerpt="Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor." hint-size="100%,300px"></x-import>
+          <div style="display:flex;flex-direction:column;gap:var(--space-6)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#texto-d" type="text" date="15 set. 2026" title="Tesouro IPCA+ ou prefixado: como comparar" hint-size="100%,510px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#pdf-d" type="pdf" date="8 set. 2026" title="Previdência privada: PGBL ou VGBL?" hint-size="100%,510px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#texto-d" type="text" date="29 ago. 2026" title="O que muda com a nova tabela de IR sobre aplicações" hint-size="100%,510px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#pdf-d" type="pdf" date="18 ago. 2026" title="Fundos imobiliários: como ler um relatório gerencial" hint-size="100%,510px"></x-import>
+          </div>
+          <div style="padding-top:var(--space-4)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.LoadMoreButton" hint-size="100%,44px"></x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="lista-m" data-screen-label="Listagem · com artigos · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Listagem · com artigos · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-8) var(--space-4) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <h1 style="margin:0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700">Artigos</h1>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.FeaturedArticleCard" href="#pdf-m" type="pdf" date="22 set. 2026" title="Cenário macro para o quarto trimestre de 2026" excerpt="Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor." hint-size="100%,480px"></x-import>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#texto-m" type="text" date="15 set. 2026" title="Tesouro IPCA+ ou prefixado: como comparar" hint-size="100%,310px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#pdf-m" type="pdf" date="8 set. 2026" title="Previdência privada: PGBL ou VGBL?" hint-size="100%,310px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#texto-m" type="text" date="29 ago. 2026" title="O que muda com a nova tabela de IR sobre aplicações" hint-size="100%,310px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.ArticleCard" href="#pdf-m" type="pdf" date="18 ago. 2026" title="Fundos imobiliários: como ler um relatório gerencial" hint-size="100%,310px"></x-import>
+          </div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.LoadMoreButton" hint-size="100%,44px"></x-import>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="vazio-d" data-screen-label="Listagem · vazio · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Listagem · vazio · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-16) 0 var(--space-24);display:flex;flex-direction:column;gap:var(--space-8)">
+          <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Artigos</h1>
+          <div style="padding:var(--space-12) var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);text-align:center;color:var(--color-text-muted)">Nenhum artigo publicado ainda</div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="vazio-m" data-screen-label="Listagem · vazio · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Listagem · vazio · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-8) var(--space-4) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <h1 style="margin:0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700">Artigos</h1>
+          <div style="padding:var(--space-12) var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);text-align:center;color:var(--color-text-muted)">Nenhum artigo publicado ainda</div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTIGO TEXTO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">3. Artigo tipo Texto</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="texto-d" data-screen-label="Artigo Texto · prévia · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo Texto · prévia · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-12) 0 var(--space-24);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-d" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-8) 0 var(--space-8);font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700;text-wrap:balance">Tesouro IPCA+ ou prefixado: como comparar</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-6) 0 var(--space-4);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="text" hint-size="56px,24px"></x-import>
+            <time>15 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-8);font-family:var(--font-serif);font-size:var(--font-size-xl);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Os dois títulos protegem o investidor de formas diferentes. Entender o que cada um remunera ajuda a escolher o que combina com o seu prazo.</p>
+          <div class="rn-article" style="margin:0;font-size:var(--font-size-lg)">
+            <h2 style="margin-top:0">O que cada título paga</h2>
+            <p>O Tesouro Prefixado garante, no momento da compra, a taxa que você vai receber até o vencimento. O Tesouro IPCA+ paga uma taxa fixa somada à inflação do período, o que preserva o poder de compra ao longo dos anos.</p>
+            <ul>
+              <li>Prefixado: faz sentido quando você espera queda dos juros.</li>
+              <li>IPCA+: protege contra surpresas de inflação no longo prazo.</li>
+              <li>Ambos: sofrem marcação a mercado se vendidos antes do vencimento.</li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start;margin-top:var(--space-4);padding-top:var(--space-8);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" href="Modal%20de%20Lead.dc.html#a-d" hint-size="230px,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="texto-m" data-screen-label="Artigo Texto · prévia · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo Texto · prévia · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-6) var(--space-4) var(--space-16);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-m" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-6) 0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700;text-wrap:balance">Tesouro IPCA+ ou prefixado: como comparar</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-4) 0 var(--space-3);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="text" hint-size="56px,24px"></x-import>
+            <time>15 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-6);font-family:var(--font-serif);font-size:var(--font-size-lg);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Os dois títulos protegem o investidor de formas diferentes. Entender o que cada um remunera ajuda a escolher o que combina com o seu prazo.</p>
+          <div class="rn-article" style="margin:0;font-size:var(--font-size-md)">
+            <h2 style="margin-top:0">O que cada título paga</h2>
+            <p>O Tesouro Prefixado garante, no momento da compra, a taxa que você vai receber até o vencimento. O Tesouro IPCA+ paga uma taxa fixa somada à inflação do período, o que preserva o poder de compra ao longo dos anos.</p>
+            <ul>
+              <li>Prefixado: faz sentido quando você espera queda dos juros.</li>
+              <li>IPCA+: protege contra surpresas de inflação no longo prazo.</li>
+              <li>Ambos: sofrem marcação a mercado se vendidos antes do vencimento.</li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-2);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" block="{{ true }}" href="Modal%20de%20Lead.dc.html#a-m" hint-size="100%,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTIGO PDF -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">4. Artigo tipo PDF</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="pdf-d" data-screen-label="Artigo PDF · prévia embutida · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo PDF · prévia embutida · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-12) 0 var(--space-24);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-d" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-8) 0 var(--space-8);font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700;text-wrap:balance">Cenário macro para o quarto trimestre de 2026</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-6) 0 var(--space-4);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="pdf" hint-size="48px,24px"></x-import>
+            <time>22 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-8);font-family:var(--font-serif);font-size:var(--font-size-xl);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor.</p>
+          <figure style="margin:0;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);overflow:hidden">
+            <figcaption style="padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--color-border);font-size:var(--font-size-xs);color:var(--color-text-muted)">Prévia · páginas 1 e 2 de 18</figcaption>
+            <div style="height:640px;overflow:auto;padding:var(--space-6);background:var(--color-surface-muted);display:flex;flex-direction:column;align-items:center;gap:var(--space-6)">
+              <div style="flex:none;width:100%;max-width:480px;aspect-ratio:210/297;padding:var(--space-12) var(--space-8);background:var(--color-surface);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:var(--space-3)">
+                <span class="rn-skel" style="height:24px;width:80%"></span><span class="rn-skel" style="height:24px;width:55%;margin-bottom:var(--space-6)"></span>
+                <span class="rn-skel" style="height:10px;width:100%"></span><span class="rn-skel" style="height:10px;width:96%"></span><span class="rn-skel" style="height:10px;width:92%"></span><span class="rn-skel" style="height:10px;width:70%;margin-bottom:var(--space-3)"></span>
+                <span class="rn-skel" style="height:140px;width:100%;margin-bottom:var(--space-3)"></span>
+                <span class="rn-skel" style="height:10px;width:100%"></span><span class="rn-skel" style="height:10px;width:94%"></span><span class="rn-skel" style="height:10px;width:60%"></span>
+              </div>
+              <div style="flex:none;width:100%;max-width:480px;aspect-ratio:210/297;padding:var(--space-12) var(--space-8);background:var(--color-surface);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:var(--space-3)">
+                <span class="rn-skel" style="height:16px;width:45%;margin-bottom:var(--space-3)"></span>
+                <span class="rn-skel" style="height:10px;width:100%"></span><span class="rn-skel" style="height:10px;width:97%"></span><span class="rn-skel" style="height:10px;width:90%"></span><span class="rn-skel" style="height:10px;width:98%"></span><span class="rn-skel" style="height:10px;width:66%"></span>
+              </div>
+            </div>
+          </figure>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start;margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" href="Modal%20de%20Lead.dc.html#a-d" hint-size="230px,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="pdf-m" data-screen-label="Artigo PDF · prévia embutida · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo PDF · prévia embutida · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-6) var(--space-4) var(--space-16);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-m" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-6) 0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700;text-wrap:balance">Cenário macro para o quarto trimestre de 2026</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-4) 0 var(--space-3);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="pdf" hint-size="48px,24px"></x-import>
+            <time>22 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-6);font-family:var(--font-serif);font-size:var(--font-size-lg);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor.</p>
+          <figure style="margin:0;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);overflow:hidden">
+            <figcaption style="padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--color-border);font-size:var(--font-size-xs);color:var(--color-text-muted)">Prévia · páginas 1 e 2 de 18</figcaption>
+            <div style="height:440px;overflow:auto;padding:var(--space-4);background:var(--color-surface-muted);display:flex;flex-direction:column;align-items:center;gap:var(--space-4)">
+              <div style="flex:none;width:100%;aspect-ratio:210/297;padding:var(--space-6) var(--space-4);background:var(--color-surface);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:var(--space-2)">
+                <span class="rn-skel" style="height:16px;width:80%"></span><span class="rn-skel" style="height:16px;width:55%;margin-bottom:var(--space-4)"></span>
+                <span class="rn-skel" style="height:8px;width:100%"></span><span class="rn-skel" style="height:8px;width:96%"></span><span class="rn-skel" style="height:8px;width:70%;margin-bottom:var(--space-2)"></span>
+                <span class="rn-skel" style="height:100px;width:100%;margin-bottom:var(--space-2)"></span>
+                <span class="rn-skel" style="height:8px;width:100%"></span><span class="rn-skel" style="height:8px;width:60%"></span>
+              </div>
+              <div style="flex:none;width:100%;aspect-ratio:210/297;padding:var(--space-6) var(--space-4);background:var(--color-surface);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:var(--space-2)">
+                <span class="rn-skel" style="height:12px;width:45%;margin-bottom:var(--space-2)"></span>
+                <span class="rn-skel" style="height:8px;width:100%"></span><span class="rn-skel" style="height:8px;width:97%"></span><span class="rn-skel" style="height:8px;width:90%"></span><span class="rn-skel" style="height:8px;width:66%"></span>
+              </div>
+            </div>
+          </figure>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" block="{{ true }}" href="Modal%20de%20Lead.dc.html#a-m" hint-size="100%,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="fallback-d" data-screen-label="Artigo PDF · fallback sem embutir · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo PDF · fallback sem embutir · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-12) 0 var(--space-24);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-d" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-8) 0 var(--space-8);font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700;text-wrap:balance">Cenário macro para o quarto trimestre de 2026</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-6) 0 var(--space-4);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="pdf" hint-size="48px,24px"></x-import>
+            <time>22 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-8);font-family:var(--font-serif);font-size:var(--font-size-xl);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor.</p>
+          <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--space-3);padding:var(--space-12) var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);text-align:center">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Icon" name="file-text" size="{{ 24 }}" hint-size="24px,24px"></x-import>
+            <figcaption style="color:var(--color-text-muted)">Seu navegador não exibe o PDF nesta página.</figcaption>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#" icon-right="external-link" hint-size="110px,24px">Ver prévia</x-import>
+          </figure>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start;margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" href="Modal%20de%20Lead.dc.html#a-d" hint-size="230px,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="fallback-m" data-screen-label="Artigo PDF · fallback sem embutir · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigo PDF · fallback sem embutir · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-6) var(--space-4) var(--space-16);display:flex;flex-direction:column">
+          <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-m" icon-left="arrow-left" hint-size="150px,24px">Todos os artigos</x-import></div>
+          <h1 style="margin:var(--space-6) 0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700;text-wrap:balance">Cenário macro para o quarto trimestre de 2026</h1>
+          <div style="aspect-ratio:16/9;background:var(--color-surface-muted);border-radius:var(--radius-card)"></div>
+          <div style="display:flex;gap:var(--space-2);align-items:center;margin:var(--space-4) 0 var(--space-3);font-size:var(--font-size-xs);color:var(--color-text-muted)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="pdf" hint-size="48px,24px"></x-import>
+            <time>22 set. 2026</time>
+          </div>
+          <p style="margin:0 0 var(--space-6);font-family:var(--font-serif);font-size:var(--font-size-lg);line-height:var(--line-height-snug);color:var(--color-text-muted);text-wrap:pretty">Juros, câmbio e bolsa: como a equipe da Rio Negro está lendo o fim do ano e o que isso significa para diferentes perfis de investidor.</p>
+          <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--space-3);padding:var(--space-8) var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);text-align:center">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Icon" name="file-text" size="{{ 24 }}" hint-size="24px,24px"></x-import>
+            <figcaption style="color:var(--color-text-muted)">Seu navegador não exibe o PDF nesta página.</figcaption>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#" icon-right="external-link" hint-size="110px,24px">Ver prévia</x-import>
+          </figure>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+            <p style="margin:0;color:var(--color-text-muted)">Esta é uma prévia. O artigo completo está disponível para download.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-right="download" block="{{ true }}" href="Modal%20de%20Lead.dc.html#a-m" hint-size="100%,44px">Baixar artigo completo</x-import>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACIDADE -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">5. /privacidade</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="priv-d" data-screen-label="Privacidade · padrão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Privacidade · padrão · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-16) 0 var(--space-24);display:flex;flex-direction:column;gap:var(--space-3)">
+          <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Aviso de privacidade</h1>
+          <p style="margin:0 0 var(--space-8);font-size:var(--font-size-xs);color:var(--color-text-muted)">Texto provisório · atualizado em 24 set. 2026</p>
+          <div class="rn-article" style="margin:0;font-size:var(--font-size-lg)">
+            <p>Este aviso explica como a Rio Negro Assessoria de Investimentos trata os dados pessoais de quem baixa materiais neste blog.</p>
+            <h2>Quais dados coletamos</h2>
+            <p>Nome, e-mail e telefone informados no formulário de download, a data do pedido, o artigo solicitado e as suas escolhas de consentimento.</p>
+            <h2>Para que usamos</h2>
+            <p>Para enviar o material pedido e registrar o seu interesse. Só enviamos novidades da Rio Negro por e-mail, telefone ou WhatsApp se você autorizar no formulário.</p>
+            <h2>Com quem compartilhamos</h2>
+            <p>Com fornecedores que operam o envio de e-mails e a hospedagem deste site, sempre para as finalidades acima. Não vendemos dados pessoais.</p>
+            <h2>Seus direitos</h2>
+            <p>Você pode pedir acesso, correção ou exclusão dos seus dados e retirar o consentimento a qualquer momento pelo e-mail privacidade@rionegroinvestimentos.com.br.</p>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="priv-m" data-screen-label="Privacidade · padrão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Privacidade · padrão · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-8) var(--space-4) var(--space-16);display:flex;flex-direction:column;gap:var(--space-3)">
+          <h1 style="margin:0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700">Aviso de privacidade</h1>
+          <p style="margin:0 0 var(--space-6);font-size:var(--font-size-xs);color:var(--color-text-muted)">Texto provisório · atualizado em 24 set. 2026</p>
+          <div class="rn-article" style="margin:0;font-size:var(--font-size-md)">
+            <p>Este aviso explica como a Rio Negro Assessoria de Investimentos trata os dados pessoais de quem baixa materiais neste blog.</p>
+            <h2>Quais dados coletamos</h2>
+            <p>Nome, e-mail e telefone informados no formulário de download, a data do pedido, o artigo solicitado e as suas escolhas de consentimento.</p>
+            <h2>Para que usamos</h2>
+            <p>Para enviar o material pedido e registrar o seu interesse. Só enviamos novidades da Rio Negro por e-mail, telefone ou WhatsApp se você autorizar no formulário.</p>
+            <h2>Com quem compartilhamos</h2>
+            <p>Com fornecedores que operam o envio de e-mails e a hospedagem deste site, sempre para as finalidades acima. Não vendemos dados pessoais.</p>
+            <h2>Seus direitos</h2>
+            <p>Você pode pedir acesso, correção ou exclusão dos seus dados e retirar o consentimento a qualquer momento pelo e-mail privacidade@rionegroinvestimentos.com.br.</p>
+          </div>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 404 -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">6. 404</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="404-d" data-screen-label="404 · padrão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">404 · padrão · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;width:100%;max-width:var(--layout-reading);margin:0 auto;padding:var(--space-24) 0;display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+          <p style="margin:0;font-size:var(--font-size-xs);color:var(--color-text-muted)">Erro 404</p>
+          <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Página não encontrada</h1>
+          <p style="margin:0 0 var(--space-4);font-size:var(--font-size-md);color:var(--color-text-muted)">O endereço pode ter mudado ou o conteúdo não está mais disponível.</p>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-d" icon-left="arrow-left" hint-size="180px,24px">Ver todos os artigos</x-import>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,300px"></x-import>
+      </div>
+    </div>
+    <div id="404-m" data-screen-label="404 · padrão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">404 · padrão · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" current="" hint-size="100%,65px"></x-import>
+        <main style="flex:1;padding:var(--space-16) var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+          <p style="margin:0;font-size:var(--font-size-xs);color:var(--color-text-muted)">Erro 404</p>
+          <h1 style="margin:0;font-size:var(--font-size-3xl);line-height:var(--line-height-3xl);font-weight:700">Página não encontrada</h1>
+          <p style="margin:0 0 var(--space-4);font-size:var(--font-size-md);color:var(--color-text-muted)">O endereço pode ter mudado ou o conteúdo não está mais disponível.</p>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#lista-m" icon-left="arrow-left" hint-size="180px,24px">Ver todos os artigos</x-import>
+        </main>
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteFooter" logo-src="assets/logo-escuro.png" legal="{{ legal }}" hint-size="100%,420px"></x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" data-screen-label="Checklist · Site público" style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1200px">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Lista de verificação · Site público</h2>
+  <div class="rn-table-wrap"><div class="rn-table-scroll">
+    <table class="rn-table">
+      <thead><tr><th style="min-width:260px">Tela · estado</th><th>Desktop 1440</th><th>Mobile 390</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr><td>Home · padrão</td><td><a href="#home-d">✅</a></td><td><a href="#home-m">✅</a></td><td class="rn-table__muted">Hero fixo + "Ver artigos"</td></tr>
+        <tr><td>Listagem · com artigos</td><td><a href="#lista-d">✅</a></td><td><a href="#lista-m">✅</a></td><td class="rn-table__muted">Destaque + demais sem repetir + "Carregar mais"</td></tr>
+        <tr><td>Listagem · vazio</td><td><a href="#vazio-d">✅</a></td><td><a href="#vazio-m">✅</a></td><td class="rn-table__muted">"Nenhum artigo publicado ainda"</td></tr>
+        <tr><td>Artigo Texto · prévia</td><td><a href="#texto-d">✅</a></td><td><a href="#texto-m">✅</a></td><td class="rn-table__muted">3 blocos + "Baixar artigo completo"; sem CTA comercial</td></tr>
+        <tr><td>Artigo PDF · prévia embutida</td><td><a href="#pdf-d">✅</a></td><td><a href="#pdf-m">✅</a></td><td class="rn-table__muted">2 páginas no visualizador</td></tr>
+        <tr><td>Artigo PDF · fallback</td><td><a href="#fallback-d">✅</a></td><td><a href="#fallback-m">✅</a></td><td class="rn-table__muted">Link "Ver prévia"</td></tr>
+        <tr><td>Privacidade · padrão</td><td><a href="#priv-d">✅</a></td><td><a href="#priv-m">✅</a></td><td class="rn-table__muted">Texto provisório</td></tr>
+        <tr><td>404 · padrão</td><td><a href="#404-d">✅</a></td><td><a href="#404-m">✅</a></td><td class="rn-table__muted">Link para /artigos</td></tr>
+        <tr><td>Mobile · margem 16 px, sem rolagem horizontal, header logo + "Artigos"</td><td>—</td><td>✅ (8/8)</td><td class="rn-table__muted">Sem menu hambúrguer</td></tr>
+        <tr><td>Mobile · corpo 18/1.7, capas 16:9 na largura toda, botões principais 100% e 44 px</td><td>—</td><td>✅</td><td class="rn-table__muted">Exceção: "Carregar mais" (ver lacuna 7)</td></tr>
+        <tr><td>Rodapé em todas as páginas</td><td>✅ (8/8)</td><td>✅ (8/8)</td><td class="rn-table__muted">"Conheça a Rio Negro", disclaimer CVM 178/23 + XP, "Privacidade"</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      legal: ['Texto provisório, sujeito à aprovação do compliance. A Rio Negro Assessoria de Investimentos Ltda. é uma assessoria de investimento registrada na Comissão de Valores Mobiliários (CVM), nos termos da Resolução CVM 178/23, e atua por meio de contrato de distribuição com a XP Investimentos CCTVM S.A. O conteúdo deste blog é informativo e não constitui oferta nem recomendação de investimento. Rentabilidade passada não garante rentabilidade futura.']
+    };
+  }
+}
+</script>
+</body>
+</html>

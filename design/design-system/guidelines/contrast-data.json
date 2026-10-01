@@ -1,0 +1,191 @@
+[
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Fundo",
+  "fb": "#F2F0EF",
+  "v": "14,98",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "17,02",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Superfície suave",
+  "fb": "#E9E6E4",
+  "v": "13,70",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto secundário",
+  "fa": "#5C5854",
+  "b": "Fundo",
+  "fb": "#F2F0EF",
+  "v": "6,21",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Texto secundário",
+  "fa": "#5C5854",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "7,05",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto secundário",
+  "fa": "#5C5854",
+  "b": "Superfície suave (desabilitado, rodapé)",
+  "fb": "#E9E6E4",
+  "v": "5,67",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Texto do botão",
+  "fa": "#F2F0EF",
+  "b": "Ação primária",
+  "fb": "#1D1C1B",
+  "v": "14,98",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto do botão",
+  "fa": "#F2F0EF",
+  "b": "Ação primária hover",
+  "fb": "#3A3735",
+  "v": "10,40",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Sucesso",
+  "fa": "#2F6B3F",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "6,37",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Sucesso",
+  "fa": "#2F6B3F",
+  "b": "Fundo de sucesso",
+  "fb": "#E6F0E8",
+  "v": "5,46",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Erro",
+  "fa": "#A8322D",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "6,65",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Erro",
+  "fa": "#A8322D",
+  "b": "Fundo",
+  "fb": "#F2F0EF",
+  "v": "5,85",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Erro",
+  "fa": "#A8322D",
+  "b": "Fundo de erro",
+  "fb": "#F8E6E4",
+  "v": "5,52",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Aviso",
+  "fa": "#8A5A00",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "5,93",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Aviso",
+  "fa": "#8A5A00",
+  "b": "Fundo de aviso",
+  "fb": "#F7EDD9",
+  "v": "5,10",
+  "ok": true,
+  "lvl": "AA"
+ },
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Fundo de sucesso",
+  "fb": "#E6F0E8",
+  "v": "14,58",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Fundo de erro",
+  "fb": "#F8E6E4",
+  "v": "14,12",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Texto principal",
+  "fa": "#1D1C1B",
+  "b": "Fundo de aviso",
+  "fb": "#F7EDD9",
+  "v": "14,64",
+  "ok": true,
+  "lvl": "AAA"
+ },
+ {
+  "a": "Anel de foco (não-texto)",
+  "fa": "#1D1C1B",
+  "b": "Fundo",
+  "fb": "#F2F0EF",
+  "v": "14,98",
+  "ok": true,
+  "lvl": "AA (3:1)"
+ },
+ {
+  "a": "Borda de campo (não-texto)",
+  "fa": "#8C8782",
+  "b": "Superfície",
+  "fb": "#FFFFFF",
+  "v": "3,56",
+  "ok": true,
+  "lvl": "AA (3:1)"
+ },
+ {
+  "a": "Borda de campo (não-texto)",
+  "fa": "#8C8782",
+  "b": "Fundo",
+  "fb": "#F2F0EF",
+  "v": "3,13",
+  "ok": true,
+  "lvl": "AA (3:1)"
+ }
+]

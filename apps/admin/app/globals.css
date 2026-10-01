@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+@import '@rio-negro/ui/styles.css';
+@source '../../../packages/ui/src';
+
+/* CSS base do ProseMirror (o Tiptap o injetaria num <style>, que a CSP bloqueia; ADR 0020). */
+.ProseMirror {
+  position: relative;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  font-variant-ligatures: none;
+}
+
+img.ProseMirror-separator {
+  display: inline !important;
+  border: none !important;
+  margin: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.ProseMirror-hideselection *::selection {
+  background: transparent;
+}
+
+.ProseMirror-hideselection * {
+  caret-color: transparent;
+}

@@ -1,0 +1,7 @@
+{
+  "description": "LEAD-012 · vetor fixo da assinatura do webhook, usado pelos testes do apps/web e do apps/admin (ADR 0032).",
+  "secret": "segredo-do-webhook-de-teste-com-32-chars",
+  "timestamp": "1790000000",
+  "body": "{\"event\":\"lead.created\",\"lead\":{\"id\":\"00000000-0000-4000-8000-000000000001\",\"name\":\"Maria Silva\",\"email\":\"maria@exemplo.com.br\",\"phone\":\"+5511987654321\",\"marketing_opt_in\":true,\"created_at\":\"2026-09-25T12:00:00.000Z\"},\"article\":{\"id\":\"11111111-1111-4111-8111-111111111111\",\"title\":\"Renda fixa em 2026\"}}",
+  "signature": "sha256=f35cb7643bb6982bfc5d99c62ed61d4ad2fdedb17e3b101e185f4f2fd1249a90"
+}

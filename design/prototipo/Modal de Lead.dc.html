@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/base.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/components/components.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/styles.css">
+<script src="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-surface-muted)}a{color:var(--color-text)}a:hover{text-decoration-thickness:2px}[data-frame] .rn-modal{max-height:none}</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-16);font-family:var(--font-sans);color:var(--color-text)">
+
+<header style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1440px">
+  <div style="display:flex;gap:var(--space-6);font-size:var(--font-size-sm)">
+    <a href="Site%20Publico.dc.html">Site público</a>
+    <strong>Modal de lead</strong>
+    <a href="Admin.dc.html">Admin</a>
+  </div>
+  <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Blog Rio Negro · Modal de lead</h1>
+  <p style="margin:0;max-width:72ch;color:var(--color-text-muted);font-size:var(--font-size-md);line-height:var(--line-height-normal)">Abre em "Baixar artigo completo". Desktop: Modal de 480 px sobre o overlay. Mobile: Modal em tela cheia (variante mobile). O fechar é o botão de ícone do próprio Modal, com aria-label "Fechar".</p>
+  <div style="display:flex;flex-direction:column;gap:var(--space-2);max-width:960px;padding:var(--space-4) var(--space-6);background:var(--color-warning-bg);border:1px solid var(--color-warning-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);line-height:var(--line-height-xs)">
+    <strong style="font-size:var(--font-size-sm);color:var(--color-warning)">Lacunas do design system (sinalizadas, não inventadas)</strong>
+    <span>1. Cloudflare Turnstile: widget de terceiro, sem componente. Área reservada de 300 × 65 px (tamanho padrão do widget) com superfície neutra.</span>
+    <span>2. O Checkbox não tem marcação de "opcional"; o texto de cada um já deixa clara a diferença.</span>
+    <span>3. Nos frames estáticos, o limite de altura do Modal (100vh − 32 px) foi liberado para mostrar o conteúdo inteiro. Em produção o corpo do Modal rola.</span>
+    <span>4. Mobile: o Modal em tela cheia é do próprio DS. O botão de envio vai no rodapé do Modal (rn-modal__foot), que fica fixo enquanto o corpo rola; o fechar fica no topo. Os frames mobile têm altura fixa de 844 px e o corpo rola dentro deles.</span>
+  </div>
+</header>
+
+<!-- (a) VAZIO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(a) Vazio</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="a-d" data-screen-label="Modal de lead · vazio · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · vazio · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:960px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Baixe o artigo completo" hint-size="480px,860px">
+            <form style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" autocomplete="name" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" autocomplete="email" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" hint-size="100%,103px"></x-import>
+              <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-d">aviso de privacidade</a>.</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+              <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" icon-right="download" hint-size="100%,44px">Baixar artigo completo</x-import>
+            </form>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="a-m" data-screen-label="Modal de lead · vazio · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · vazio · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" footer="{{ footA }}" title="Baixe o artigo completo" hint-size="100%,844px">
+          <form id="lead-a-m" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" autocomplete="name" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" autocomplete="email" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" hint-size="100%,103px"></x-import>
+            <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-m">aviso de privacidade</a>.</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+            <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+          </form>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (b) ERROS -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(b) Erros de validação</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="b-d" data-screen-label="Modal de lead · erros de validação · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erros de validação · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:960px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Baixe o artigo completo" hint-size="480px,900px">
+            <form style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" autocomplete="name" error="Informe seu nome." hint-size="100%,95px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@" error="Informe um e-mail válido, como nome@exemplo.com.br." hint-size="100%,95px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="119123" error="Informe o telefone com DDD, no formato (99) 99999-9999." hint-size="100%,95px"></x-import>
+              <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" error="Marque esta opção para continuar." hint-size="100%,52px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-d">aviso de privacidade</a>.</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+              <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" icon-right="download" hint-size="100%,44px">Baixar artigo completo</x-import>
+            </form>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="b-m" data-screen-label="Modal de lead · erros de validação · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erros de validação · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" footer="{{ footB }}" title="Baixe o artigo completo" hint-size="100%,900px">
+          <form id="lead-b-m" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" autocomplete="name" error="Informe seu nome." hint-size="100%,95px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@" error="Informe um e-mail válido, como nome@exemplo.com.br." hint-size="100%,95px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="119123" error="Informe o telefone com DDD, no formato (99) 99999-9999." hint-size="100%,95px"></x-import>
+            <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" error="Marque esta opção para continuar." hint-size="100%,52px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-m">aviso de privacidade</a>.</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+            <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+          </form>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (c) ENVIANDO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(c) Enviando</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="c-d" data-screen-label="Modal de lead · enviando · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · enviando · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:960px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Baixe o artigo completo" hint-size="480px,860px">
+            <form aria-busy="true" style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" disabled="{{ true }}" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" disabled="{{ true }}" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" disabled="{{ true }}" hint-size="100%,103px"></x-import>
+              <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" disabled="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-d">aviso de privacidade</a>.</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" disabled="{{ true }}" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+              <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" loading="{{ true }}" hint-size="100%,44px">Enviando…</x-import>
+            </form>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="c-m" data-screen-label="Modal de lead · enviando · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · enviando · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" footer="{{ footC }}" title="Baixe o artigo completo" hint-size="100%,844px">
+          <form id="lead-c-m" aria-busy="true" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" disabled="{{ true }}" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" disabled="{{ true }}" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" disabled="{{ true }}" hint-size="100%,103px"></x-import>
+            <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" disabled="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-m">aviso de privacidade</a>.</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" disabled="{{ true }}" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+            <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+          </form>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (d) MUITAS TENTATIVAS -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(d) Erro: muitas tentativas</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="d-d" data-screen-label="Modal de lead · erro muitas tentativas · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erro muitas tentativas · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:960px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Baixe o artigo completo" hint-size="480px,920px">
+            <form style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" hint-size="100%,103px"></x-import>
+              <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-d">aviso de privacidade</a>.</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+              <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+              <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Muitas tentativas, tente em alguns minutos" hint-size="100%,48px"></x-import></div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" icon-right="download" hint-size="100%,44px">Baixar artigo completo</x-import>
+            </form>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="d-m" data-screen-label="Modal de lead · erro muitas tentativas · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erro muitas tentativas · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" footer="{{ footD }}" title="Baixe o artigo completo" hint-size="100%,920px">
+          <form id="lead-d-m" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" hint-size="100%,103px"></x-import>
+            <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-m">aviso de privacidade</a>.</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+            <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+            <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Muitas tentativas, tente em alguns minutos" hint-size="100%,48px"></x-import></div>
+          </form>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (e) ERRO GENÉRICO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(e) Erro genérico</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="e-d" data-screen-label="Modal de lead · erro genérico · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erro genérico · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:960px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Baixe o artigo completo" hint-size="480px,920px">
+            <form style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" hint-size="100%,103px"></x-import>
+              <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-d">aviso de privacidade</a>.</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+              <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+              <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Não foi possível concluir. Tente novamente." hint-size="100%,48px"></x-import></div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" icon-right="download" hint-size="100%,44px">Baixar artigo completo</x-import>
+            </form>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="e-m" data-screen-label="Modal de lead · erro genérico · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · erro genérico · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" footer="{{ footE }}" title="Baixe o artigo completo" hint-size="100%,920px">
+          <form id="lead-e-m" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <p style="margin:0;color:var(--color-text-muted)">Cenário macro para o quarto trimestre de 2026 · PDF</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Nome" default-value="Maria Silva" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.PhoneInput" label="Telefone" default-value="11912345678" hint-size="100%,103px"></x-import>
+            <p style="margin:var(--space-2) 0 0;font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text-muted)">Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,24px">Li e concordo com o <a href="Site%20Publico.dc.html#priv-m">aviso de privacidade</a>.</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Checkbox" default-checked="{{ true }}" hint-size="100%,48px">Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.</x-import>
+            <div style="width:300px;height:65px;display:flex;align-items:center;justify-content:center;background:var(--color-surface-muted);border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);color:var(--color-text-muted)">Cloudflare Turnstile · 300 × 65</div>
+            <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Não foi possível concluir. Tente novamente." hint-size="100%,48px"></x-import></div>
+          </form>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (f) SUCESSO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">(f) Sucesso</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="f-d" data-screen-label="Modal de lead · sucesso · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · sucesso · desktop</span>
+      <div data-frame="" style="width:1440px;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <div style="min-height:900px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Pronto!" hint-size="480px,360px">
+            <div role="status" style="display:flex;flex-direction:column;gap:var(--space-4)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="success" title="O download começou." hint-size="100%,72px">“Cenário macro para o quarto trimestre de 2026” está sendo salvo no seu dispositivo.</x-import>
+              <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#" icon-left="download" hint-size="170px,24px">Baixar novamente</x-import></div>
+              <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-2);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" href="https://www.rionegroinvestimentos.com.br" block="{{ true }}" icon-right="external-link" hint-size="100%,44px">Conheça a Rio Negro</x-import>
+              </div>
+            </div>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="f-m" data-screen-label="Modal de lead · sucesso · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Modal de lead · sucesso · mobile</span>
+      <div data-frame="" style="width:390px;height:844px;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" title="Pronto!" hint-size="100%,400px">
+          <div role="status" style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="success" title="O download começou." hint-size="100%,92px">“Cenário macro para o quarto trimestre de 2026” está sendo salvo no seu dispositivo.</x-import>
+            <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" href="#" icon-left="download" hint-size="170px,24px">Baixar novamente</x-import></div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-2);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" href="https://www.rionegroinvestimentos.com.br" block="{{ true }}" icon-right="external-link" hint-size="100%,44px">Conheça a Rio Negro</x-import>
+            </div>
+          </div>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" data-screen-label="Checklist · Modal de lead" style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1200px">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Lista de verificação · Modal de lead</h2>
+  <div class="rn-table-wrap"><div class="rn-table-scroll">
+    <table class="rn-table">
+      <thead><tr><th style="min-width:260px">Estado</th><th>Desktop 1440</th><th>Mobile 390</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr><td>(a) Vazio</td><td><a href="#a-d">✅</a></td><td><a href="#a-m">✅</a></td><td class="rn-table__muted">Nome, E-mail, Telefone com máscara, aviso literal, 2 checkboxes desmarcados, Turnstile</td></tr>
+        <tr><td>(b) Erros de validação</td><td><a href="#b-d">✅</a></td><td><a href="#b-m">✅</a></td><td class="rn-table__muted">Erro inline nos 3 campos e no checkbox obrigatório</td></tr>
+        <tr><td>(c) Enviando</td><td><a href="#c-d">✅</a></td><td><a href="#c-m">✅</a></td><td class="rn-table__muted">Botão com spinner, campos e checkboxes travados</td></tr>
+        <tr><td>(d) Muitas tentativas</td><td><a href="#d-d">✅</a></td><td><a href="#d-m">✅</a></td><td class="rn-table__muted">"Muitas tentativas, tente em alguns minutos"</td></tr>
+        <tr><td>(e) Erro genérico</td><td><a href="#e-d">✅</a></td><td><a href="#e-m">✅</a></td><td class="rn-table__muted">"Não foi possível concluir. Tente novamente."</td></tr>
+        <tr><td>(f) Sucesso</td><td><a href="#f-d">✅</a></td><td><a href="#f-m">✅</a></td><td class="rn-table__muted">Download iniciado, "Baixar novamente", CTA "Conheça a Rio Negro" só aqui</td></tr>
+        <tr><td>Mobile · tela cheia, envio fixo no rodapé ao rolar</td><td>—</td><td>✅ (5/5 com formulário)</td><td class="rn-table__muted">(f) não tem envio; o CTA fica no corpo</td></tr>
+        <tr><td>Botão de fechar visível</td><td>✅ (6/6)</td><td>✅ (6/6)</td><td class="rn-table__muted">Botão de ícone do Modal, rótulo "Fechar", foco visível</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.RioNegroDesignSystem_2f3caf) this._t = setInterval(() => { if (window.RioNegroDesignSystem_2f3caf) { clearInterval(this._t); this.forceUpdate(); } }, 100);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  renderVals() {
+    const DS = window.RioNegroDesignSystem_2f3caf;
+    if (!DS) return {};
+    const f = (id, loading) => React.createElement(DS.Button, { type: 'submit', form: id, block: true, loading: loading || false, iconRight: loading ? undefined : 'download' }, loading ? 'Enviando…' : 'Baixar artigo completo');
+    return { footA: f('lead-a-m'), footB: f('lead-b-m'), footC: f('lead-c-m', true), footD: f('lead-d-m'), footE: f('lead-e-m') };
+  }
+}
+</script>
+</body>
+</html>

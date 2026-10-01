@@ -1,0 +1,55 @@
+/* Rio Negro — cores. Base clara (off-white + cinza quente). Sem tema escuro. */
+:root{
+/* Paleta base */
+--rn-warm-0:#FFFFFF;
+--rn-warm-50:#F2F0EF;
+--rn-warm-100:#E9E6E4;
+--rn-warm-200:#DCD8D5;
+--rn-warm-400:#8C8782;
+--rn-warm-600:#5C5854;
+--rn-warm-800:#3A3735;
+--rn-warm-900:#1D1C1B;
+--rn-green-700:#2F6B3F;
+--rn-green-50:#E6F0E8;
+--rn-green-200:#B9D3BF;
+--rn-red-700:#A8322D;
+--rn-red-50:#F8E6E4;
+--rn-red-200:#E6BDB9;
+--rn-amber-700:#8A5A00;
+--rn-amber-50:#F7EDD9;
+--rn-amber-200:#E3CB98;
+
+/* Semânticos: superfícies */
+--color-bg:var(--rn-warm-50);
+--color-surface:var(--rn-warm-0);
+--color-surface-muted:var(--rn-warm-100);
+--color-border:var(--rn-warm-200);
+--color-border-strong:var(--rn-warm-400);
+
+/* Semânticos: texto */
+--color-text:var(--rn-warm-900);
+--color-text-muted:var(--rn-warm-600);
+--color-text-inverse:var(--rn-warm-50);
+
+/* Semânticos: ação */
+--color-action-primary:var(--rn-warm-900);
+--color-action-primary-hover:var(--rn-warm-800);
+--color-action-primary-text:var(--rn-warm-50);
+--color-disabled-bg:var(--rn-warm-100);
+--color-disabled-text:var(--rn-warm-600);
+
+/* Semânticos: estados */
+--color-success:var(--rn-green-700);
+--color-success-bg:var(--rn-green-50);
+--color-success-border:var(--rn-green-200);
+--color-error:var(--rn-red-700);
+--color-error-bg:var(--rn-red-50);
+--color-error-border:var(--rn-red-200);
+--color-warning:var(--rn-amber-700);
+--color-warning-bg:var(--rn-amber-50);
+--color-warning-border:var(--rn-amber-200);
+
+/* Foco e sobreposição */
+--color-focus-ring:var(--rn-warm-900);
+--color-overlay:rgba(29,28,27,.48);
+}

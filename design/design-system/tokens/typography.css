@@ -1,0 +1,33 @@
+:root{
+--font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+--font-serif:'Source Serif 4','Source Serif Pro',Georgia,'Times New Roman',serif;
+
+--font-weight-regular:400;
+--font-weight-medium:500;
+--font-weight-semibold:600;
+--font-weight-bold:700;
+
+/* Escala: tamanho / altura de linha padrão do nível */
+--font-size-xs:14px;  --line-height-xs:1.5;   /* legenda, data, texto regulatório — 400 */
+--font-size-sm:16px;  --line-height-sm:1.5;   /* UI, botões, formulário, tabela — 400/500 */
+--font-size-md:18px;  --line-height-md:1.7;   /* corpo do artigo (mobile), título de card — 400/600 */
+--font-size-lg:20px;  --line-height-lg:1.7;   /* corpo do artigo (desktop) — 400 */
+--font-size-xl:24px;  --line-height-xl:1.35;  /* H3, título do modal — 600 */
+--font-size-2xl:30px; --line-height-2xl:1.3;  /* H2, título do destaque — 600 */
+--font-size-3xl:36px; --line-height-3xl:1.2;  /* H1 mobile — 700 */
+--font-size-4xl:48px; --line-height-4xl:1.15; /* H1 desktop — 700 */
+
+--line-height-tight:1.2;
+--line-height-snug:1.35;
+--line-height-normal:1.5;
+--line-height-relaxed:1.7;
+
+/* Artigo */
+--font-size-article:var(--font-size-md);
+--line-height-article:var(--line-height-relaxed);
+--measure-article:68ch;
+--font-size-h1:var(--font-size-3xl);
+}
+@media (min-width:768px){
+:root{--font-size-article:var(--font-size-lg);--font-size-h1:var(--font-size-4xl)}
+}

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/tokens/base.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/components/components.css">
+<link rel="stylesheet" href="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/styles.css">
+<script src="_ds/rio-negro-design-system-2f3caf0c-d365-4ba1-affa-9f30ca186eaf/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-surface-muted)}a{color:var(--color-text)}a:hover{text-decoration-thickness:2px}[data-m] .rn-header__inner{padding:0 var(--space-4)}[data-m] .rn-footer__inner{padding:var(--space-12) var(--space-4) var(--space-8)}[data-m] .rn-card--featured .rn-card__body{padding:var(--space-6)}[data-m] .rn-card--featured .rn-card__title{font-size:var(--font-size-xl);line-height:var(--line-height-xl)}[data-m]{--font-size-article:var(--font-size-md);--font-size-h1:var(--font-size-3xl)}</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-16);font-family:var(--font-sans);color:var(--color-text)">
+
+<header style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1440px">
+  <div style="display:flex;gap:var(--space-6);font-size:var(--font-size-sm)">
+    <a href="Site%20Publico.dc.html">Site público</a>
+    <a href="Modal%20de%20Lead.dc.html">Modal de lead</a>
+    <strong>Admin</strong>
+  </div>
+  <h1 style="margin:0;font-size:var(--font-size-4xl);line-height:var(--line-height-4xl);font-weight:700">Blog Rio Negro · Painel admin</h1>
+  <p style="margin:0;max-width:72ch;color:var(--color-text-muted);font-size:var(--font-size-md);line-height:var(--line-height-normal)">Uso por uma única pessoa. Controles no tamanho sm (36 px), coluna de 1200 px, DataTable e Pagination do design system. No mobile, a tabela agrupa as colunas numa célula para caber em 390 px.</p>
+  <div style="display:flex;flex-direction:column;gap:var(--space-2);max-width:960px;padding:var(--space-4) var(--space-6);background:var(--color-warning-bg);border:1px solid var(--color-warning-border);border-radius:var(--radius-control);font-size:var(--font-size-xs);line-height:var(--line-height-xs)">
+    <strong style="font-size:var(--font-size-sm);color:var(--color-warning)">Lacunas do design system (sinalizadas, não inventadas)</strong>
+    <span>1. Selo "Em destaque": não existe variante. Usa as classes rn-badge + rn-badge--text + rn-badge__dot; o ponto o diferencia do badge de tipo Texto.</span>
+    <span>2. Botão destrutivo: não existe variante "danger". A confirmação de exclusão usa o Button primário com ícone de lixeira.</span>
+    <span>3. Editor rich text: não há componente. Barra montada com Button ghost sm; o Icon não tem glifos de negrito, itálico, lista, link, citação, imagem e título, então os botões usam rótulo em texto.</span>
+    <span>4. Área de upload (arrastar e soltar) e barra de progresso: não existem. Upload usa o Input type="file" (como no UI kit) e o estado de envio usa o Icon loader com a classe rn-spinner.</span>
+    <span>5. Seletor de tipo: não há controle segmentado. Usa dois Button sm com aria-pressed, como no UI kit.</span>
+    <span>6. Textarea (resumo): não há componente. Usa a classe rn-input num &lt;textarea&gt;, como no UI kit.</span>
+    <span>7. Menu "⋯" das ações no mobile: não existe componente de menu, e o Icon não tem reticências (o DS proíbe usar caractere unicode como ícone). O gatilho é um Button secundário "Ações" de 44 px, que abre as ações no Modal em tela cheia. Veja os frames "menu de ações".</span>
+    <span>8. Cards da lista no mobile: não há componente de card de linha. Usam a superfície, a borda, o raio e a sombra de card do DS, com os mesmos campos da tabela.</span>
+    <span>9. Filtros: as telas desktop não têm filtros, então nada foi criado no mobile. Só "Exportar CSV" e "Reenviar falhas" ficam no topo, com largura total.</span>
+    <span>10. Pagination: o componente usa botões sm de 36 px, abaixo dos 44 px pedidos para toque. Não foi alterado.</span>
+  </div>
+</header>
+
+<!-- 1. LOGIN -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">1. Login</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="login-d" data-screen-label="Login · padrão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · padrão · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-8);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" autocomplete="username" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" autocomplete="current-password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+    <div id="login-m" data-screen-label="Login · padrão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · padrão · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;justify-content:center;padding:var(--space-4);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" autocomplete="username" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" autocomplete="current-password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="login-inv-d" data-screen-label="Login · e-mail ou senha inválidos · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · e-mail ou senha inválidos · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-8);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="E-mail ou senha inválidos" hint-size="100%,70px">Confira os dados e tente novamente.</x-import></div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="contato@rionegroinvestimentos.com.br" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+    <div id="login-inv-m" data-screen-label="Login · e-mail ou senha inválidos · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · e-mail ou senha inválidos · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;justify-content:center;padding:var(--space-4);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="E-mail ou senha inválidos" hint-size="100%,70px">Confira os dados e tente novamente.</x-import></div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="contato@rionegroinvestimentos.com.br" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="login-neg-d" data-screen-label="Login · acesso negado · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · acesso negado · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-8);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Acesso negado" hint-size="100%,70px">Este e-mail não tem permissão para acessar o painel.</x-import></div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+    <div id="login-neg-m" data-screen-label="Login · acesso negado · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Login · acesso negado · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;justify-content:center;padding:var(--space-4);background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <form style="display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+          <img src="assets/logo-escuro.png" alt="Rio Negro Investimentos" style="height:28px;width:auto;align-self:flex-start">
+          <h1 style="margin:var(--space-2) 0 var(--space-2);font-size:var(--font-size-xl);line-height:var(--line-height-xl);font-weight:600">Entrar no painel</h1>
+          <div role="alert"><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Alert" variant="error" title="Acesso negado" hint-size="100%,70px">Este e-mail não tem permissão para acessar o painel.</x-import></div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="E-mail" type="email" default-value="maria.silva@email.com.br" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Senha" type="password" hint-size="100%,74px"></x-import>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Entrar</x-import>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. LISTA DE ARTIGOS -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">2. Lista de artigos</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="artigos-d" data-screen-label="Artigos · lista · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigos · lista · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Artigos</h1>
+              <span style="font-size:var(--font-size-xs);color:var(--color-text-muted)">6 publicados · o mais recente aparece em destaque no site</span>
+            </div>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" icon-left="plus" href="#form-texto-d" hint-size="130px,36px">Novo artigo</x-import>
+          </div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.DataTable" caption="Artigos publicados" columns="{{ artColsD }}" rows="{{ arts }}" hint-size="100%,380px"></x-import>
+        </main>
+      </div>
+    </div>
+    <div id="artigos-m" data-screen-label="Artigos · lista · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigos · lista · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-m" links="{{ navM }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="padding:var(--space-6) var(--space-4) var(--space-12);display:flex;flex-direction:column;gap:var(--space-4)">
+          <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Artigos</h1>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" icon-left="plus" block="{{ true }}" href="#form-texto-m" hint-size="100%,44px">Novo artigo</x-import>
+          <ul aria-label="Artigos publicados" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-3)">
+            <sc-for list="{{ arts }}" as="art" hint-placeholder-count="6">
+              <li style="display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2)">
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.TypeBadge" type="{{ art.type }}" hint-size="56px,24px"></x-import>
+                  <sc-if value="{{ art.featured }}" hint-placeholder-val="{{ false }}"><span class="rn-badge rn-badge--text"><span class="rn-badge__dot" aria-hidden="true"></span>Em destaque</span></sc-if>
+                </div>
+                <span style="font-size:var(--font-size-md);line-height:var(--line-height-snug);font-weight:600;text-wrap:pretty">{{ art.title }}</span>
+                <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-3)">
+                  <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-1) var(--space-4);font-size:var(--font-size-xs);line-height:var(--line-height-xs)">
+                    <dt style="color:var(--color-text-muted)">Publicação</dt><dd style="margin:0">{{ art.date }}</dd>
+                    <dt style="color:var(--color-text-muted)">Leads</dt><dd style="margin:0">{{ art.leads }}</dd>
+                  </dl>
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" href="#menu-artigo-m" aria-haspopup="dialog" hint-size="90px,44px">Ações</x-import>
+                </div>
+              </li>
+            </sc-for>
+          </ul>
+        </main>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="excluir-artigo-d" data-screen-label="Artigos · confirmar exclusão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigos · confirmar exclusão · desktop</span>
+      <div style="position:relative;width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main aria-hidden="true" style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Artigos</h1>
+              <span style="font-size:var(--font-size-xs);color:var(--color-text-muted)">6 publicados · o mais recente aparece em destaque no site</span>
+            </div>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" icon-left="plus" hint-size="130px,36px">Novo artigo</x-import>
+          </div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.DataTable" caption="Artigos publicados" columns="{{ artColsD }}" rows="{{ arts }}" hint-size="100%,380px"></x-import>
+        </main>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Excluir artigo?" footer="{{ footerArtigo }}" hint-size="480px,240px">
+            <p style="margin:0">“Previdência privada: PGBL ou VGBL?” será removido do site. Esta ação não pode ser desfeita.</p>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="excluir-artigo-m" data-screen-label="Artigos · confirmar exclusão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigos · confirmar exclusão · mobile</span>
+      <div data-m="" style="width:390px;height:844px;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" title="Excluir artigo?" footer="{{ footerArtigo }}" hint-size="100%,844px">
+          <p style="margin:0">“Previdência privada: PGBL ou VGBL?” será removido do site. Esta ação não pode ser desfeita.</p>
+        </x-import>
+      </div>
+    </div>
+    <div id="menu-artigo-m" data-screen-label="Artigos · menu de ações · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Artigos · menu de ações · mobile</span>
+      <div data-m="" style="width:390px;height:844px;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" title="Ações do artigo" hint-size="100%,844px">
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <p style="margin:0 0 var(--space-2);color:var(--color-text-muted)">Previdência privada: PGBL ou VGBL?</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="pencil" href="#form-pdf-m" hint-size="100%,44px">Editar</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="eye" href="#leads-artigo-m" hint-size="100%,44px">Ver leads</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="trash" href="#excluir-artigo-m" hint-size="100%,44px">Excluir</x-import>
+          </div>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FORMULÁRIO -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">3. Formulário de artigo</h2>
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="form-texto-d" data-screen-label="Formulário · tipo Texto · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Formulário · tipo Texto · desktop</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16)">
+          <form style="max-width:var(--layout-reading);display:flex;flex-direction:column;gap:var(--space-6)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-d" hint-size="90px,24px">Artigos</x-import>
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Novo artigo</h1>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Título" default-value="Tesouro IPCA+ ou prefixado: como comparar" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Slug" default-value="tesouro-ipca-ou-prefixado-como-comparar" help="Endereço do artigo: /artigos/tesouro-ipca-ou-prefixado-como-comparar. Gerado a partir do título; pode ser editado." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="resumo-td" optional="{{ true }}" hint-size="140px,21px">Resumo</x-import>
+                <textarea id="resumo-td" class="rn-input" rows="3" style="height:auto;padding:var(--space-3);font-family:var(--font-serif);font-size:var(--font-size-md);line-height:var(--line-height-normal)">Os dois títulos protegem o investidor de formas diferentes. Entender o que cada um remunera ajuda a escolher o que combina com o seu prazo.</textarea>
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.FieldMessage" hint-size="100%,21px">Aparece abaixo do título do artigo e no card de destaque.</x-import>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Capa" type="file" accept="image/jpeg,image/png" help="JPG ou PNG na proporção 16:9." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" hint-size="40px,21px">Tipo</x-import>
+                <div role="group" aria-label="Tipo de artigo" style="display:flex;gap:var(--space-2)">
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" aria-pressed="true" hint-size="70px,36px">Texto</x-import>
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" variant="secondary" aria-pressed="false" href="#form-pdf-d" hint-size="60px,36px">PDF</x-import>
+                </div>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Data de publicação" type="date" default-value="2026-09-15" style="max-width:240px" hint-size="240px,74px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="editor-d" hint-size="80px,21px">Conteúdo</x-import>
+                <div style="display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border-strong);border-radius:var(--radius-control)">
+                  <div role="toolbar" aria-label="Formatação" style="display:flex;flex-wrap:wrap;gap:var(--space-1);padding:var(--space-2);border-bottom:1px solid var(--color-border)">
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="60px,36px">Título</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="76px,36px">Negrito</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="70px,36px">Itálico</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="56px,36px">Lista</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="50px,36px">Link</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="72px,36px">Citação</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="72px,36px">Imagem</x-import>
+                  </div>
+                  <div id="editor-d" role="textbox" aria-multiline="true" tabindex="0" class="rn-article" style="max-width:none;margin:0;min-height:320px;padding:var(--space-4) var(--space-6);font-size:var(--font-size-md);border-radius:0 0 var(--radius-control) var(--radius-control)">
+                    <h2 style="margin-top:0">O que cada título paga</h2>
+                    <p>O Tesouro Prefixado garante, no momento da compra, a taxa que você vai receber até o vencimento. O Tesouro IPCA+ paga uma taxa fixa somada à inflação do período.</p>
+                    <ul><li>Prefixado: faz sentido quando você espera queda dos juros.</li><li>IPCA+: protege contra surpresas de inflação no longo prazo.</li></ul>
+                    <blockquote>Os dois sofrem marcação a mercado se vendidos antes do vencimento.</blockquote>
+                  </div>
+                </div>
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.FieldMessage" hint-size="100%,21px">Os 3 primeiros blocos formam a prévia pública; o texto completo vai no download.</x-import>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:var(--space-3)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" href="#artigos-d" hint-size="100px,44px">Cancelar</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" hint-size="100px,44px">Publicar</x-import>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+    <div id="form-texto-m" data-screen-label="Formulário · tipo Texto · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Formulário · tipo Texto · mobile</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-m" links="{{ navM }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="padding:var(--space-6) var(--space-4) var(--space-12)">
+          <form style="display:flex;flex-direction:column;gap:var(--space-6)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-m" hint-size="90px,24px">Artigos</x-import>
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Novo artigo</h1>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Título" default-value="Tesouro IPCA+ ou prefixado: como comparar" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Slug" default-value="tesouro-ipca-ou-prefixado-como-comparar" help="Gerado a partir do título; pode ser editado." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="resumo-tm" optional="{{ true }}" hint-size="140px,21px">Resumo</x-import>
+                <textarea id="resumo-tm" class="rn-input" rows="4" style="height:auto;padding:var(--space-3);font-family:var(--font-serif);font-size:var(--font-size-md);line-height:var(--line-height-normal)">Os dois títulos protegem o investidor de formas diferentes. Entender o que cada um remunera ajuda a escolher o que combina com o seu prazo.</textarea>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Capa" type="file" accept="image/jpeg,image/png" help="JPG ou PNG na proporção 16:9." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" hint-size="40px,21px">Tipo</x-import>
+                <div role="group" aria-label="Tipo de artigo" style="display:flex;gap:var(--space-2)">
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" aria-pressed="true" hint-size="70px,36px">Texto</x-import>
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" variant="secondary" aria-pressed="false" href="#form-pdf-m" hint-size="60px,36px">PDF</x-import>
+                </div>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Data de publicação" type="date" default-value="2026-09-15" hint-size="100%,74px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="editor-m" hint-size="80px,21px">Conteúdo</x-import>
+                <div style="display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border-strong);border-radius:var(--radius-control)">
+                  <div role="toolbar" aria-label="Formatação" style="display:flex;flex-wrap:wrap;gap:var(--space-1);padding:var(--space-2);border-bottom:1px solid var(--color-border)">
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="60px,36px">Título</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="76px,36px">Negrito</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="70px,36px">Itálico</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="56px,36px">Lista</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="50px,36px">Link</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="72px,36px">Citação</x-import>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="ghost" size="sm" hint-size="72px,36px">Imagem</x-import>
+                  </div>
+                  <div id="editor-m" role="textbox" aria-multiline="true" tabindex="0" class="rn-article" style="max-width:none;margin:0;min-height:280px;padding:var(--space-4);font-size:var(--font-size-md);border-radius:0 0 var(--radius-control) var(--radius-control)">
+                    <h2 style="margin-top:0">O que cada título paga</h2>
+                    <p>O Tesouro Prefixado garante, no momento da compra, a taxa que você vai receber até o vencimento. O Tesouro IPCA+ paga uma taxa fixa somada à inflação do período.</p>
+                    <ul><li>Prefixado: faz sentido quando você espera queda dos juros.</li><li>IPCA+: protege contra surpresas de inflação no longo prazo.</li></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" hint-size="100%,44px">Publicar</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" href="#artigos-m" hint-size="100%,44px">Cancelar</x-import>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <sc-for list="{{ pdfStates }}" as="st" hint-placeholder-count="3">
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="{{ st.idD }}" data-screen-label="{{ st.labelD }}" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">{{ st.labelD }}</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16)">
+          <form style="max-width:var(--layout-reading);display:flex;flex-direction:column;gap:var(--space-6)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-d" hint-size="90px,24px">Artigos</x-import>
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Novo artigo</h1>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Título" default-value="Cenário macro para o quarto trimestre de 2026" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Slug" default-value="cenario-macro-para-o-quarto-trimestre-de-2026" help="Endereço do artigo: /artigos/cenario-macro-para-o-quarto-trimestre-de-2026. Gerado a partir do título; pode ser editado." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="{{ st.resumoD }}" optional="{{ true }}" hint-size="140px,21px">Resumo</x-import>
+                <textarea id="{{ st.resumoD }}" class="rn-input" rows="3" style="height:auto;padding:var(--space-3);font-family:var(--font-serif);font-size:var(--font-size-md);line-height:var(--line-height-normal)"></textarea>
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.FieldMessage" hint-size="100%,21px">Aparece abaixo do título do artigo e no card de destaque.</x-import>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Capa" type="file" accept="image/jpeg,image/png" help="JPG ou PNG na proporção 16:9." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" hint-size="40px,21px">Tipo</x-import>
+                <div role="group" aria-label="Tipo de artigo" style="display:flex;gap:var(--space-2)">
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" variant="secondary" aria-pressed="false" href="#form-texto-d" hint-size="70px,36px">Texto</x-import>
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" aria-pressed="true" hint-size="60px,36px">PDF</x-import>
+                </div>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Data de publicação" type="date" default-value="2026-09-22" style="max-width:240px" hint-size="240px,74px"></x-import>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Arquivo PDF" type="file" accept="application/pdf" help="{{ st.help }}" error="{{ st.error }}" disabled="{{ st.uploading }}" hint-size="100%,95px"></x-import>
+                <sc-if value="{{ st.uploading }}" hint-placeholder-val="{{ false }}">
+                  <div role="status" style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text)">
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Icon" name="loader" size="{{ 16 }}" class-name="rn-spinner" hint-size="16px,16px"></x-import>
+                    <span>Enviando cenario-macro-4t26.pdf (4,2 MB)…</span>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:var(--space-3)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" href="#artigos-d" hint-size="100px,44px">Cancelar</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" disabled="{{ st.uploading }}" hint-size="100px,44px">Publicar</x-import>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+    <div id="{{ st.idM }}" data-screen-label="{{ st.labelM }}" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">{{ st.labelM }}</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-m" links="{{ navM }}" current="Artigos" hint-size="100%,65px"></x-import>
+        <main style="padding:var(--space-6) var(--space-4) var(--space-12)">
+          <form style="display:flex;flex-direction:column;gap:var(--space-6)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-m" hint-size="90px,24px">Artigos</x-import>
+              <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Novo artigo</h1>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Título" default-value="Cenário macro para o quarto trimestre de 2026" hint-size="100%,74px"></x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Slug" default-value="cenario-macro-para-o-quarto-trimestre-de-2026" help="Gerado a partir do título; pode ser editado." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" html-for="{{ st.resumoM }}" optional="{{ true }}" hint-size="140px,21px">Resumo</x-import>
+                <textarea id="{{ st.resumoM }}" class="rn-input" rows="4" style="height:auto;padding:var(--space-3);font-family:var(--font-serif);font-size:var(--font-size-md);line-height:var(--line-height-normal)"></textarea>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Capa" type="file" accept="image/jpeg,image/png" help="JPG ou PNG na proporção 16:9." hint-size="100%,95px"></x-import>
+              <div class="rn-field">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Label" hint-size="40px,21px">Tipo</x-import>
+                <div role="group" aria-label="Tipo de artigo" style="display:flex;gap:var(--space-2)">
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" variant="secondary" aria-pressed="false" href="#form-texto-m" hint-size="70px,36px">Texto</x-import>
+                  <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" size="sm" aria-pressed="true" hint-size="60px,36px">PDF</x-import>
+                </div>
+              </div>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Data de publicação" type="date" default-value="2026-09-22" hint-size="100%,74px"></x-import>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Input" label="Arquivo PDF" type="file" accept="application/pdf" help="{{ st.help }}" error="{{ st.error }}" disabled="{{ st.uploading }}" hint-size="100%,95px"></x-import>
+                <sc-if value="{{ st.uploading }}" hint-placeholder-val="{{ false }}">
+                  <div role="status" style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--font-size-xs);line-height:var(--line-height-xs);color:var(--color-text)">
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Icon" name="loader" size="{{ 16 }}" class-name="rn-spinner" hint-size="16px,16px"></x-import>
+                    <span>Enviando cenario-macro-4t26.pdf (4,2 MB)…</span>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" type="submit" block="{{ true }}" disabled="{{ st.uploading }}" hint-size="100%,44px">Publicar</x-import>
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" href="#artigos-m" hint-size="100%,44px">Cancelar</x-import>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+  </sc-for>
+</section>
+
+<!-- 4. LEADS -->
+<section style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">4. Leads</h2>
+  <sc-for list="{{ leadScreens }}" as="sc" hint-placeholder-count="3">
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="{{ sc.idD }}" data-screen-label="{{ sc.labelD }}" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">{{ sc.labelD }}</span>
+      <div style="width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="{{ sc.nav }}" hint-size="100%,65px"></x-import>
+        <main style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:flex-start">
+            <sc-if value="{{ sc.perArticle }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-d" hint-size="90px,24px">Artigos</x-import>
+            </sc-if>
+            <div style="align-self:stretch;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-4)">
+              <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+                <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Leads</h1>
+                <span style="font-size:var(--font-size-xs);color:var(--color-text-muted)">{{ sc.sub }}</span>
+              </div>
+              <div style="display:flex;gap:var(--space-2)">
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" size="sm" icon-left="download" disabled="{{ sc.empty }}" hint-size="130px,36px">Exportar CSV</x-import>
+                <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" size="sm" icon-left="rotate-ccw" disabled="{{ sc.noFail }}" hint-size="150px,36px">{{ sc.retry }}</x-import>
+              </div>
+            </div>
+          </div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.DataTable" caption="Leads" columns="{{ sc.colsD }}" rows="{{ sc.rows }}" footer="{{ sc.footer }}" empty-message="Nenhum lead recebido ainda." hint-size="100%,560px"></x-import>
+        </main>
+      </div>
+    </div>
+    <div id="{{ sc.idM }}" data-screen-label="{{ sc.labelM }}" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">{{ sc.labelM }}</span>
+      <div data-m="" style="width:390px;min-height:844px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-m" links="{{ navM }}" current="{{ sc.nav }}" hint-size="100%,65px"></x-import>
+        <main style="padding:var(--space-6) var(--space-4) var(--space-12);display:flex;flex-direction:column;gap:var(--space-4)">
+          <sc-if value="{{ sc.perArticle }}" hint-placeholder-val="{{ false }}">
+            <div><x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="link" icon-left="arrow-left" href="#artigos-m" hint-size="90px,24px">Artigos</x-import></div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+            <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Leads</h1>
+            <span style="font-size:var(--font-size-xs);color:var(--color-text-muted)">{{ sc.sub }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="download" disabled="{{ sc.empty }}" hint-size="100%,44px">Exportar CSV</x-import>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="rotate-ccw" disabled="{{ sc.noFail }}" hint-size="100%,44px">{{ sc.retry }}</x-import>
+          </div>
+          <sc-if value="{{ sc.empty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:var(--space-12) var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);text-align:center;color:var(--color-text-muted)">Nenhum lead recebido ainda.</div>
+          </sc-if>
+          <sc-if value="{{ sc.hasRows }}" hint-placeholder-val="{{ true }}">
+            <ul aria-label="Leads" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-3)">
+              <sc-for list="{{ sc.rows }}" as="r" hint-placeholder-count="4">
+                <li style="display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);box-shadow:var(--shadow-card)">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-3)">
+                    <span style="font-weight:600">{{ r.name }}</span>
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.StatusBadge" status="{{ r.status }}" hint-size="80px,24px"></x-import>
+                  </div>
+                  <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-1) var(--space-4);font-size:var(--font-size-xs);line-height:var(--line-height-xs)">
+                    <dt style="color:var(--color-text-muted)">Data</dt><dd style="margin:0">{{ r.date }}</dd>
+                    <dt style="color:var(--color-text-muted)">Artigo</dt><dd style="margin:0">{{ r.article }}</dd>
+                    <dt style="color:var(--color-text-muted)">E-mail</dt><dd style="margin:0;overflow-wrap:anywhere">{{ r.email }}</dd>
+                    <dt style="color:var(--color-text-muted)">Telefone</dt><dd style="margin:0">{{ r.phone }}</dd>
+                    <dt style="color:var(--color-text-muted)">Comunicações</dt><dd style="margin:0">{{ r.opt }}</dd>
+                  </dl>
+                  <div style="display:flex;justify-content:flex-end">
+                    <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" href="#menu-lead-m" aria-haspopup="dialog" hint-size="90px,44px">Ações</x-import>
+                  </div>
+                </li>
+              </sc-for>
+            </ul>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3)">
+              <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Pagination" page="{{ 1 }}" total-pages="{{ sc.pages }}" total="{{ sc.total }}" page-size="{{ 10 }}" hint-size="100%,36px"></x-import>
+            </div>
+          </sc-if>
+        </main>
+      </div>
+    </div>
+  </div>
+  </sc-for>
+
+  <div style="display:flex;gap:var(--space-16);align-items:flex-start">
+    <div id="excluir-lead-d" data-screen-label="Leads · confirmar exclusão · desktop" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Leads · confirmar exclusão · desktop</span>
+      <div style="position:relative;width:1440px;min-height:900px;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.SiteHeader" logo-src="assets/logo-escuro.png" home-href="#artigos-d" links="{{ navD }}" current="Leads" hint-size="100%,65px"></x-import>
+        <main aria-hidden="true" style="width:100%;max-width:var(--layout-admin);margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-16);display:flex;flex-direction:column;gap:var(--space-6)">
+          <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+            <h1 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Leads</h1>
+            <span style="font-size:var(--font-size-xs);color:var(--color-text-muted)">188 leads · todos os artigos</span>
+          </div>
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.DataTable" caption="Leads" columns="{{ leadColsGeralD }}" rows="{{ leadsGeral }}" footer="{{ pagerGeral }}" hint-size="100%,560px"></x-import>
+        </main>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:var(--space-8);background:var(--color-overlay)">
+          <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" title="Excluir lead?" footer="{{ footerLead }}" hint-size="480px,240px">
+            <p style="margin:0">Os dados de Ana Costa (ana.costa@email.com.br) serão apagados. Esta ação não pode ser desfeita.</p>
+          </x-import>
+        </div>
+      </div>
+    </div>
+    <div id="excluir-lead-m" data-screen-label="Leads · confirmar exclusão · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Leads · confirmar exclusão · mobile</span>
+      <div data-m="" style="width:390px;height:844px;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" title="Excluir lead?" footer="{{ footerLead }}" hint-size="100%,844px">
+          <p style="margin:0">Os dados de Ana Costa (ana.costa@email.com.br) serão apagados. Esta ação não pode ser desfeita.</p>
+        </x-import>
+      </div>
+    </div>
+    <div id="menu-lead-m" data-screen-label="Leads · menu de ações · mobile" style="display:flex;flex-direction:column;gap:var(--space-3)">
+      <span style="font-size:var(--font-size-sm);font-weight:600">Leads · menu de ações · mobile</span>
+      <div data-m="" style="width:390px;height:844px;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-card)">
+        <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Modal" inline="{{ true }}" mobile="{{ true }}" title="Ações do lead" hint-size="100%,844px">
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <p style="margin:0 0 var(--space-2);color:var(--color-text-muted)">Ana Costa · ana.costa@email.com.br</p>
+            <x-import component-from-global-scope="RioNegroDesignSystem_2f3caf.Button" variant="secondary" block="{{ true }}" icon-left="trash" href="#excluir-lead-m" hint-size="100%,44px">Excluir lead</x-import>
+          </div>
+        </x-import>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" data-screen-label="Checklist · Admin" style="display:flex;flex-direction:column;gap:var(--space-4);max-width:1200px">
+  <h2 style="margin:0;font-size:var(--font-size-2xl);line-height:var(--line-height-2xl);font-weight:600">Lista de verificação · Admin</h2>
+  <div class="rn-table-wrap"><div class="rn-table-scroll">
+    <table class="rn-table">
+      <thead><tr><th style="min-width:260px">Tela · estado</th><th>Desktop 1440</th><th>Mobile 390</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr><td>Login · padrão</td><td><a href="#login-d">✅</a></td><td><a href="#login-m">✅</a></td><td class="rn-table__muted">Sem cadastro e sem "esqueci a senha"</td></tr>
+        <tr><td>Login · e-mail ou senha inválidos</td><td><a href="#login-inv-d">✅</a></td><td><a href="#login-inv-m">✅</a></td><td class="rn-table__muted">"E-mail ou senha inválidos"</td></tr>
+        <tr><td>Login · acesso negado</td><td><a href="#login-neg-d">✅</a></td><td><a href="#login-neg-m">✅</a></td><td class="rn-table__muted">"Acesso negado"</td></tr>
+        <tr><td>Artigos · lista</td><td><a href="#artigos-d">✅</a></td><td><a href="#artigos-m">✅</a></td><td class="rn-table__muted">Título, tipo, data, leads, Editar/Ver leads/Excluir, selo "Em destaque", "Novo artigo"</td></tr>
+        <tr><td>Artigos · confirmar exclusão</td><td><a href="#excluir-artigo-d">✅</a></td><td><a href="#excluir-artigo-m">✅</a></td><td class="rn-table__muted">Modal de confirmação</td></tr>
+        <tr><td>Formulário · tipo Texto</td><td><a href="#form-texto-d">✅</a></td><td><a href="#form-texto-m">✅</a></td><td class="rn-table__muted">Editor com título, negrito, itálico, lista, link, citação, imagem</td></tr>
+        <tr><td>Formulário · tipo PDF · vazio</td><td><a href="#form-pdf-d">✅</a></td><td><a href="#form-pdf-m">✅</a></td><td class="rn-table__muted">Upload do PDF, máx. 20 MB</td></tr>
+        <tr><td>Formulário · tipo PDF · enviando</td><td><a href="#form-pdf-env-d">✅</a></td><td><a href="#form-pdf-env-m">✅</a></td><td class="rn-table__muted">Spinner, campo e "Publicar" travados</td></tr>
+        <tr><td>Formulário · tipo PDF · erro</td><td><a href="#form-pdf-err-d">✅</a></td><td><a href="#form-pdf-err-m">✅</a></td><td class="rn-table__muted">Arquivo acima de 20 MB</td></tr>
+        <tr><td>Leads · por artigo</td><td><a href="#leads-artigo-d">✅</a></td><td><a href="#leads-artigo-m">✅</a></td><td class="rn-table__muted">Paginada; "Exportar CSV", "Reenviar falhas", excluir por linha</td></tr>
+        <tr><td>Leads · geral</td><td><a href="#leads-geral-d">✅</a></td><td><a href="#leads-geral-m">✅</a></td><td class="rn-table__muted">Mesmas colunas e ações, todos os artigos</td></tr>
+        <tr><td>Leads · vazio</td><td><a href="#leads-vazio-d">✅</a></td><td><a href="#leads-vazio-m">✅</a></td><td class="rn-table__muted">"Nenhum lead recebido ainda."; ações desabilitadas</td></tr>
+        <tr><td>Leads · confirmar exclusão</td><td><a href="#excluir-lead-d">✅</a></td><td><a href="#excluir-lead-m">✅</a></td><td class="rn-table__muted">Modal de confirmação</td></tr>
+        <tr><td>Artigos · menu de ações</td><td>— não se aplica</td><td><a href="#menu-artigo-m">✅</a></td><td class="rn-table__muted">Só mobile; no desktop as ações ficam na linha</td></tr>
+        <tr><td>Leads · menu de ações</td><td>— não se aplica</td><td><a href="#menu-lead-m">✅</a></td><td class="rn-table__muted">Só mobile</td></tr>
+        <tr><td>Mobile · tabelas como cards, ações no topo com largura total</td><td>—</td><td>✅</td><td class="rn-table__muted">Filtros não existem (lacuna 9)</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.RioNegroDesignSystem_2f3caf) {
+      this._t = setInterval(() => { if (window.RioNegroDesignSystem_2f3caf) { clearInterval(this._t); this.forceUpdate(); } }, 100);
+    }
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+
+  renderVals() {
+    const navD = [{ label: 'Artigos', href: '#artigos-d' }, { label: 'Leads', href: '#leads-geral-d' }];
+    const navM = [{ label: 'Artigos', href: '#artigos-m' }, { label: 'Leads', href: '#leads-geral-m' }];
+    const pdfStates = [
+      { idD: 'form-pdf-d', idM: 'form-pdf-m', labelD: 'Formulário · tipo PDF · vazio · desktop', labelM: 'Formulário · tipo PDF · vazio · mobile', resumoD: 'r-p1d', resumoM: 'r-p1m', help: 'Máximo de 20 MB.', error: undefined, uploading: false },
+      { idD: 'form-pdf-env-d', idM: 'form-pdf-env-m', labelD: 'Formulário · tipo PDF · enviando · desktop', labelM: 'Formulário · tipo PDF · enviando · mobile', resumoD: 'r-p2d', resumoM: 'r-p2m', help: 'Máximo de 20 MB.', error: undefined, uploading: true },
+      { idD: 'form-pdf-err-d', idM: 'form-pdf-err-m', labelD: 'Formulário · tipo PDF · erro · desktop', labelM: 'Formulário · tipo PDF · erro · mobile', resumoD: 'r-p3d', resumoM: 'r-p3m', help: undefined, error: 'O arquivo tem 24,6 MB. Envie um PDF de até 20 MB.', uploading: false }
+    ];
+    const DS = window.RioNegroDesignSystem_2f3caf;
+    if (!DS) return { navD, navM, pdfStates, leadScreens: [], arts: [] };
+    const h = React.createElement;
+    const hidden = (t) => h('span', { className: 'rn-visually-hidden' }, t);
+    const featured = h('span', { className: 'rn-badge rn-badge--text' }, h('span', { className: 'rn-badge__dot', 'aria-hidden': true }), 'Em destaque');
+    const meta = { display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' };
+
+    const arts = [
+      { id: 1, title: 'Cenário macro para o quarto trimestre de 2026', type: 'pdf', date: '22/09/2026', leads: 38, featured: true },
+      { id: 2, title: 'Tesouro IPCA+ ou prefixado: como comparar', type: 'text', date: '15/09/2026', leads: 21 },
+      { id: 3, title: 'Previdência privada: PGBL ou VGBL?', type: 'pdf', date: '08/09/2026', leads: 54 },
+      { id: 4, title: 'O que muda com a nova tabela de IR sobre aplicações', type: 'text', date: '29/08/2026', leads: 17 },
+      { id: 5, title: 'Fundos imobiliários: como ler um relatório gerencial', type: 'pdf', date: '18/08/2026', leads: 46 },
+      { id: 6, title: 'Reserva de emergência: onde deixar o dinheiro', type: 'text', date: '05/08/2026', leads: 12 }
+    ];
+    const artActions = (r, s, icon) => h('div', { className: 'rn-table__actions', style: s === 'm' ? { justifyContent: 'flex-start', marginLeft: -8 } : null },
+      h(DS.Button, { variant: 'ghost', size: 'sm', href: '#form-' + (r.type === 'pdf' ? 'pdf' : 'texto') + '-' + s, iconLeft: icon ? undefined : 'pencil', iconOnly: icon ? 'pencil' : undefined, label: 'Editar' }, icon ? null : 'Editar'),
+      h(DS.Button, { variant: 'ghost', size: 'sm', href: '#leads-artigo-' + s, iconLeft: icon ? undefined : 'eye', iconOnly: icon ? 'eye' : undefined, label: 'Ver leads' }, icon ? null : 'Ver leads'),
+      h(DS.Button, { variant: 'ghost', size: 'sm', href: '#excluir-artigo-' + s, iconLeft: icon ? undefined : 'trash', iconOnly: icon ? 'trash' : undefined, label: 'Excluir' }, icon ? null : 'Excluir'));
+    const artColsD = [
+      { key: 'title', label: 'Título', render: (r) => h('div', { style: { display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' } }, h('span', { style: { fontWeight: 500 } }, r.title), r.featured ? featured : null) },
+      { key: 'type', label: 'Tipo', width: 96, render: (r) => h(DS.TypeBadge, { type: r.type }) },
+      { key: 'date', label: 'Publicação', width: 120, muted: true },
+      { key: 'leads', label: 'Leads', width: 80, align: 'right' },
+      { key: 'actions', label: hidden('Ações'), align: 'right', width: 320, render: (r) => artActions(r, 'd', false) }
+    ];
+
+    const T = arts.map((a) => a.title);
+    const L = [
+      ['24/09/2026 14:32', 0, 'Maria Silva', 'maria.silva@email.com.br', '(11) 91234-5678', true, 'sent'],
+      ['24/09/2026 11:08', 2, 'João Pereira', 'joao.pereira@email.com', '(21) 98765-4321', false, 'sent'],
+      ['23/09/2026 19:45', 0, 'Ana Costa', 'ana.costa@email.com.br', '(31) 99876-1234', true, 'failed'],
+      ['23/09/2026 16:20', 4, 'Carlos Mendes', 'carlos.mendes@email.com', '(11) 97654-3210', true, 'pending'],
+      ['23/09/2026 09:02', 1, 'Fernanda Lima', 'fernanda.lima@email.com.br', '(41) 99123-4567', false, 'sent'],
+      ['22/09/2026 21:17', 0, 'Ricardo Alves', 'ricardo.alves@email.com', '(51) 98456-7890', true, 'sent'],
+      ['22/09/2026 18:40', 2, 'Patrícia Rocha', 'patricia.rocha@email.com.br', '(61) 99345-6789', false, 'failed'],
+      ['22/09/2026 15:05', 5, 'Bruno Carvalho', 'bruno.carvalho@email.com', '(11) 96543-2109', true, 'disabled'],
+      ['22/09/2026 12:33', 0, 'Juliana Martins', 'juliana.martins@email.com.br', '(19) 99234-5678', false, 'sent'],
+      ['22/09/2026 10:11', 3, 'Eduardo Nunes', 'eduardo.nunes@email.com', '(85) 98123-4567', true, 'sent']
+    ];
+    const toRow = (x, i, fixed) => ({ id: i, date: x[0], article: fixed != null ? T[fixed] : T[x[1]], name: x[2], email: x[3], phone: x[4], opt: x[5] ? 'Sim' : 'Não', status: x[6] });
+    const leadsGeral = L.map((x, i) => toRow(x, i));
+    const leadsArtigo = L.map((x, i) => toRow(x, i, 0)).map((r, i) => (i === 7 ? { ...r, status: 'sent' } : r));
+    const del = (s) => h('div', { className: 'rn-table__actions' }, h(DS.Button, { variant: 'ghost', size: 'sm', iconOnly: 'trash', label: 'Excluir lead', href: '#excluir-lead-' + s }));
+    const leadColsD = (s) => [
+      { key: 'date', label: 'Data', render: (r) => h('span', { style: { display: 'flex', flexDirection: 'column', color: 'var(--color-text-muted)' } }, r.date.slice(0, 10), h('span', null, r.date.slice(11))) },
+      { key: 'article', label: 'Artigo', render: (r) => h('span', { style: { display: 'block', maxWidth: 180 } }, r.article) },
+      { key: 'name', label: 'Nome', render: (r) => h('span', { style: { fontWeight: 500 } }, r.name) },
+      { key: 'email', label: 'E-mail' },
+      { key: 'phone', label: 'Telefone', render: (r) => h('span', { style: { color: 'var(--color-text-muted)', whiteSpace: 'nowrap' } }, r.phone) },
+      { key: 'opt', label: 'Comunicações' },
+      { key: 'status', label: 'Envio', render: (r) => h(DS.StatusBadge, { status: r.status }) },
+      { key: 'actions', label: hidden('Ações'), align: 'right', width: 56, render: () => del(s) }
+    ];
+    const pager = (total, pages) => h(DS.Pagination, { page: 1, totalPages: pages, total, pageSize: 10 });
+    const pagerGeral = pager(188, 19);
+    const leadScreens = [
+      { idD: 'leads-artigo-d', idM: 'leads-artigo-m', labelD: 'Leads · por artigo · desktop', labelM: 'Leads · por artigo · mobile', nav: 'Artigos', perArticle: true, sub: '38 leads · ' + T[0], retry: 'Reenviar falhas (1)', empty: false, noFail: false, rows: leadsArtigo, colsD: leadColsD('d'), footer: pager(38, 4), hasRows: true, pages: 4, total: 38 },
+      { idD: 'leads-geral-d', idM: 'leads-geral-m', labelD: 'Leads · geral · desktop', labelM: 'Leads · geral · mobile', nav: 'Leads', perArticle: false, sub: '188 leads · todos os artigos', retry: 'Reenviar falhas (2)', empty: false, noFail: false, rows: leadsGeral, colsD: leadColsD('d'), footer: pagerGeral, hasRows: true, pages: 19, total: 188 },
+      { idD: 'leads-vazio-d', idM: 'leads-vazio-m', labelD: 'Leads · vazio · desktop', labelM: 'Leads · vazio · mobile', nav: 'Artigos', perArticle: true, sub: '0 leads · artigo publicado hoje', retry: 'Reenviar falhas', empty: true, noFail: true, rows: [], colsD: leadColsD('d'), footer: undefined, hasRows: false, pages: 1, total: 0 }
+    ];
+    const foot = (label) => h(React.Fragment, null, h(DS.Button, { variant: 'secondary' }, 'Cancelar'), h(DS.Button, { iconLeft: 'trash' }, label));
+    return {
+      navD, navM, pdfStates, arts, artColsD, leadScreens,
+      leadColsGeralD: leadColsD('d'), leadsGeral, pagerGeral,
+      footerArtigo: foot('Excluir artigo'), footerLead: foot('Excluir lead')
+    };
+  }
+}
+</script>
+</body>
+</html>

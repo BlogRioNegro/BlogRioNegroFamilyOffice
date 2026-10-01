@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rio Negro — Design System</title><link rel="stylesheet" href="styles.css">
+<style>
+.ds-wrap{max-width:1200px;margin:0 auto;padding:48px 24px 96px}
+.ds-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-bottom:32px;border-bottom:1px solid var(--color-border)}
+.ds-top img{height:32px}
+.ds-intro{max-width:68ch;margin:32px 0 0;font-family:var(--font-serif);font-size:var(--font-size-article);line-height:1.7;text-wrap:pretty}
+.ds-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:24px 0 0;font-size:14px}
+.ds-sec{padding-top:64px}
+.ds-sec>h2{margin:0 0 8px;font-size:30px;line-height:1.3;font-weight:600}
+.ds-sec>p{margin:0 0 24px;color:var(--color-text-muted);max-width:68ch}
+.ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:24px}
+.ds-frame{background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;overflow:hidden}
+.ds-frame h3{margin:0;padding:12px 16px;font-size:14px;font-weight:600;border-bottom:1px solid var(--color-border)}
+.ds-frame iframe{display:block;width:100%;border:0;height:200px}
+.ds-tok{width:100%;border-collapse:collapse;font-size:14px}
+.ds-tok th,.ds-tok td{padding:8px 12px;border-bottom:1px solid var(--color-border);text-align:left;vertical-align:middle}
+.ds-tok th{background:var(--color-bg);color:var(--color-text-muted);font-weight:600}
+.ds-tok code{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.ds-note{margin-top:16px;padding:16px;background:var(--color-surface-muted);border-radius:6px;font-size:14px;max-width:80ch}
+</style></head>
+<body>
+<div class="ds-wrap">
+<div class="ds-top"><img src="assets/logo-escuro.png" alt="Rio Negro Investimentos | XP"><span style="font-size:14px;color:var(--color-text-muted)">Design system do blog · v1 · setembro de 2026</span></div>
+<p class="ds-intro">Sistema visual do blog institucional da Rio Negro Assessoria de Investimentos. Base clara em off-white e cinza quente, Inter na interface e Source Serif 4 na leitura. A prioridade é a leitura confortável de textos longos.</p>
+<nav class="ds-nav"><a href="#tokens">Tokens</a><a href="#cores">Cores</a><a href="#tipografia">Tipografia</a><a href="#base">Espaço, raio e sombra</a><a href="#componentes">Componentes</a><a href="#telas">Telas</a><a href="#contraste">Contraste</a></nav>
+
+<section class="ds-sec" id="tokens"><h2>Tokens semânticos</h2><p>Nomes prontos para CSS variables (<code>--color-bg</code>) e para o tema do Tailwind (<code>colors.bg</code>, <code>colors.text.muted</code>…).</p>
+<div class="ds-frame"><table class="ds-tok" id="tok"><thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead><tbody></tbody></table></div></section>
+
+<section class="ds-sec" id="cores"><h2>Cores</h2><p>Sem tema escuro. Estados sempre acompanhados de ícone ou texto.</p><div class="ds-grid" data-cards="guidelines/colors-surfaces.html|Superfícies,guidelines/colors-text.html|Texto,guidelines/colors-action.html|Ação e foco,guidelines/colors-states.html|Estados,guidelines/brand-logo.html|Logotipo"></div></section>
+<section class="ds-sec" id="tipografia"><h2>Tipografia</h2><p>Artigo: 18 px no mobile, 20 px a partir de 768 px, altura de linha 1.7, máximo de 68 caracteres por linha.</p><div class="ds-grid" data-cards="guidelines/type-inter.html|Inter,guidelines/type-serif.html|Source Serif 4,guidelines/type-scale.html|Escala,guidelines/type-article.html|Artigo em uso"></div></section>
+<section class="ds-sec" id="base"><h2>Espaço, raio, sombra e grid</h2><p>Espaçamento em múltiplos de 4 px. Duas sombras apenas.</p><div class="ds-grid" data-cards="guidelines/spacing.html|Espaçamento,guidelines/radius.html|Raio,guidelines/shadows.html|Sombra,guidelines/layout.html|Grid e breakpoints"></div></section>
+<section class="ds-sec" id="componentes"><h2>Componentes</h2><p>Cada componente em todos os estados aplicáveis: default, hover, foco, desabilitado, erro e carregando.</p><div class="ds-grid" style="grid-template-columns:1fr" data-cards="components/actions/actions.card.html|Botões e Carregar mais,components/forms/forms.card.html|Formulários,components/content/cards.card.html|Cards de artigo,components/feedback/feedback.card.html|Alertas · badges · modal,components/data/table.card.html|Tabela do admin,components/layout/layout.card.html|Header e rodapé,components/core/icons.card.html|Ícones"></div></section>
+<section class="ds-sec" id="telas"><h2>Telas</h2><p>Protótipos clicáveis que combinam os componentes.</p><div class="ds-grid" data-cards="ui_kits/blog/index.html|Blog público,ui_kits/admin/index.html|Painel admin" data-h="720"></div></section>
+
+<section class="ds-sec" id="contraste"><h2>Razões de contraste</h2><p>Texto: mínimo 4,5:1 (AA). Elementos não textuais (borda de campo, anel de foco): mínimo 3:1.</p>
+<div class="ds-frame"><table class="ds-tok" id="con"><thead><tr><th></th><th>Primeiro plano</th><th>Fundo</th><th style="text-align:right">Razão</th><th>Nível</th></tr></thead><tbody></tbody></table></div>
+<div class="ds-note"><strong>Ajuste feito:</strong> todos os pares de texto pedidos passam AA sem alteração. A borda <code>#DCD8D5</code> tem só 1,42:1 contra o branco, abaixo dos 3:1 exigidos para contorno de campos (WCAG 1.4.11). Ela segue para cards, tabelas e divisores, e foi criado <code>--color-border-strong: #8C8782</code> (3,56:1 no branco, 3,13:1 no fundo) para inputs, checkboxes e botão secundário. O aviso <code>#8A5A00</code> sobre a borda <code>#DCD8D5</code> dá 4,18:1 e por isso esse par não é usado.</div>
+</section>
+</div>
+<script>
+const toks=[['color-bg','#F2F0EF','Fundo da página (cor principal)'],['color-surface','#FFFFFF','Cards, modal, tabelas'],['color-surface-muted','#E9E6E4','Hover, destaque, rodapé, desabilitado'],['color-border','#DCD8D5','Divisores, borda de card e tabela'],['color-border-strong','#8C8782','Borda de campo e botão secundário (novo)'],['color-text','#1D1C1B','Texto principal'],['color-text-muted','#5C5854','Datas, legendas, ajuda'],['color-text-inverse','#F2F0EF','Texto sobre ação primária'],['color-action-primary','#1D1C1B','Fundo do botão primário'],['color-action-primary-hover','#3A3735','Hover do primário'],['color-success / -bg / -border','#2F6B3F · #E6F0E8 · #B9D3BF','Sucesso'],['color-error / -bg / -border','#A8322D · #F8E6E4 · #E6BDB9','Erro'],['color-warning / -bg / -border','#8A5A00 · #F7EDD9 · #E3CB98','Aviso'],['color-focus-ring','#1D1C1B','Anel 2 px, offset 2 px'],['font-sans','Inter','Interface'],['font-serif','Source Serif 4','Corpo do artigo'],['font-size-xs … 4xl','14 · 16 · 18 · 20 · 24 · 30 · 36 · 48','Escala tipográfica'],['font-size-article','18px → 20px (≥768)','Corpo do artigo'],['measure-article','68ch','Largura máxima do texto'],['space-1 … 24','4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96','Espaçamento'],['radius-control / radius-card','6px / 12px','Campos e botões / cards e modal'],['shadow-card / shadow-modal','2 níveis','Elevação'],['layout-reading / layout-admin','720px / 1200px','Containers'],['breakpoint-sm / md / lg','390 / 768 / 1280','Breakpoints']];
+document.querySelector('#tok tbody').innerHTML=toks.map(([a,b,c])=>`<tr><td><code>--${a}</code></td><td><code>${b}</code></td><td>${c}</td></tr>`).join('');
+fetch('guidelines/contrast-data.json').then(r=>r.json()).then(rows=>{document.querySelector('#con tbody').innerHTML=rows.map(x=>`<tr><td><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:28px;border-radius:4px;background:${x.fb};color:${x.fa};border:1px solid #DCD8D5;font-weight:600">Aa</span></td><td>${x.a} <code>${x.fa}</code></td><td>${x.b} <code>${x.fb}</code></td><td style="text-align:right;font-weight:600">${x.v}:1</td><td>${x.lvl}</td></tr>`).join('')});
+document.querySelectorAll('[data-cards]').forEach(g=>{g.innerHTML=g.dataset.cards.split(',').map(s=>{const[src,t]=s.split('|');return `<div class="ds-frame"><h3>${t}</h3><iframe src="${src}" loading="lazy" title="${t}" ${g.dataset.h?`style="height:${g.dataset.h}px" data-fixed="1"`:''}></iframe></div>`}).join('')});
+const fit=()=>document.querySelectorAll('iframe:not([data-fixed])').forEach(f=>{try{const h=f.contentDocument.documentElement.scrollHeight;if(h&&Math.abs(f.offsetHeight-h)>2)f.style.height=h+'px'}catch(e){}});
+setInterval(fit,600);
+</script>
+</body></html>

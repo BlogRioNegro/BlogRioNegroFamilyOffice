@@ -1,0 +1,88 @@
+/* Tokens que são namespaces do Tailwind v4: viram utilitários (bg-bg, text-text-muted,
+   rounded-card, shadow-modal, font-serif...). A paleta padrão do Tailwind é zerada para que
+   só existam utilitários de token (DS-003). */
+@theme static {
+  --color-*: initial;
+  --font-*: initial;
+  --font-weight-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --breakpoint-*: initial;
+  --text-*: initial;
+  --leading-*: initial;
+
+  --color-bg: var(--rn-warm-50);
+  --color-surface: var(--rn-warm-0);
+  --color-surface-muted: var(--rn-warm-100);
+  --color-border: var(--rn-warm-200);
+  --color-border-strong: var(--rn-warm-400);
+
+  --color-text: var(--rn-warm-900);
+  --color-text-muted: var(--rn-warm-600);
+  --color-text-inverse: var(--rn-warm-50);
+
+  --color-action-primary: var(--rn-warm-900);
+  --color-action-primary-hover: var(--rn-warm-800);
+  --color-action-primary-text: var(--rn-warm-50);
+  --color-disabled-bg: var(--rn-warm-100);
+  --color-disabled-text: var(--rn-warm-600);
+
+  --color-success: var(--rn-green-700);
+  --color-success-bg: var(--rn-green-50);
+  --color-success-border: var(--rn-green-200);
+  --color-error: var(--rn-red-700);
+  --color-error-bg: var(--rn-red-50);
+  --color-error-border: var(--rn-red-200);
+  --color-warning: var(--rn-amber-700);
+  --color-warning-bg: var(--rn-amber-50);
+  --color-warning-border: var(--rn-amber-200);
+
+  --color-focus-ring: var(--rn-warm-900);
+  --color-overlay: rgba(29, 28, 27, 0.48);
+
+  /* 'Inter' e 'Source Serif 4' vêm do next/font (fonts.ts), que expõe a família como variável. */
+  --font-sans: var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: var(--font-source-serif), 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --radius-control: 6px;
+  --radius-card: 12px;
+
+  --shadow-card: 0 1px 2px rgba(29, 28, 27, 0.06), 0 1px 3px rgba(29, 28, 27, 0.04);
+  --shadow-modal: 0 12px 32px rgba(29, 28, 27, 0.14), 0 2px 6px rgba(29, 28, 27, 0.06);
+
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1280px;
+}
+
+/* Aliases para os utilitários de texto, entrelinha e espaçamento do Tailwind. */
+@theme inline {
+  --spacing: var(--space-1);
+
+  --text-xs: var(--font-size-xs);
+  --text-xs--line-height: var(--line-height-xs);
+  --text-sm: var(--font-size-sm);
+  --text-sm--line-height: var(--line-height-sm);
+  --text-md: var(--font-size-md);
+  --text-md--line-height: var(--line-height-md);
+  --text-lg: var(--font-size-lg);
+  --text-lg--line-height: var(--line-height-lg);
+  --text-xl: var(--font-size-xl);
+  --text-xl--line-height: var(--line-height-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-2xl--line-height: var(--line-height-2xl);
+  --text-3xl: var(--font-size-3xl);
+  --text-3xl--line-height: var(--line-height-3xl);
+  --text-4xl: var(--font-size-4xl);
+  --text-4xl--line-height: var(--line-height-4xl);
+
+  --leading-tight: var(--line-height-tight);
+  --leading-snug: var(--line-height-snug);
+  --leading-normal: var(--line-height-normal);
+  --leading-relaxed: var(--line-height-relaxed);
+}

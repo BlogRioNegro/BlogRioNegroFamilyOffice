@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "env": ["NEXT_PUBLIC_*"],
+      "passThroughEnv": [
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "ADMIN_SITE_URL",
+        "TURNSTILE_SECRET_KEY",
+        "LEAD_HASH_SECRET",
+        "LEAD_WEBHOOK_URL",
+        "LEAD_WEBHOOK_SECRET"
+      ]
+    },
+    "typecheck": {},
+    "lint": {},
+    "test": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
