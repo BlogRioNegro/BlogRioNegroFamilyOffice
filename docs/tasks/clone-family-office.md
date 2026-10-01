@@ -11,3 +11,5 @@ Specs: [00-overview](../specs/00-overview.md), [03-public-site](../specs/03-publ
 - [x] **CL-005** · PUB-013, LEAD-010 · Rodapé copiado do site institucional e CTA "Conheça a Rio Negro Family Office"
 - [x] **CL-006** · PUB-010, PUB-012 · Nome da marca em metadata, Open Graph, RSS, header, admin e seed
 - [x] **CL-007** · LEAD-013, PUB-014 · Controlador nos textos de privacidade e no aviso de lead; novo `policy_version`
+- [x] **CL-008** · DS-003, DS-006 · Tema azul em todo o sistema: tokens, logo branca de 40 px e Turnstile escuro ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md))
+- [x] **CL-009** · PUB-001 · Hero da home redesenhado, sem conteúdo novo

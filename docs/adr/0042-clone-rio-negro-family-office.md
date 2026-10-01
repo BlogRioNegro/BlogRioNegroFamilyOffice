@@ -5,6 +5,8 @@
   [LEAD-010, LEAD-013](../specs/04-lead-capture.md), [DS-003](../specs/06-design-system.md)
 - Substitui: [ADR 0002](0002-hospedagem-staycloud.md) e [ADR 0038](0038-staycloud-deploy-pro-node-22.md) (hospedagem)
 - Tasks: [clone-family-office](../tasks/clone-family-office.md)
+- As seções "Azul de ação (CL-002)" e "Logo (CL-003)" foram substituídas pela
+  [ADR 0043](0043-tema-azul-em-todo-o-sistema.md): o azul passou a ser a base de todo o sistema.
 
 ## Contexto
 O blog da Rio Negro Investimentos ficou pronto e um segundo cliente, a **Rio Negro Family Office**

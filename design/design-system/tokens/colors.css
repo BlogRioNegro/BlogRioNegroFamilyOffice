@@ -1,58 +1,49 @@
-/* Rio Negro Family Office — cores. Base clara (off-white + cinza quente) e azul da marca só como cor de ação (ADR 0042). Sem tema escuro. */
+/* Rio Negro Family Office — cores. Tema azul: o azul da marca é a base de todo o sistema e o bege do site é a cor de ação (ADR 0043). Sem tema claro. */
 :root{
 /* Paleta base */
---rn-warm-0:#FFFFFF;
 --rn-warm-50:#F2F0EF;
---rn-warm-100:#E9E6E4;
---rn-warm-200:#DCD8D5;
---rn-warm-400:#8C8782;
---rn-warm-600:#5C5854;
---rn-warm-800:#3A3735;
---rn-warm-900:#1D1C1B;
---rn-blue-800:#233645;
 --rn-blue-900:#192631;
---rn-green-700:#2F6B3F;
---rn-green-50:#E6F0E8;
---rn-green-200:#B9D3BF;
---rn-red-700:#A8322D;
---rn-red-50:#F8E6E4;
---rn-red-200:#E6BDB9;
---rn-amber-700:#8A5A00;
---rn-amber-50:#F7EDD9;
---rn-amber-200:#E3CB98;
+--rn-blue-800:#233645;
+--rn-blue-700:#334A5C;
+--rn-blue-600:#4A6378;
+--rn-blue-400:#8EA3B3;
+--rn-blue-200:#C9D4DC;
+--rn-sand-300:#D8D2B8;
+--rn-sand-200:#ECE7D1;
+--rn-green-300:#9FD8AD;
+--rn-green-900:#1F3D36;
+--rn-green-700:#3F6F5C;
+--rn-red-300:#FFB4AB;
+--rn-red-900:#4B2A31;
+--rn-red-700:#8C4A4D;
+--rn-amber-300:#F3D08A;
+--rn-amber-900:#453A24;
+--rn-amber-700:#85703D;
 
-/* Semânticos: superfícies */
---color-bg:var(--rn-warm-50);
---color-surface:var(--rn-warm-0);
---color-surface-muted:var(--rn-warm-100);
---color-border:var(--rn-warm-200);
---color-border-strong:var(--rn-warm-400);
-
-/* Semânticos: texto */
---color-text:var(--rn-warm-900);
---color-text-muted:var(--rn-warm-600);
---color-text-inverse:var(--rn-warm-50);
-
-/* Semânticos: ação */
---color-action-primary:var(--rn-blue-800);
---color-action-primary-hover:var(--rn-blue-900);
---color-action-primary-text:var(--rn-warm-50);
---color-link:var(--rn-blue-800);
---color-disabled-bg:var(--rn-warm-100);
---color-disabled-text:var(--rn-warm-600);
-
-/* Semânticos: estados */
---color-success:var(--rn-green-700);
---color-success-bg:var(--rn-green-50);
---color-success-border:var(--rn-green-200);
---color-error:var(--rn-red-700);
---color-error-bg:var(--rn-red-50);
---color-error-border:var(--rn-red-200);
---color-warning:var(--rn-amber-700);
---color-warning-bg:var(--rn-amber-50);
---color-warning-border:var(--rn-amber-200);
-
-/* Foco e sobreposição */
---color-focus-ring:var(--rn-blue-800);
---color-overlay:rgba(29,28,27,.48);
+/* Semânticos */
+--color-bg:var(--rn-blue-800);
+--color-surface:var(--rn-blue-700);
+--color-surface-muted:var(--rn-blue-900);
+--color-border:var(--rn-blue-600);
+--color-border-strong:var(--rn-blue-400);
+--color-text:var(--rn-warm-50);
+--color-text-muted:var(--rn-blue-200);
+--color-text-inverse:var(--rn-blue-800);
+--color-action-primary:var(--rn-sand-300);
+--color-action-primary-hover:var(--rn-sand-200);
+--color-action-primary-text:var(--rn-blue-800);
+--color-link:var(--rn-sand-300);
+--color-disabled-bg:var(--rn-blue-600);
+--color-disabled-text:var(--rn-blue-400);
+--color-success:var(--rn-green-300);
+--color-success-bg:var(--rn-green-900);
+--color-success-border:var(--rn-green-700);
+--color-error:var(--rn-red-300);
+--color-error-bg:var(--rn-red-900);
+--color-error-border:var(--rn-red-700);
+--color-warning:var(--rn-amber-300);
+--color-warning-bg:var(--rn-amber-900);
+--color-warning-border:var(--rn-amber-700);
+--color-focus-ring:var(--rn-sand-300);
+--color-overlay:rgba(13,20,26,.64);
 }

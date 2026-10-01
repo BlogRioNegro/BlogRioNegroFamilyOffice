@@ -15,8 +15,8 @@
 --radius-card:12px;
 
 /* Sombra — 2 níveis */
---shadow-card:0 1px 2px rgba(29,28,27,.06),0 1px 3px rgba(29,28,27,.04);
---shadow-modal:0 12px 32px rgba(29,28,27,.14),0 2px 6px rgba(29,28,27,.06);
+--shadow-card:0 1px 2px rgba(13,20,26,.24),0 1px 3px rgba(13,20,26,.16);
+--shadow-modal:0 12px 32px rgba(13,20,26,.4),0 2px 6px rgba(13,20,26,.24);
 
 /* Foco */
 --focus-ring-width:2px;

@@ -1,26 +1,26 @@
-/* Tokens do Rio Negro (export do Claude Design, ADR 0023). Mesmos nomes e valores do export.
+/* Tokens do Rio Negro Family Office (export do Claude Design, ADR 0023; tema azul, ADR 0043).
+   Mesmos nomes e valores do export.
    Os tokens que são namespaces do Tailwind (cor, fonte, peso, raio, sombra, breakpoint)
    ficam em theme.css. */
 :root {
-  --rn-warm-0: #ffffff;
   --rn-warm-50: #f2f0ef;
-  --rn-warm-100: #e9e6e4;
-  --rn-warm-200: #dcd8d5;
-  --rn-warm-400: #8c8782;
-  --rn-warm-600: #5c5854;
-  --rn-warm-800: #3a3735;
-  --rn-warm-900: #1d1c1b;
-  --rn-blue-800: #233645;
   --rn-blue-900: #192631;
-  --rn-green-700: #2f6b3f;
-  --rn-green-50: #e6f0e8;
-  --rn-green-200: #b9d3bf;
-  --rn-red-700: #a8322d;
-  --rn-red-50: #f8e6e4;
-  --rn-red-200: #e6bdb9;
-  --rn-amber-700: #8a5a00;
-  --rn-amber-50: #f7edd9;
-  --rn-amber-200: #e3cb98;
+  --rn-blue-800: #233645;
+  --rn-blue-700: #334a5c;
+  --rn-blue-600: #4a6378;
+  --rn-blue-400: #8ea3b3;
+  --rn-blue-200: #c9d4dc;
+  --rn-sand-300: #d8d2b8;
+  --rn-sand-200: #ece7d1;
+  --rn-green-300: #9fd8ad;
+  --rn-green-900: #1f3d36;
+  --rn-green-700: #3f6f5c;
+  --rn-red-300: #ffb4ab;
+  --rn-red-900: #4b2a31;
+  --rn-red-700: #8c4a4d;
+  --rn-amber-300: #f3d08a;
+  --rn-amber-900: #453a24;
+  --rn-amber-700: #85703d;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -59,6 +59,8 @@
   --line-height-3xl: 1.2;
   --font-size-4xl: 48px;
   --line-height-4xl: 1.15;
+  --font-size-5xl: 60px;
+  --line-height-5xl: 1.1;
 
   --line-height-tight: 1.2;
   --line-height-snug: 1.35;

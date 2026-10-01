@@ -112,7 +112,8 @@ Referência: `design/prototipo/Admin.dc.html` (desktop 1440 px e mobile 390 px),
 de [06-design-system](06-design-system.md). Onde o protótipo diverge desta spec, vale a spec.
 
 ### Estrutura
-- Header (`SiteHeader`) com logotipo, links "Artigos" e "Leads" (`aria-current` no ativo) e "Sair".
+- Header (`SiteHeader`) com logotipo branco, links "Artigos" e "Leads" (`aria-current` no ativo) e
+  "Sair". O painel usa o mesmo tema azul do site ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)).
   Conteúdo em `--layout-admin` (1200 px). Todas as páginas com `noindex` (ADM-002).
 - Datas: publicação em `dd/mm/aaaa`; leads em `dd/mm/aaaa hh:mm`.
 - Exclusões confirmadas em `Dialog`, com `Button` primário + ícone de lixeira (não há variante

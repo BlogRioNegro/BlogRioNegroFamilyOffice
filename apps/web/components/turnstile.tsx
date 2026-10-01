@@ -70,6 +70,7 @@ export function Turnstile({
         widgetId.current = api.render(container.current, {
           sitekey: siteKey,
           language: 'pt-br',
+          theme: 'dark',
           callback: emit,
           'expired-callback': () => emit(''),
           'error-callback': () => emit(''),
