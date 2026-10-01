@@ -27,18 +27,19 @@ test.describe('PUB-001 · Home', () => {
       page.getByRole('link', { name: 'Rio Negro Investimentos, página inicial' }),
     ).toHaveAttribute('href', '/')
     const footer = page.getByRole('contentinfo')
-    await expect(footer.getByRole('link', { name: /Conheça a Rio Negro/ })).toHaveAttribute(
-      'target',
-      '_blank',
-    )
+    const cta = footer.getByRole('link', { name: /Conheça a Rio Negro Family Office/ })
+    await expect(cta).toHaveAttribute('href', 'https://rionegromfo.com.br')
+    await expect(cta).toHaveAttribute('target', '_blank')
     await expect(footer.getByRole('link', { name: 'Privacidade' })).toHaveAttribute(
       'href',
       '/privacidade',
     )
     await expect(footer).toContainText(
-      'A Rio Negro Assessoria de Investimentos Ltda, inscrita sob o CNPJ 33.457.321/0001-79',
+      '2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS',
     )
-    await expect(footer).toContainText('Ouvidoria da XP pelo telefone 0800 722 3730.')
+    // CL-005: nada do disclaimer do blog original (XP, CNPJ da Assessoria).
+    await expect(footer).not.toContainText('XP')
+    await expect(footer).not.toContainText('CNPJ')
   })
 })
 
@@ -452,11 +453,13 @@ test.describe('PUB-013 · Rodapé em todas as páginas', () => {
     '/privacidade',
     '/nao-existe',
   ]) {
-    test(`rodapé com disclaimer e Privacidade em ${path}`, async ({ page }) => {
+    test(`rodapé com direitos reservados e Privacidade em ${path}`, async ({ page }) => {
       await page.goto(webUrl(path))
 
       const footer = page.getByRole('contentinfo')
-      await expect(footer).toContainText('Resolução CVM 178/23')
+      await expect(footer).toContainText(
+        '2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS',
+      )
       await expect(footer.getByRole('link', { name: 'Privacidade' })).toBeVisible()
     })
   }

@@ -1,6 +1,8 @@
 # 0018 · CTA discreto no rodapé e no sucesso do modal; disclaimer no rodapé
 
 - Status: accepted · Data: 2026-09-23
+- Ajustada neste clone pela [ADR 0042](0042-clone-rio-negro-family-office.md): o CTA é "Conheça a Rio
+  Negro Family Office" e o rodapé traz a linha de direitos do site institucional, sem disclaimer.
 - Specs: [PUB-013](../specs/03-public-site.md), [LEAD-010](../specs/04-lead-capture.md)
 
 ## Contexto

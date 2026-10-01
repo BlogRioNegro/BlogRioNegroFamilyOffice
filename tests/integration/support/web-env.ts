@@ -14,7 +14,7 @@ export function stubWebEnv(overrides: Record<string, string> = {}): void {
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: '1x00000000000000000000AA',
     TURNSTILE_SECRET_KEY: TURNSTILE_TEST_SECRET_PASS,
     LEAD_HASH_SECRET: 'x'.repeat(32),
-    NEXT_PUBLIC_RIO_NEGRO_URL: 'https://rionegro.example',
+    NEXT_PUBLIC_RIO_NEGRO_URL: 'https://rionegromfo.com.br',
     ...overrides,
   }
   for (const [name, value] of Object.entries(values)) vi.stubEnv(name, value)

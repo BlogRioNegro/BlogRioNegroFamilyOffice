@@ -53,7 +53,7 @@ function startDownload(url: string) {
   link.remove()
 }
 
-/** LEAD-010 · Sucesso: o download já começou; o CTA "Conheça a Rio Negro" só aparece aqui. */
+/** LEAD-010 · Sucesso: o download já começou; o CTA "Conheça a Rio Negro Family Office" só aparece aqui. */
 function SuccessView({
   articleTitle,
   rioNegroUrl,
@@ -83,7 +83,7 @@ function SuccessView({
       <div className="mt-2 flex flex-col gap-3 border-t border-border pt-6">
         <Button asChild block>
           <a href={rioNegroUrl} target="_blank" rel="noopener noreferrer">
-            Conheça a Rio Negro
+            Conheça a Rio Negro Family Office
             <ExternalLink aria-hidden className="size-5" />
             <span className="sr-only">(abre em nova aba)</span>
           </a>

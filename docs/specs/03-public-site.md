@@ -79,12 +79,15 @@ tipo, com e sem resumo.
 **Aceite:** feed valida no W3C Feed Validator; não inclui conteúdo completo.
 
 ### PUB-013 · Rodapé
-Em todas as páginas: CTA discreto "Conheça a Rio Negro" (`NEXT_PUBLIC_RIO_NEGRO_URL`, nova
-aba), disclaimer regulatório (CVM 178/23 e contrato de distribuição com a XP) e link
-"Privacidade" para `/privacidade`. Não há CTA no corpo do artigo
-([ADR 0018](../adr/0018-cta-e-disclaimer-no-rodape.md)).
-**Aceite:** rodapé presente em home, listagem, artigo, privacidade e 404; texto do
-disclaimer idêntico ao rodapé de rionegroinvestimentos.com.br (copiado na F4-009).
+Em todas as páginas: CTA discreto "Conheça a Rio Negro Family Office"
+(`NEXT_PUBLIC_RIO_NEGRO_URL` = `https://rionegromfo.com.br`, nova aba), a linha de direitos
+reservados do site institucional ("2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS") e link
+"Privacidade" para `/privacidade`. O site institucional não tem endereço, aviso legal nem URL de
+rede social no rodapé, então o blog também não tem. Não há CTA no corpo do artigo
+([ADR 0018](../adr/0018-cta-e-disclaimer-no-rodape.md),
+[ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
+**Aceite:** rodapé presente em home, listagem, artigo, privacidade e 404; texto idêntico ao
+rodapé de rionegromfo.com.br (copiado na CL-005, em 2026-10-01).
 
 ### PUB-014 · Página `/privacidade`
 Renderiza o texto definido em [LEAD-013](04-lead-capture.md).
@@ -107,8 +110,9 @@ spec, vale a spec (divergências abaixo).
 - **Conteúdo**: coluna de leitura de `--layout-reading` (720 px), centralizada. Mobile: margem
   lateral de 16 px, sem rolagem horizontal.
 - **Rodapé** (`SiteFooter`, PUB-013): fundo `--color-surface-muted`; logotipo + "Conheça a Rio
-  Negro" (nova aba), disclaimer regulatório (`text-xs`, `--color-text-muted`) e link "Privacidade".
-  Mobile: empilha logotipo/CTA, disclaimer, "Privacidade".
+  Negro Family Office" (nova aba) e, abaixo de uma divisória, a linha de direitos reservados
+  (`text-xs`, `--color-text-muted`) e o link "Privacidade". Mobile: empilha logotipo/CTA, linha de
+  direitos, "Privacidade".
 - **Tipografia**: H1 `--font-size-h1` (36 px mobile, 48 px ≥ 768 px), peso 700; datas no formato
   "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
@@ -163,7 +167,8 @@ error boundary) e `Button` link "Ver artigos" → `/artigos`
 - Card com badge de tipo e destaque com excerto no protótipo → card com **capa, título e data**
   (PUB-003).
 - Rótulo "páginas 1 e 2 de 18" → só "Prévia": o total de páginas não existe no modelo de dados.
-- Rodapé com texto regulatório provisório → texto copiado de rionegroinvestimentos.com.br (F4-009).
+- Rodapé com texto regulatório provisório → só a linha de direitos reservados copiada de
+  rionegromfo.com.br (CL-005).
 - Home com subtítulo no protótipo → só H1 e botão (CL-004).
 
 ## Fora de escopo

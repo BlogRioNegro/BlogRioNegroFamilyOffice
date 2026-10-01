@@ -68,8 +68,9 @@ privado nunca é enviado ao client antes do lead.
 
 ### LEAD-010 · Tela de sucesso
 Após liberar o download, o modal mostra confirmação, link "Baixar novamente" (mesma URL, até
-expirar) e o CTA "Conheça a Rio Negro" (`NEXT_PUBLIC_RIO_NEGRO_URL`, nova aba)
-([ADR 0018](../adr/0018-cta-e-disclaimer-no-rodape.md)).
+expirar) e o CTA "Conheça a Rio Negro Family Office" (`NEXT_PUBLIC_RIO_NEGRO_URL`, nova aba)
+([ADR 0018](../adr/0018-cta-e-disclaimer-no-rodape.md),
+[ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
 **Aceite:** o CTA só aparece no estado de sucesso.
 
 ### LEAD-011 · Sem dados pessoais no navegador
@@ -136,7 +137,7 @@ Referência: `design/prototipo/Modal de Lead.dc.html` (desktop e mobile), com `D
 | Enviando | Campos e checkboxes desabilitados; botão com `loading` e texto "Enviando…". |
 | Muitas tentativas | `Alert` de erro acima do botão: "Muitas tentativas, tente em alguns minutos" (LEAD-006). Campos mantêm os valores. |
 | Erro genérico | `Alert` de erro acima do botão: "Não foi possível concluir. Tente novamente." (Turnstile, artigo inexistente ou falha interna, sem detalhes, SEC-008). |
-| Sucesso | Título "Pronto!"; `Alert` de sucesso "O download começou." com "“<título>” está sendo salvo no seu dispositivo."; `Button` link "Baixar novamente"; `Button` primário "Conheça a Rio Negro" (nova aba, ícone de link externo), só neste estado (LEAD-010). |
+| Sucesso | Título "Pronto!"; `Alert` de sucesso "O download começou." com "“<título>” está sendo salvo no seu dispositivo."; `Button` link "Baixar novamente"; `Button` primário "Conheça a Rio Negro Family Office" (nova aba, ícone de link externo), só neste estado (LEAD-010). |
 | Link expirado | "Baixar novamente" depois dos 60 s da URL (LEAD-009) volta ao formulário vazio com `Alert` de aviso "O link de download expirou." e "Envie o formulário de novo para baixar o artigo." (nenhum dado fica retido no client). |
 
 O texto do erro genérico acima é o que a Server Action devolve ao client neste fluxo.

@@ -64,6 +64,21 @@ Definida pelo responsável do projeto (Rafael):
 - `h1`: "Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas." (texto definido pelo Rafael).
 - O parágrafo de subtítulo foi removido; o botão "Ver artigos" fica.
 
+## Rodapé e CTA (CL-005)
+- Rodapé de https://rionegromfo.com.br/ em 2026-10-01, inteiro: a linha
+  "2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS", o link "POLÍTICA DE PRIVACIDADE"
+  (para a política do site) e os ícones de LinkedIn e Instagram **sem `href`**. Não há endereço,
+  CNPJ nem aviso legal.
+- No blog: a linha de direitos entra literal (caixa alta e "2024" como no site, sem "©") no lugar
+  do disclaimer e do copyright do original. Nenhuma frase do disclaimer antigo (XP, CVM, CNPJ da
+  Assessoria) foi reaproveitada.
+- LinkedIn/Instagram não entram: o site não publica as URLs.
+- O link interno "Privacidade" → `/privacidade` fica (o fluxo de lead depende dele); a política
+  completa do site é linkada a partir dessa página, não do rodapé.
+- CTA "Conheça a Rio Negro Family Office" no rodapé e na tela de sucesso do modal, para
+  `NEXT_PUBLIC_RIO_NEGRO_URL` (valor do cliente: `https://rionegromfo.com.br`). Ajusta a
+  [ADR 0018](0018-cta-e-disclaimer-no-rodape.md).
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.

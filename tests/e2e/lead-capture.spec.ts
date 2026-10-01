@@ -172,7 +172,9 @@ test.describe('LEAD-004 · Opt-in', () => {
 test.describe('LEAD-010 · Sucesso', () => {
   test('o download começa sozinho e a tela mostra "Baixar novamente" e o CTA', async ({ page }) => {
     const dialog = await openModal(page)
-    await expect(dialog.getByRole('link', { name: /Conheça a Rio Negro/ })).toHaveCount(0)
+    await expect(
+      dialog.getByRole('link', { name: /Conheça a Rio Negro Family Office/ }),
+    ).toHaveCount(0)
     await fillValidForm(dialog)
 
     const download = page.waitForEvent('download')
@@ -184,8 +186,8 @@ test.describe('LEAD-010 · Sucesso', () => {
     await expect(
       success.getByText('“Carteira recomendada de outubro” está sendo salvo no seu dispositivo.'),
     ).toBeVisible()
-    const cta = success.getByRole('link', { name: /Conheça a Rio Negro/ })
-    await expect(cta).toHaveAttribute('href', 'https://rionegroinvestimentos.com.br')
+    const cta = success.getByRole('link', { name: /Conheça a Rio Negro Family Office/ })
+    await expect(cta).toHaveAttribute('href', 'https://rionegromfo.com.br')
     await expect(cta).toHaveAttribute('target', '_blank')
 
     const again = page.waitForEvent('download')

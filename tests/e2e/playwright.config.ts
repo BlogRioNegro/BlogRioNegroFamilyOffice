@@ -12,7 +12,7 @@ function webEnv(siteUrl: string, turnstileSecret: string) {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: localSupabase.ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: localSupabase.SERVICE_ROLE_KEY,
     NEXT_PUBLIC_SITE_URL: siteUrl,
-    NEXT_PUBLIC_RIO_NEGRO_URL: 'https://rionegroinvestimentos.com.br',
+    NEXT_PUBLIC_RIO_NEGRO_URL: 'https://rionegromfo.com.br',
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: '1x00000000000000000000AA',
     TURNSTILE_SECRET_KEY: turnstileSecret,
     LEAD_HASH_SECRET: 'e2e-local-lead-hash-secret-com-32-caracteres',
