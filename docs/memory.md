@@ -9,10 +9,10 @@ O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
 Tasks do clone em [tasks/clone-family-office.md](tasks/clone-family-office.md).
-Feito: base `9d72437`; CL-001 `43933eb`; CL-002 `4fd0250` (azul `#233645`, hover `#192631`, `--color-link`).
+Feito: base `9d72437`; CL-001 `43933eb`; CL-002 `4fd0250` (azul `#233645`, hover `#192631`, `--color-link`); CL-003 `9cde0a7` (logo `RIO-NEGRO.png`).
 
 ## Próxima tarefa
-CL-003 · logo do site institucional. Ler: ADR 0042, ADR 0020 (`<img>`, sem `next/image`).
+CL-004 · home: novo `h1`, sem subtítulo. Ler: spec 03 (PUB-001, UI · Home), ADR 0029.
 
 ## Dados do cliente (só o que está em https://rionegromfo.com.br/, lido em 2026-10-01)
 - Azul principal do kit do site: `#233645`. Logo para fundo claro: `RIO-NEGRO.png` (em `#233645`).
