@@ -12,7 +12,7 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center px-4 py-12">
       <div className="flex w-full max-w-100 flex-col gap-6 rounded-card border border-border bg-surface p-6 shadow-card md:p-8">
         <div className="flex">
-          <Logo alt="Rio Negro Investimentos" />
+          <Logo alt="Rio Negro Family Office" />
         </div>
         <h1 className="text-xl font-semibold">Entrar no painel</h1>
         <LoginForm />

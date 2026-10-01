@@ -13,7 +13,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-surface-muted">
       <div className="mx-auto flex max-w-(--layout-admin) flex-col gap-8 px-4 pt-12 pb-8 md:px-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <Logo alt="Rio Negro Investimentos" />
+          <Logo alt="Rio Negro Family Office" />
           <Button asChild variant="link">
             <a href={env.NEXT_PUBLIC_RIO_NEGRO_URL} target="_blank" rel="noopener noreferrer">
               Conheça a Rio Negro

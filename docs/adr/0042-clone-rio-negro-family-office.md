@@ -47,6 +47,19 @@ Definida pelo responsável do projeto (Rafael):
 - Contraste (WCAG 2.1): texto `#f2f0ef` sobre `#233645` 10,97:1 e sobre `#192631` 13,56:1; link
   `#233645` sobre `#ffffff` 12,46:1, sobre `#f2f0ef` 10,97:1 e sobre `#e9e6e4` 10,03:1. Todos AA.
 
+## Logo (CL-003)
+- O site tem três PNGs em `https://rionegromfo.com.br/wp-content/uploads/2024/08/` (lidos em 2026-10-01):
+  `RIO-NEGRO-1.png` (189×57, header) e `RIO-NEGRO-copy.png` (249×75, rodapé) são **brancas**
+  (100% dos pixels opacos em `#ffffff`), feitas para o fundo escuro do site; `RIO-NEGRO.png`
+  (295×89, em `#233645`) é a logo declarada no JSON-LD da home e a única legível em fundo claro.
+- `RIO-NEGRO.png` substitui `logo-escuro.png` em `apps/web/components`, `apps/admin/components`
+  e `design/design-system/assets`, sem edição da imagem. `RIO-NEGRO-copy.png` substitui
+  `design/design-system/assets/logo-branco.png` (referência; o blog não usa logo branca).
+- `logo.tsx` não muda (`<img>`, ADR 0020, 28 px de altura). Como a logo nova é mais alta em
+  proporção (3,3:1 contra 6,1:1), ela aparece com 93×28 px. `alt`: "Rio Negro Family Office".
+- O restante de `design/` (readme, protótipos, UI kits) continua mostrando a marca original: é
+  só referência visual de layout.
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.
