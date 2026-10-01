@@ -120,7 +120,7 @@ test.describe('LEAD-003 · Consentimento', () => {
 
     await expect(
       dialog.getByText(
-        'Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.',
+        'Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse. Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro Family Office.',
         { exact: true },
       ),
     ).toBeVisible()
@@ -157,7 +157,7 @@ test.describe('LEAD-004 · Opt-in', () => {
   test('é opcional, vem desmarcado e marca com um clique', async ({ page }) => {
     const dialog = await openModal(page)
     const optIn = dialog.getByRole('checkbox', {
-      name: 'Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.',
+      name: 'Aceito receber novidades da Rio Negro Family Office por e-mail, telefone ou WhatsApp.',
     })
 
     await expect(optIn).not.toBeChecked()
@@ -325,7 +325,7 @@ test.describe('LEAD-007 · Fluxo completo', () => {
         email: LEAD.email,
         phone: '+5511987654321',
         article_title_snapshot: 'Carteira recomendada de outubro',
-        policy_version: 'blog-2026-09-v1',
+        policy_version: 'blog-2026-10-v1',
       },
     ])
   })

@@ -216,7 +216,7 @@ function LeadForm({ article, turnstileSiteKey, rioNegroUrl }: Props) {
         {/* LEAD-003 · LEAD-013: textos do rascunho, versão POLICY_VERSION. Não reescrever. */}
         <p className="mt-2 text-xs text-text-muted">
           Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse.
-          Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.
+          Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro Family Office.
         </p>
         <Checkbox
           id={fieldId('consent')}
@@ -243,7 +243,7 @@ function LeadForm({ article, turnstileSiteKey, rioNegroUrl }: Props) {
           disabled={submitting}
           onCheckedChange={(checked) => update('marketingOptIn', checked === true)}
         >
-          Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp.
+          Aceito receber novidades da Rio Negro Family Office por e-mail, telefone ou WhatsApp.
         </Checkbox>
         <Turnstile siteKey={turnstileSiteKey} resetKey={turnstileReset} onToken={setToken} />
         {formError ? <Alert variant="error" title={formError} /> : null}

@@ -62,7 +62,7 @@ function insertPendingLead() {
   executeLocalSql(`insert into public.leads (id, article_id, article_title_snapshot, name, email,
       phone, consent_at, policy_version, ip_hash, webhook_status)
     values ('${id}', '${SEED_ARTICLE.id}', '${SEED_ARTICLE.title}', 'Maria Silva',
-      'webhook-${id}@exemplo.com.br', '+5511987654321', now(), 'blog-2026-09-v1', 'hash', 'pending')`)
+      'webhook-${id}@exemplo.com.br', '+5511987654321', now(), 'blog-2026-10-v1', 'hash', 'pending')`)
   return id
 }
 

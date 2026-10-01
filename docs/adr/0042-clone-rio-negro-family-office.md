@@ -105,6 +105,23 @@ Ficou de propósito (nomes internos ou dado de teste, nada disso aparece para o 
 - Textos do seed: os artigos de exemplo não citam a marca; só o e-mail do admin local, que fica.
 - `apps/*/.env.example`: o agente não lê `.env*`; conferir à mão.
 
+## Privacidade e aviso de lead (CL-007)
+- Fonte: https://rionegromfo.com.br/politica-de-privacidade/ (lido em 2026-10-01). A página é um
+  texto genérico que só nomeia "Rio Negro Familly Office" (sic). **Não constam**: razão social,
+  CNPJ, endereço e contato do encarregado.
+- A estrutura dos textos do blog fica (controlador, dados coletados, finalidades, base legal,
+  compartilhamento, retenção, direitos do titular, política completa). Mudou só a identificação:
+  - Controlador: "Rio Negro Family Office. [razão social, CNPJ e endereço — pendente]".
+  - Direitos do titular: "[contato do encarregado — pendente]" (já era pendente no original).
+  - "CRM da Rio Negro" e "novidades da Rio Negro" (aviso do modal e opt-in) passam a citar a
+    "Rio Negro Family Office".
+  - Política completa: `https://rionegromfo.com.br/politica-de-privacidade/`.
+- A política do site não foi copiada para o blog.
+- `policy_version`: `blog-2026-09-v1` → `blog-2026-10-v1` (LEAD-013: mudar o texto exige nova versão).
+  Sem migration: é uma constante gravada em cada lead.
+- A finalidade "contato comercial sobre investimentos" veio do original e fica até a validação
+  jurídica dos textos pelo cliente, que é pendência.
+
 ## Consequências
 - `docs/tasks/fase-*.md` e `docs/revisao-final.md` são o histórico herdado do original e ficam
   como registro; o trabalho deste cliente está em `docs/tasks/clone-family-office.md`.

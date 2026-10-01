@@ -1,6 +1,8 @@
 # 0012 · LGPD: consentimento, retenção e transparência
 
 - Status: accepted · Data: 2026-09-23
+- Neste clone: controlador e versão do aviso na [ADR 0042](0042-clone-rio-negro-family-office.md);
+  a validação jurídica é do cliente (não há F7-006 aqui).
 - Specs: [LEAD-003, LEAD-004, LEAD-013](../specs/04-lead-capture.md), [PUB-014](../specs/03-public-site.md)
 
 ## Contexto

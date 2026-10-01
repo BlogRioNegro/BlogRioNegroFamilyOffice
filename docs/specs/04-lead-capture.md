@@ -28,7 +28,8 @@ por padrão, com link para `/privacidade` (nova aba).
 **Aceite:** sem o checkbox o envio é bloqueado no client **e** no server.
 
 ### LEAD-004 · Opt-in de comunicações
-Checkbox opcional, desmarcado: "Aceito receber novidades da Rio Negro por e-mail, telefone ou WhatsApp."
+Checkbox opcional, desmarcado: "Aceito receber novidades da Rio Negro Family Office por e-mail,
+telefone ou WhatsApp."
 **Aceite:** gravado em `marketing_opt_in`; o download não depende dele.
 
 ### LEAD-005 · Cloudflare Turnstile
@@ -90,29 +91,34 @@ Sem a variável: `webhook_status = disabled`, nada é enviado. Reenvio: [ADM-014
 **Aceite:** com o endpoint fora do ar o download funciona e o lead fica `failed`;
 teste unitário da assinatura.
 
-### LEAD-013 · Textos LGPD — **rascunho pendente de validação (F7-006)**
-`policy_version = "blog-2026-09-v1"` (constante em `lib/domain/lead`; mudar o texto exige nova versão).
+### LEAD-013 · Textos LGPD — **rascunho pendente de validação jurídica pelo cliente**
+`policy_version = "blog-2026-10-v1"` (constante em `lib/domain/lead`; mudar o texto exige nova versão).
+A estrutura é a do blog original; só a identificação do controlador mudou, com o que consta em
+https://rionegromfo.com.br/politica-de-privacidade/ (lido em 2026-10-01). Essa política só traz o
+nome "Rio Negro Familly Office" (sic): razão social, CNPJ, endereço e contato do encarregado não
+estão lá e ficam "pendente" ([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
 
 **Aviso no modal:**
 > Usaremos seu nome, e-mail e telefone para enviar este material e registrar seu interesse.
-> Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro.
+> Se você autorizar abaixo, também poderemos enviar novidades da Rio Negro Family Office.
 
 **Checkbox obrigatório:** "Li e concordo com o [aviso de privacidade](/privacidade)."
 
 **Página `/privacidade` (resumo, com link para a política completa):**
-- Controlador: Rio Negro Assessoria de Investimentos Ltda., CNPJ 33.457.321/0001-79.
+- Controlador: Rio Negro Family Office. **[razão social, CNPJ e endereço — pendente]**
 - Dados coletados: nome, e-mail, telefone, data/hora do aceite e identificador técnico
   anonimizado do dispositivo de rede (hash do IP) para segurança.
 - Finalidades: entregar o material solicitado, contato comercial sobre investimentos e, com
   autorização, envio de novidades; prevenção de abuso.
 - Base legal: consentimento (LGPD, art. 7º, I).
-- Compartilhamento: operadores de infraestrutura (hospedagem e banco de dados) e o CRM da Rio Negro.
+- Compartilhamento: operadores de infraestrutura (hospedagem e banco de dados) e o CRM da
+  Rio Negro Family Office.
 - Retenção: até o titular solicitar a exclusão ou revogar o consentimento.
 - Direitos do titular (art. 18) e canal: **[contato do encarregado — pendente]**.
-- Política completa: https://rionegroinvestimentos.com.br/politica-de-privacidade/
+- Política completa: https://rionegromfo.com.br/politica-de-privacidade/
 
 **Aceite:** textos acima implementados como conteúdo estático; marcados em código com a
-versão; substituídos pelo texto validado na F7-006.
+versão; substituídos pelo texto validado pelo cliente, com nova versão.
 
 ## UI
 

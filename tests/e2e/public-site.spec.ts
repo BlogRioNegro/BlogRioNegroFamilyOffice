@@ -253,8 +253,14 @@ test.describe('PUB-014 · Privacidade', () => {
       main.getByRole('heading', { level: 1, name: 'Aviso de privacidade' }),
     ).toBeVisible()
     await expect(main).toContainText(
-      'Rio Negro Assessoria de Investimentos Ltda., CNPJ 33.457.321/0001-79.',
+      'Rio Negro Family Office. [razão social, CNPJ e endereço — pendente]',
     )
+    await expect(main).toContainText('[contato do encarregado — pendente]')
+    const fullPolicy = 'https://rionegromfo.com.br/politica-de-privacidade/'
+    await expect(main.getByRole('link', { name: fullPolicy })).toHaveAttribute('href', fullPolicy)
+    // CL-007: nenhuma identificação do controlador do blog original.
+    await expect(main).not.toContainText('Assessoria de Investimentos')
+    await expect(main).not.toContainText('33.457.321')
     await expect(main).toContainText('Consentimento (LGPD, art. 7º, I).')
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0)
     await expect(page.getByRole('contentinfo')).toBeVisible()

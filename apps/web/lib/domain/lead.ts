@@ -4,7 +4,7 @@ import { z } from 'zod'
 // (server) validam com ele. Mensagens da spec 04 (UI · Estados).
 
 /** LEAD-013 · Versão do aviso de privacidade aceito. Mudar o texto do aviso exige nova versão. */
-export const POLICY_VERSION = 'blog-2026-09-v1'
+export const POLICY_VERSION = 'blog-2026-10-v1'
 
 /** LEAD-009 · Validade da URL assinada do PDF completo, em segundos. */
 export const SIGNED_URL_SECONDS = 60
