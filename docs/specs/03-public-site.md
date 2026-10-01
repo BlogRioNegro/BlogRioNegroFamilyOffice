@@ -104,7 +104,10 @@ tokens e componentes de [06-design-system](06-design-system.md). Onde o protóti
 spec, vale a spec (divergências abaixo).
 
 ### Estrutura comum
-- **Header** (`SiteHeader`): 64 px, fundo `--color-bg`, borda inferior; logotipo escuro à esquerda
+- **Tema**: azul em todas as páginas ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)): fundo
+  `--color-bg`, texto claro, ações e links no bege do site.
+- **Header** (`SiteHeader`): 64 px, fundo `--color-bg`, borda inferior; logotipo branco de 40 px de
+  altura à esquerda
   (link para `/`) e link "Artigos" à direita, com sublinhado de 2 px quando ativo (`aria-current`).
   Mobile: igual, sem menu hambúrguer.
 - **Conteúdo**: coluna de leitura de `--layout-reading` (720 px), centralizada. Mobile: margem
@@ -117,9 +120,14 @@ spec, vale a spec (divergências abaixo).
   "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
 ### Home (`/`, PUB-001)
-Hero sem consulta ao banco: H1 "Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.",
-**sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos` (100% da largura no mobile)
-([ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
+Hero sem consulta ao banco, ocupando a altura entre o header e o rodapé, com o conteúdo centralizado
+na vertical: filete bege de 64 px (decorativo), H1 "Artigos, estudos e perspectivas da nossa equipe
+de consultores e especialistas." em `--font-serif` (36 px no mobile, `--font-size-5xl` ≥ 768 px, peso
+600, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
+(100% da largura no mobile). Fundo em degradê de `--color-bg` para `--color-surface-muted` e, a partir
+de 768 px, três anéis concêntricos em `--color-border` à direita (decorativos, `aria-hidden`)
+([ADR 0042](../adr/0042-clone-rio-negro-family-office.md),
+[ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)).
 
 ### Listagem (`/artigos`, PUB-002 a PUB-004)
 - H1 "Artigos"; card de destaque no topo e, abaixo, os demais em **coluna única**.
@@ -131,7 +139,7 @@ Hero sem consulta ao banco: H1 "Artigos, estudos e perspectivas da nossa equipe 
 - **"Carregar mais"**: `Button` secundário centralizado, 44 px, largura mínima 240 px. Estados:
   carregando (`loading`, anunciado em região `aria-live`), erro ("Tentar novamente") e fim da lista
   (o botão some). Sem JS é um link `/artigos?page=N`.
-- **Vazio**: superfície branca com borda e o texto "Nenhum artigo publicado ainda".
+- **Vazio**: superfície (`--color-surface`) com borda e o texto "Nenhum artigo publicado ainda".
 
 ### Artigo (`/artigos/[slug]`, PUB-005 a PUB-007)
 - `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos`.
@@ -170,6 +178,7 @@ error boundary) e `Button` link "Ver artigos" → `/artigos`
 - Rodapé com texto regulatório provisório → só a linha de direitos reservados copiada de
   rionegromfo.com.br (CL-005).
 - Home com subtítulo no protótipo → só H1 e botão (CL-004).
+- Tema claro com logotipo escuro no protótipo → tema azul com logotipo branco (CL-008).
 
 ## Fora de escopo
 
