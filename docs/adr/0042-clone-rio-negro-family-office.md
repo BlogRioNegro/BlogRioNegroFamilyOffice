@@ -74,7 +74,8 @@ Definida pelo responsável do projeto (Rafael):
 - No blog: a linha de direitos entra literal (caixa alta e "2024" como no site, sem "©") no lugar
   do disclaimer e do copyright do original. Nenhuma frase do disclaimer antigo (XP, CVM, CNPJ da
   Assessoria) foi reaproveitada.
-- LinkedIn/Instagram não entram: o site não publica as URLs.
+- LinkedIn/Instagram: o site não publica as URLs. Na CL-005 ficaram de fora; na CL-010 entraram
+  como ícones ligados a envs opcionais ([ADR 0044](0044-redes-sociais-no-rodape-por-env.md)).
 - O link interno "Privacidade" → `/privacidade` fica (o fluxo de lead depende dele); a política
   completa do site é linkada a partir dessa página, não do rodapé.
 - CTA "Conheça a Rio Negro Family Office" no rodapé e na tela de sucesso do modal, para

@@ -3,6 +3,8 @@ import { z } from 'zod'
 
 const required = z.string().min(1)
 const secret = z.string().min(32)
+// PUB-013 · Link externo opcional do rodapé: só https, para a env não virar outro esquema de URL.
+const optionalHttpsUrl = z.url({ protocol: /^https$/ }).optional()
 
 const schema = z
   .object({
@@ -16,6 +18,8 @@ const schema = z
     LEAD_WEBHOOK_URL: z.url().optional(),
     LEAD_WEBHOOK_SECRET: secret.optional(),
     NEXT_PUBLIC_RIO_NEGRO_URL: z.url(),
+    NEXT_PUBLIC_LINKEDIN_URL: optionalHttpsUrl,
+    NEXT_PUBLIC_INSTAGRAM_URL: optionalHttpsUrl,
   })
   .refine((env) => !env.LEAD_WEBHOOK_URL || new URL(env.LEAD_WEBHOOK_URL).protocol === 'https:', {
     path: ['LEAD_WEBHOOK_URL'],

@@ -82,12 +82,15 @@ tipo, com e sem resumo.
 Em todas as páginas: CTA discreto "Conheça a Rio Negro Family Office"
 (`NEXT_PUBLIC_RIO_NEGRO_URL` = `https://rionegromfo.com.br`, nova aba), a linha de direitos
 reservados do site institucional ("2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS") e link
-"Privacidade" para `/privacidade`. O site institucional não tem endereço, aviso legal nem URL de
-rede social no rodapé, então o blog também não tem. Não há CTA no corpo do artigo
+"Privacidade" para `/privacidade`. O site institucional não tem endereço nem aviso legal no rodapé,
+então o blog também não tem. Redes sociais: ícones de LinkedIn e Instagram, na ordem do site, cada um
+só quando a sua URL está configurada (`NEXT_PUBLIC_LINKEDIN_URL`, `NEXT_PUBLIC_INSTAGRAM_URL`), em
+nova aba ([ADR 0044](../adr/0044-redes-sociais-no-rodape-por-env.md)). Não há CTA no corpo do artigo
 ([ADR 0018](../adr/0018-cta-e-disclaimer-no-rodape.md),
 [ADR 0042](../adr/0042-clone-rio-negro-family-office.md)).
 **Aceite:** rodapé presente em home, listagem, artigo, privacidade e 404; texto idêntico ao
-rodapé de rionegromfo.com.br (copiado na CL-005, em 2026-10-01).
+rodapé de rionegromfo.com.br (copiado na CL-005, em 2026-10-01); sem as envs das redes, nenhum
+ícone aparece; com elas, cada ícone tem nome acessível e abre a URL configurada em nova aba.
 
 ### PUB-014 · Página `/privacidade`
 Renderiza o texto definido em [LEAD-013](04-lead-capture.md).
@@ -113,7 +116,9 @@ spec, vale a spec (divergências abaixo).
 - **Conteúdo**: coluna de leitura de `--layout-reading` (720 px), centralizada. Mobile: margem
   lateral de 16 px, sem rolagem horizontal.
 - **Rodapé** (`SiteFooter`, PUB-013): fundo `--color-surface-muted`; logotipo + "Conheça a Rio
-  Negro Family Office" (nova aba) e, abaixo de uma divisória, a linha de direitos reservados
+  Negro Family Office" (nova aba) seguido dos ícones das redes sociais (botões redondos de 44 px em
+  `--color-action-primary`, ícone em `--color-action-primary-text`, texto `sr-only` com o nome da
+  rede) e, abaixo de uma divisória, a linha de direitos reservados
   (`text-xs`, `--color-text-muted`) e o link "Privacidade". Mobile: empilha logotipo/CTA, linha de
   direitos, "Privacidade".
 - **Tipografia**: H1 `--font-size-h1` (36 px mobile, 48 px ≥ 768 px), peso 700; datas no formato

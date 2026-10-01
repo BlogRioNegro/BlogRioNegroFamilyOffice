@@ -6,8 +6,9 @@ const ADMIN_PORT = 3101
 const ADMIN_URL = `http://localhost:${ADMIN_PORT}`
 
 // Env do apps/web nos E2E, com as chaves de teste públicas do Turnstile (docs da Cloudflare).
-function webEnv(siteUrl: string, turnstileSecret: string) {
+function webEnv(siteUrl: string, turnstileSecret: string, social: Record<string, string> = {}) {
   return {
+    ...social,
     NEXT_PUBLIC_SUPABASE_URL: localSupabase.API_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: localSupabase.ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: localSupabase.SERVICE_ROLE_KEY,
@@ -18,6 +19,12 @@ function webEnv(siteUrl: string, turnstileSecret: string) {
     LEAD_HASH_SECRET: 'e2e-local-lead-hash-secret-com-32-caracteres',
     NEXT_TELEMETRY_DISABLED: '1',
   }
+}
+
+// PUB-013 · URLs de exemplo, só para os E2E: o site institucional não publica as reais (ADR 0044).
+const SOCIAL_ENV = {
+  NEXT_PUBLIC_LINKEDIN_URL: 'https://www.linkedin.com/company/exemplo-e2e',
+  NEXT_PUBLIC_INSTAGRAM_URL: 'https://www.instagram.com/exemplo.e2e',
 }
 
 const TURNSTILE_SECRET_PASS = '1x0000000000000000000000000000000AA'
@@ -65,7 +72,7 @@ export default defineConfig({
       url: WEB_URL,
       reuseExistingServer: false,
       timeout: 180_000,
-      env: webEnv(WEB_URL, TURNSTILE_SECRET_PASS),
+      env: webEnv(WEB_URL, TURNSTILE_SECRET_PASS, SOCIAL_ENV),
     },
   ],
 })

@@ -76,9 +76,13 @@ Signup desativado no Supabase (local e prod). Conta fixa criada pelo dashboard.
 | `LEAD_WEBHOOK_URL` | web, admin | **não** (opcional) |
 | `LEAD_WEBHOOK_SECRET` | web, admin | **não** (opcional) |
 | `NEXT_PUBLIC_RIO_NEGRO_URL` | web | sim |
+| `NEXT_PUBLIC_LINKEDIN_URL` | web | sim (opcional) |
+| `NEXT_PUBLIC_INSTAGRAM_URL` | web | sim (opcional) |
 
 Regras dos segredos: `LEAD_HASH_SECRET` e `LEAD_WEBHOOK_SECRET` têm no mínimo 32 caracteres.
 Com `LEAD_WEBHOOK_URL` definida, `LEAD_WEBHOOK_SECRET` é obrigatório e a URL precisa ser `https`.
+`NEXT_PUBLIC_LINKEDIN_URL` e `NEXT_PUBLIC_INSTAGRAM_URL`, quando definidas, precisam ser `https`
+([ADR 0044](../adr/0044-redes-sociais-no-rodape-por-env.md)).
 
 **Aceite:** cada app valida as variáveis com Zod na inicialização (`env.ts`) e falha no boot
 se faltar uma obrigatória ou uma regra acima falhar; `.env.example` lista todas sem valores reais.

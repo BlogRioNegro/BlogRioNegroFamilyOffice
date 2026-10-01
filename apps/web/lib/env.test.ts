@@ -24,6 +24,8 @@ describe('env do apps/web', () => {
     for (const [name, value] of Object.entries(validEnv)) vi.stubEnv(name, value)
     vi.stubEnv('LEAD_WEBHOOK_URL', undefined)
     vi.stubEnv('LEAD_WEBHOOK_SECRET', undefined)
+    vi.stubEnv('NEXT_PUBLIC_LINKEDIN_URL', undefined)
+    vi.stubEnv('NEXT_PUBLIC_INSTAGRAM_URL', undefined)
   })
 
   afterEach(() => {
@@ -88,6 +90,32 @@ describe('env do apps/web', () => {
 
     await expect(loadEnv()).rejects.toThrow('LEAD_WEBHOOK_SECRET')
   })
+
+  it('as redes sociais do rodapé são opcionais', async () => {
+    const env = await loadEnv()
+
+    expect(env.NEXT_PUBLIC_LINKEDIN_URL).toBeUndefined()
+    expect(env.NEXT_PUBLIC_INSTAGRAM_URL).toBeUndefined()
+  })
+
+  it('aceita as URLs https das redes sociais', async () => {
+    vi.stubEnv('NEXT_PUBLIC_LINKEDIN_URL', 'https://www.linkedin.com/company/exemplo')
+    vi.stubEnv('NEXT_PUBLIC_INSTAGRAM_URL', 'https://www.instagram.com/exemplo')
+
+    const env = await loadEnv()
+
+    expect(env.NEXT_PUBLIC_LINKEDIN_URL).toBe('https://www.linkedin.com/company/exemplo')
+    expect(env.NEXT_PUBLIC_INSTAGRAM_URL).toBe('https://www.instagram.com/exemplo')
+  })
+
+  it.each(['http://www.instagram.com/exemplo', 'javascript:alert(1)', 'instagram.com/exemplo'])(
+    'rejeita rede social que não é URL https: %s',
+    async (value) => {
+      vi.stubEnv('NEXT_PUBLIC_INSTAGRAM_URL', value)
+
+      await expect(loadEnv()).rejects.toThrow('NEXT_PUBLIC_INSTAGRAM_URL')
+    },
+  )
 
   it('rejeita LEAD_WEBHOOK_URL sem https', async () => {
     vi.stubEnv('LEAD_WEBHOOK_URL', 'http://crm.example/webhook')

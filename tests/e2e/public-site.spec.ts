@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
 import { executeLocalSql, localSupabase } from '../integration/support/local-supabase'
-import { webUrl } from './support/urls'
+import { TURNSTILE_FAIL_WEB_URL, webUrl } from './support/urls'
 
 // Site público (spec 03) contra o seed local: 3 artigos.
 
@@ -469,4 +469,36 @@ test.describe('PUB-013 · Rodapé em todas as páginas', () => {
       await expect(footer.getByRole('link', { name: 'Privacidade' })).toBeVisible()
     })
   }
+
+  // As URLs são as de exemplo do playwright.config.ts (ADR 0044).
+  test('com as envs das redes sociais, mostra LinkedIn e Instagram em nova aba', async ({
+    page,
+  }) => {
+    await page.goto(webUrl('/'))
+
+    const social = page.getByRole('contentinfo').getByRole('list', { name: 'Redes sociais' })
+    const links = social.getByRole('link')
+    await expect(links).toHaveCount(2)
+    await expect(links.nth(0)).toHaveAccessibleName('LinkedIn (abre em nova aba)')
+    await expect(links.nth(0)).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/company/exemplo-e2e',
+    )
+    await expect(links.nth(1)).toHaveAccessibleName('Instagram (abre em nova aba)')
+    await expect(links.nth(1)).toHaveAttribute('href', 'https://www.instagram.com/exemplo.e2e')
+    for (const link of await links.all()) {
+      await expect(link).toHaveAttribute('target', '_blank')
+      await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+    }
+  })
+
+  test('sem as envs das redes sociais, o rodapé não mostra a lista', async ({ page }) => {
+    await page.goto(new URL('/', TURNSTILE_FAIL_WEB_URL).href)
+
+    const footer = page.getByRole('contentinfo')
+    await expect(
+      footer.getByRole('link', { name: /Conheça a Rio Negro Family Office/ }),
+    ).toBeVisible()
+    await expect(footer.getByRole('list', { name: 'Redes sociais' })).toHaveCount(0)
+  })
 })
