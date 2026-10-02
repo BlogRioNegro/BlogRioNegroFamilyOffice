@@ -10,10 +10,13 @@ automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é s
 
 ## Fase
 Branch `marca-oficial` (sem push): guia oficial da marca, [tasks/marca-oficial.md](tasks/marca-oficial.md).
-Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`); MO-003 logo e favicon (`b997977`); MO-004 docs (`c0268b3`, ADR 0045).
+MO-001 a MO-004 `[x]`: cores `1b0beda`, fontes `117ac30`, logo e favicon `b997977`, docs `c0268b3` (ADR 0045).
+Gate de 2026-10-02: test (386 unitários + 90 de integração), test:e2e (75) e a11y (22) verdes;
+`pnpm build` falha só por falta de `.env.local` (o build do web roda dentro do e2e).
 
 ## Próxima tarefa
-Gate final da branch `marca-oficial`; depois o Rafael decide o merge na `main` (push = deploy).
+Nenhuma task aberta. O Rafael confere as capturas (`tests/e2e/__visual__/marca-*.png`) e decide o
+merge de `marca-oficial` na `main` (push na `main` = deploy na Vercel).
 
 ## Marca (guia oficial: `design/marca/INFO-RN-MFO.pdf`)
 - Logo branca e favicon "RN" recortados do PDF do guia (`logo-branco.png`, `app/icon.png` nos dois apps).
@@ -39,6 +42,9 @@ Gate final da branch `marca-oficial`; depois o Rafael decide o merge na `main` (
 - `tokens.test.ts` pode estourar os 5 s com a máquina carregada; rodar de novo antes de investigar.
 
 ## Pendências para o Rafael
+- Criar `.env.local` dos dois apps para o `pnpm build` local passar.
+- O `pnpm dev` do projeto original (3000/3001) fala com o Supabase local que estiver no ar: hoje é o
+  do clone. Para voltar ao original: parar o do clone e rodar `supabase start` lá.
 - Conferir `apps/*/.env.example` (o agente não lê `.env*`) e incluir as duas envs de redes sociais.
 - Dados "pendente" em `/privacidade`: razão social, CNPJ, endereço e contato do encarregado.
 - Validação jurídica dos textos pelo cliente; URLs de LinkedIn/Instagram; confirmar o "2024" do rodapé.
