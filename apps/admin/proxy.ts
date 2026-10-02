@@ -5,7 +5,8 @@ import { env } from './lib/env'
 import { SESSION_COOKIE_OPTIONS } from './lib/services/supabase-cookies'
 
 const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com'
-const PUBLIC_PATHS = new Set(['/login'])
+// /icon.png é o favicon (app/icon.png): a tela de login precisa dele sem sessão.
+const PUBLIC_PATHS = new Set(['/login', '/icon.png'])
 
 function contentSecurityPolicy(nonce: string): string {
   const supabase = new URL(env.NEXT_PUBLIC_SUPABASE_URL).origin

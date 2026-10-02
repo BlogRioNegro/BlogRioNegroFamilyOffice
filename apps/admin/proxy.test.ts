@@ -95,6 +95,13 @@ describe('proxy do apps/admin', () => {
     expect(response.headers.get('location')).toBeNull()
     expect(response.headers.get('x-middleware-next')).toBe('1')
   })
+
+  it('deixa o favicon (/icon.png) abrir sem sessão', async () => {
+    const response = await request('/icon.png')
+
+    expect(response.headers.get('location')).toBeNull()
+    expect(response.headers.get('x-middleware-next')).toBe('1')
+  })
 })
 
 describe('headers fixos do apps/admin', () => {
