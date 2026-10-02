@@ -10,12 +10,13 @@ automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é s
 
 ## Fase
 Branch `marca-oficial` (sem push): guia oficial da marca, [tasks/marca-oficial.md](tasks/marca-oficial.md).
-Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`).
+Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`); MO-003 logo e favicon (`b997977`).
 
 ## Próxima tarefa
-MO-003 · logo e favicon extraídos do PDF do guia (script temporário com Playwright + pdf.js da CDN).
+MO-004 · ADR 0045 "Marca oficial conforme o guia" e contrastes na spec 06; depois o gate final.
 
 ## Marca (guia oficial: `design/marca/INFO-RN-MFO.pdf`)
+- Logo branca e favicon "RN" recortados do PDF do guia (`logo-branco.png`, `app/icon.png` nos dois apps).
 - Fontes do guia: Roboto Slab 900 (títulos), Roboto Slab 400 (subtítulos), Roboto (resto).
 - Tema azul único, site e admin (ADR 0043). Cores do guia: fundo `#223645`, superfície `#32566b`,
   header/rodapé/superfície rebaixada `#1a3544`, ação/link/foco `#d7d1b8`, divisórias `#908c7a`.
