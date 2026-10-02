@@ -12,7 +12,7 @@ const NAV = [
 
 export function AdminHeader({ current }: { current: (typeof NAV)[number]['key'] }) {
   return (
-    <header className="border-b border-border bg-bg">
+    <header className="border-b border-border bg-surface-muted">
       <div className="mx-auto flex h-16 max-w-(--layout-admin) items-center justify-between gap-6 px-4 md:px-6">
         <Link href="/artigos" aria-label="Rio Negro Family Office, painel" className="flex">
           <Logo alt="" />

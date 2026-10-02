@@ -109,7 +109,7 @@ spec, vale a spec (divergências abaixo).
 ### Estrutura comum
 - **Tema**: azul em todas as páginas ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)): fundo
   `--color-bg`, texto claro, ações e links no bege do site.
-- **Header** (`SiteHeader`): 64 px, fundo `--color-bg`, borda inferior; logotipo branco de 40 px de
+- **Header** (`SiteHeader`): 64 px, fundo `--color-surface-muted` (o azul da faixa da logo no guia), borda inferior; logotipo branco de 40 px de
   altura à esquerda
   (link para `/`) e link "Artigos" à direita, com sublinhado de 2 px quando ativo (`aria-current`).
   Mobile: igual, sem menu hambúrguer.
@@ -124,14 +124,17 @@ spec, vale a spec (divergências abaixo).
   rodapé são botões, não texto sublinhado: um primário por área (spec 06) e o secundário para a ação
   de apoio. Mobile: empilha logotipo/CTA, linha de
   direitos, "Privacidade".
-- **Tipografia**: H1 `--font-size-h1` (36 px mobile, 48 px ≥ 768 px), peso 700; datas no formato
+- **Tipografia** (guia da marca, [ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)): títulos (H1 a H3 e
+  títulos de card) em Roboto Slab 900 (`font-serif font-black`); subtítulos (resumo do artigo, linha de
+  apoio do título) em Roboto Slab 400; todo o resto em Roboto. H1 `--font-size-h1` (36 px mobile,
+  48 px ≥ 768 px); datas no formato
   "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
 ### Home (`/`, PUB-001)
 Hero sem consulta ao banco, ocupando a altura entre o header e o rodapé, com o conteúdo centralizado
 na vertical: H1 "Artigos, estudos e perspectivas da nossa equipe
-de consultores e especialistas." em `--font-serif` (36 px no mobile, `--font-size-5xl` ≥ 768 px, peso
-600, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
+de consultores e especialistas." em Roboto Slab (36 px no mobile, `--font-size-5xl` ≥ 768 px, peso
+900, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
 (100% da largura no mobile). Fundo em degradê de `--color-bg` para `--color-surface-muted` e, a partir
 de 768 px, três anéis concêntricos em `--color-border` à direita (decorativos, `aria-hidden`)
 ([ADR 0042](../adr/0042-clone-rio-negro-family-office.md),
@@ -141,7 +144,7 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 - H1 "Artigos"; card de destaque no topo e, abaixo, os demais em **coluna única**.
 - **Card de destaque**: superfície com `--radius-card` e `--shadow-card`; capa 16:9 e texto lado a
   lado a partir de 768 px (empilha no mobile, capa acima); título 24 px (mobile) / 30 px; data.
-- **Card**: o card inteiro é o link; capa 16:9 na largura toda, título (Inter 18/600, até ~3
+- **Card**: o card inteiro é o link; capa 16:9 na largura toda, título (Roboto Slab 18/900, até ~3
   linhas) e data. Sem capa: área neutra `--color-surface-muted`. Hover: borda `--color-border-strong`
   e título sublinhado; foco: anel de 2 px.
 - **"Carregar mais"**: `Button` secundário centralizado, 44 px, largura mínima 240 px. Estados:
@@ -151,9 +154,9 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 
 ### Artigo (`/artigos/[slug]`, PUB-005 a PUB-007)
 - `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos`.
-- H1, capa 16:9, formato (`TypeBadge`) + data e resumo (Source Serif 4, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
-- **Prévia `rich_text`**: texto em `--font-serif`, `--font-size-article` (18/1.7 mobile,
-  20/1.7 ≥ 768 px), largura máxima `--measure-article`; H2/H3 em Inter 600; citações com borda
+- H1, capa 16:9, formato (`TypeBadge`) + data e resumo (Roboto Slab 400, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
+- **Prévia `rich_text`**: texto em `--font-sans` (Roboto), `--font-size-article` (18/1.7 mobile,
+  20/1.7 ≥ 768 px), largura máxima `--measure-article`; H2/H3 em Roboto Slab 900; citações com borda
   esquerda de 2 px; imagens só com `alt`, sem legenda ([ADR 0031](../adr/0031-imagem-do-rich-text-so-com-alt.md)).
 - **Prévia `pdf`**: área neutra com borda (`--radius-card`) contendo o PDF embutido e o rótulo
   "Prévia". Fallback quando o navegador não embute: "Seu navegador não exibe o PDF nesta página."
@@ -164,7 +167,7 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 
 ### Privacidade (`/privacidade`, PUB-014)
 H1 "Aviso de privacidade", data de atualização em `text-xs`, seções com H2 e texto em
-`--font-serif` na coluna de leitura. O texto é o de LEAD-013, não o provisório do protótipo.
+`--font-sans` (Roboto) na coluna de leitura. O texto é o de LEAD-013, não o provisório do protótipo.
 
 ### 404 (PUB-015)
 Rótulo "Erro 404" (`text-xs`, `--color-text-muted`), H1 "Página não encontrada", texto "O endereço

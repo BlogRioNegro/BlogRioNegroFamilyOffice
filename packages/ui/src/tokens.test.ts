@@ -55,8 +55,8 @@ function uiTokens() {
 
 // next/font expõe a família como variável; o resto da pilha é a do export.
 const FONT_FAMILY_FROM_NEXT_FONT: Record<string, [string, string]> = {
-  '--font-sans': ["'inter'", 'var(--font-inter)'],
-  '--font-serif': ["'sourceserif4'", 'var(--font-source-serif)'],
+  '--font-sans': ["'roboto'", 'var(--font-roboto)'],
+  '--font-serif': ["'robotoslab'", 'var(--font-roboto-slab)'],
 }
 
 function expectedUiValue(name: string, designValue: string): string {

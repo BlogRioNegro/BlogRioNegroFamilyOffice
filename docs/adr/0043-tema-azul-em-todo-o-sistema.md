@@ -1,6 +1,8 @@
 # 0043 · Tema azul em todo o sistema
 
 - Status: accepted · Data: 2026-10-01
+- Os **valores** de cor, as fontes e a logo desta ADR foram substituídos pelos do guia oficial na
+  [ADR 0045](0045-marca-oficial-conforme-o-guia.md). A decisão de tema azul único continua valendo.
 - Specs: [DS-003, DS-006](../specs/06-design-system.md), [PUB-001](../specs/03-public-site.md),
   [05-admin-panel](../specs/05-admin-panel.md)
 - Substitui: as seções "Azul de ação (CL-002)" e "Logo (CL-003)" da

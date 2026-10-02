@@ -47,13 +47,13 @@ function renderBlock(block: RichTextBlock, key: number, inList: boolean): ReactN
       )
     case 'heading':
       return block.level === 2 ? (
-        <h2 key={key} className="mt-[2em] mb-[0.6em] font-sans text-xl font-semibold first:mt-0">
+        <h2 key={key} className="mt-[2em] mb-[0.6em] font-serif font-black text-xl first:mt-0">
           {renderInlines(block.content)}
         </h2>
       ) : (
         <h3
           key={key}
-          className="mt-[1.6em] mb-[0.5em] font-sans text-md leading-snug font-semibold first:mt-0"
+          className="mt-[1.6em] mb-[0.5em] font-serif font-black text-md leading-snug first:mt-0"
         >
           {renderInlines(block.content)}
         </h3>
@@ -92,7 +92,7 @@ export function RichText({ blocks, className }: { blocks: RichTextBlock[]; class
   return (
     <div
       className={cn(
-        'max-w-(--measure-article) font-serif text-(length:--font-size-article) leading-(--line-height-article)',
+        'max-w-(--measure-article) text-(length:--font-size-article) leading-(--line-height-article)',
         className,
       )}
     >
