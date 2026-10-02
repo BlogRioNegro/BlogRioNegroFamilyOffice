@@ -17,9 +17,10 @@ reimplementadas como componentes seguindo as specs 03, 04 e 05, não copiadas.
 ## Requisitos
 
 ### DS-001 · Design system no Claude Design (fase 1)
-Tipografia, espaçamento, raio e componentes base, herdados do blog original. As cores são as de
-rionegromfo.com.br: o azul da marca é a base de todo o sistema (tema escuro único) e o bege do site
-é a cor de ação ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)).
+Espaçamento, raio e componentes base, herdados do blog original. Cores, fontes, logo e favicon são
+os do guia oficial da marca (`design/marca/INFO-RN-MFO.pdf`,
+[ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)), aplicados sobre o tema azul único
+([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)).
 **Aceite:** design system publicado no Claude Design e aprovado pelo responsável do projeto.
 
 ### DS-002 · Protótipos (fase 1)
@@ -194,34 +195,41 @@ Componentes de tela ficam nos apps, compostos a partir destes, na fase que os us
 ## Acessibilidade por componente (DS-006)
 
 Contraste pela fórmula WCAG 2.1 com os valores da tabela Tokens: texto ≥ 4,5:1 (AA) e borda que
-identifica o controle ≥ 3:1 (1.4.11). Superfícies de referência: `--color-surface` (`#334a5c`),
-`--color-bg` (`#233645`) e `--color-surface-muted` (`#192631`). Controle desabilitado é isento (1.4.3).
+identifica o controle ≥ 3:1 (1.4.11). Superfícies de referência: `--color-surface` (`#32566b`),
+`--color-bg` (`#223645`) e `--color-surface-muted` (`#1a3544`), as três do guia da marca
+([ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)). Controle desabilitado é isento (1.4.3).
 O tema é escuro e único ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)): `color-scheme: dark`
 no `body`, para os controles nativos (data, arquivo, barra de rolagem) acompanharem.
 
 **Foco visível (todos):** `:focus-visible` global em `packages/ui/src/styles.css`, contorno de 2 px
-em `--color-focus-ring` (`#d8d2b8`) afastado 2 px: 6,08:1 sobre surface, 8,21:1 sobre bg e 10,15:1
+em `--color-focus-ring` (`#d7d1b8`) afastado 2 px: 5,11:1 sobre surface, 8,15:1 sobre bg e 8,37:1
 sobre surface-muted. Nenhum componente remove o `outline`.
 
-**Cor de ação (bege do site):** `--color-action-primary`, `--color-focus-ring` e `--color-link`
-usam `#d8d2b8`; o hover da ação usa `#ece7d1`. O texto sobre a ação é o azul da marca.
+**Cor de ação (bege de apoio do guia):** `--color-action-primary`, `--color-focus-ring` e
+`--color-link` usam `#d7d1b8`; o hover da ação usa `#ece7d1` (fora do guia). O texto sobre a ação é a
+cor principal do guia, `#223645`.
+
+**Cor secundária do guia (`#908c7a`):** só em `--color-border`, ou seja, divisórias, contornos de card
+e os anéis decorativos do hero. Nunca em texto: dá 3,70:1 sobre bg, 3,80:1 sobre surface-muted e
+2,32:1 sobre surface, abaixo de AA para texto pequeno.
 
 | Componente | Contraste (valores reais) | Foco e teclado | Label e nome acessível |
 |---|---|---|---|
-| `Button` | primary: texto `#233645` sobre `#d8d2b8` 8,21:1 (hover `#ece7d1` 10,04:1); secondary/ghost: `#f2f0ef` sobre surface 8,13:1 e sobre `surface-muted` (hover) 13,56:1; link: `#d8d2b8` sobre surface 6,08:1, sobre bg 8,21:1 e sobre `surface-muted` 10,15:1; borda do secondary `#8ea3b3` 3,53:1 | `<button>` nativo (Enter/Espaço); `type="button"` por padrão; desabilitado e `loading` saem da ordem de clique | texto visível; ícone com `aria-hidden`; botões só de ícone (`icon`, `icon-sm`) exigem `aria-label` ou texto `sr-only`; `loading` marca `aria-busy` |
-| `Label` | `#f2f0ef` sobre surface 8,13:1; "(opcional)" `#c9d4dc` 6,13:1 (8,27:1 sobre bg) | — | sempre visível, ligado por `htmlFor`; placeholder nunca substitui o label |
-| `Input` | texto `#f2f0ef` 8,13:1; placeholder `#c9d4dc` 6,13:1; borda `#8ea3b3` 3,53:1 (4,77:1 contra bg); borda de erro `#ffb4ab` 5,44:1 | nativo | só é usado com `Label` (via `TextField` ou `htmlFor`); erro com `aria-invalid` |
-| `FieldMessage` | ajuda `#c9d4dc` 6,13:1; erro `#ffb4ab` 5,44:1 sobre surface e 7,34:1 sobre bg | — | ligado ao campo por `aria-describedby`; erro tem ícone, não só cor (1.4.1) |
+| `Button` | primary: texto `#223645` sobre `#d7d1b8` 8,15:1 (hover `#ece7d1` 10,06:1); secondary/ghost: `#f2f0ef` sobre surface 6,90:1 e sobre `surface-muted` (hover) 11,30:1; link: `#d7d1b8` sobre surface 5,11:1, sobre bg 8,15:1 e sobre `surface-muted` 8,37:1; borda do secondary `#8ea3b3` 3,00:1 | `<button>` nativo (Enter/Espaço); `type="button"` por padrão; desabilitado e `loading` saem da ordem de clique | texto visível; ícone com `aria-hidden`; botões só de ícone (`icon`, `icon-sm`) exigem `aria-label` ou texto `sr-only`; `loading` marca `aria-busy` |
+| `Label` | `#f2f0ef` sobre surface 6,90:1; "(opcional)" `#c9d4dc` 5,20:1 (8,29:1 sobre bg) | — | sempre visível, ligado por `htmlFor`; placeholder nunca substitui o label |
+| `Input` | texto `#f2f0ef` 6,90:1; placeholder `#c9d4dc` 5,20:1; borda `#8ea3b3` 3,00:1 (4,78:1 contra bg); borda de erro `#ffb4ab` 4,62:1 | nativo | só é usado com `Label` (via `TextField` ou `htmlFor`); erro com `aria-invalid` |
+| `FieldMessage` | ajuda `#c9d4dc` 5,20:1; erro `#ffb4ab` 4,62:1 sobre surface e 7,36:1 sobre bg | — | ligado ao campo por `aria-describedby`; erro tem ícone, não só cor (1.4.1) |
 | `TextField` | herda `Label`, `Input` e `FieldMessage` | nativo | liga `id`, `htmlFor`, `aria-describedby` e `aria-invalid` sozinho |
-| `Checkbox` | borda `#8ea3b3` 3,53:1; marcado: ícone `#233645` sobre `#d8d2b8` 8,21:1; label `#f2f0ef` 8,13:1 | Radix (`role="checkbox"`, Espaço alterna) | `<label htmlFor>` clicável; erro com `aria-invalid` + `aria-describedby`; nunca pré-marcado |
+| `Checkbox` | borda `#8ea3b3` 3,00:1; marcado: ícone `#223645` sobre `#d7d1b8` 8,15:1; label `#f2f0ef` 6,90:1 | Radix (`role="checkbox"`, Espaço alterna) | `<label htmlFor>` clicável; erro com `aria-invalid` + `aria-describedby`; nunca pré-marcado |
 | `Alert` | título: sucesso `#9fd8ad` sobre `#1f3d36` 7,25:1, erro `#ffb4ab` sobre `#4b2a31` 7,39:1, aviso `#f3d08a` sobre `#453a24` 7,54:1; corpo `#f2f0ef` ≥ 9,81:1 | não recebe foco | `role="alert"` (erro) ou `role="status"`; ícone decorativo, o título carrega o sentido |
-| `Dialog`, `DialogTrigger`, `DialogContent`, `DialogClose` | título `#f2f0ef` 8,13:1; descrição `#c9d4dc` 6,13:1 | foco preso no conteúdo; **Esc** e clique no fundo fecham; o foco volta ao `DialogTrigger` (Radix) | `title` obrigatório → `aria-labelledby`; `description` → `aria-describedby`; "Fechar" de 44 px com texto `sr-only` |
-| `StatusBadge` | Pendente `#f3d08a`/`#453a24` 7,54:1; Enviado `#9fd8ad`/`#1f3d36` 7,25:1; Falhou `#ffb4ab`/`#4b2a31` 7,39:1; Desativado `#c9d4dc`/`#192631` 10,22:1 | não recebe foco | o texto do status sempre visível; ponto de cor com `aria-hidden` |
-| `TypeBadge` | PDF: `#f2f0ef` sobre `surface-muted` 13,56:1 (sem borda); Texto: `#f2f0ef` sobre surface 8,13:1 | não recebe foco | texto "PDF"/"Texto"; ícone com `aria-hidden` |
-| `Table` e partes | célula `#f2f0ef` 8,13:1 (hover 13,56:1); cabeçalho `#c9d4dc` sobre bg 8,27:1 | contêiner rola na horizontal sem prender o foco; ações da linha são `Button` | `TableCaption` obrigatória (oculta visualmente); `TableHead` com `scope="col"` |
+| `Dialog`, `DialogTrigger`, `DialogContent`, `DialogClose` | título `#f2f0ef` 6,90:1; descrição `#c9d4dc` 5,20:1 | foco preso no conteúdo; **Esc** e clique no fundo fecham; o foco volta ao `DialogTrigger` (Radix) | `title` obrigatório → `aria-labelledby`; `description` → `aria-describedby`; "Fechar" de 44 px com texto `sr-only` |
+| `StatusBadge` | Pendente `#f3d08a`/`#453a24` 7,54:1; Enviado `#9fd8ad`/`#1f3d36` 7,25:1; Falhou `#ffb4ab`/`#4b2a31` 7,39:1; Desativado `#c9d4dc`/`#1a3544` 8,51:1 | não recebe foco | o texto do status sempre visível; ponto de cor com `aria-hidden` |
+| `TypeBadge` | PDF: `#f2f0ef` sobre `surface-muted` 11,30:1 (sem borda); Texto: `#f2f0ef` sobre surface 6,90:1 | não recebe foco | texto "PDF"/"Texto"; ícone com `aria-hidden` |
+| `Table` e partes | célula `#f2f0ef` 6,90:1 (hover 11,30:1); cabeçalho `#c9d4dc` sobre bg 8,29:1 | contêiner rola na horizontal sem prender o foco; ações da linha são `Button` | `TableCaption` obrigatória (oculta visualmente); `TableHead` com `scope="col"` |
 
-Divisórias em `--color-border` (`#4a6378`, 1,47:1 sobre surface e 1,99:1 sobre bg) são decorativas e
-não identificam controle.
+Os pares mais próximos do limite, todos sobre surface (`#32566b`): erro `#ffb4ab` 4,62:1, sucesso
+`#9fd8ad` 4,82:1, bege `#d7d1b8` 5,11:1 e a borda de controle `#8ea3b3` 3,00:1 (limite de 1.4.11).
+Divisórias em `--color-border` (`#908c7a`) são decorativas e não identificam controle.
 
 ## Fora de escopo
 
