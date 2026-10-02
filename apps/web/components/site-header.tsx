@@ -3,7 +3,7 @@ import { Logo } from './logo'
 
 export function SiteHeader({ current }: { current?: 'artigos' }) {
   return (
-    <header className="border-b border-border bg-bg">
+    <header className="border-b border-border bg-surface-muted">
       <div className="mx-auto flex h-16 max-w-(--layout-admin) items-center justify-between gap-6 px-4 md:px-6">
         <Link href="/" aria-label="Rio Negro Family Office, página inicial" className="flex">
           <Logo alt="" />

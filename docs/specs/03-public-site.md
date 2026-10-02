@@ -109,7 +109,7 @@ spec, vale a spec (divergências abaixo).
 ### Estrutura comum
 - **Tema**: azul em todas as páginas ([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)): fundo
   `--color-bg`, texto claro, ações e links no bege do site.
-- **Header** (`SiteHeader`): 64 px, fundo `--color-bg`, borda inferior; logotipo branco de 40 px de
+- **Header** (`SiteHeader`): 64 px, fundo `--color-surface-muted` (o azul da faixa da logo no guia), borda inferior; logotipo branco de 40 px de
   altura à esquerda
   (link para `/`) e link "Artigos" à direita, com sublinhado de 2 px quando ativo (`aria-current`).
   Mobile: igual, sem menu hambúrguer.

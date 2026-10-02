@@ -1,14 +1,15 @@
-/* Rio Negro Family Office — cores. Tema azul: o azul da marca é a base de todo o sistema e o bege do site é a cor de ação (ADR 0043). Sem tema claro. */
+/* Rio Negro Family Office — cores do guia oficial da marca (design/marca/INFO-RN-MFO.pdf, ADR 0045). Tema azul único (ADR 0043). */
 :root{
 /* Paleta base */
 --rn-warm-50:#F2F0EF;
---rn-blue-900:#192631;
---rn-blue-800:#233645;
---rn-blue-700:#334A5C;
+--rn-blue-900:#1A3544;
+--rn-blue-800:#223645;
+--rn-blue-700:#32566B;
 --rn-blue-600:#4A6378;
 --rn-blue-400:#8EA3B3;
 --rn-blue-200:#C9D4DC;
---rn-sand-300:#D8D2B8;
+--rn-stone-500:#908C7A;
+--rn-sand-300:#D7D1B8;
 --rn-sand-200:#ECE7D1;
 --rn-green-300:#9FD8AD;
 --rn-green-900:#1F3D36;
@@ -24,7 +25,7 @@
 --color-bg:var(--rn-blue-800);
 --color-surface:var(--rn-blue-700);
 --color-surface-muted:var(--rn-blue-900);
---color-border:var(--rn-blue-600);
+--color-border:var(--rn-stone-500);
 --color-border-strong:var(--rn-blue-400);
 --color-text:var(--rn-warm-50);
 --color-text-muted:var(--rn-blue-200);
@@ -46,4 +47,7 @@
 --color-warning-border:var(--rn-amber-700);
 --color-focus-ring:var(--rn-sand-300);
 --color-overlay:rgba(13,20,26,.64);
+
+/* Degradê do guia: definido, ainda sem uso em tela */
+--gradient-brand:linear-gradient(90deg,var(--rn-blue-700),var(--rn-blue-900));
 }

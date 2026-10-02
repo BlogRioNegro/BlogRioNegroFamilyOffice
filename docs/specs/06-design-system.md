@@ -55,15 +55,16 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 
 | Token | Valor | Uso |
 |---|---|---|
-| `--rn-warm-50` | `#f2f0ef` | Off-white do texto. Não usar direto: usar os semânticos. |
-| `--rn-blue-900` | `#192631` | Azul da marca escurecido (superfície secundária). Não usar direto: usar os semânticos. |
-| `--rn-blue-800` | `#233645` | Azul da marca (`primary` de rionegromfo.com.br). Não usar direto: usar os semânticos. |
-| `--rn-blue-700` | `#334a5c` | Azul `secondary` do site (superfícies). Não usar direto: usar os semânticos. |
-| `--rn-blue-600` | `#4a6378` | Azul de divisória. Não usar direto: usar os semânticos. |
-| `--rn-blue-400` | `#8ea3b3` | Azul claro de borda de controle. Não usar direto: usar os semânticos. |
-| `--rn-blue-200` | `#c9d4dc` | Azul bem claro do site (texto secundário). Não usar direto: usar os semânticos. |
-| `--rn-sand-300` | `#d8d2b8` | Bege `accent` do site (cor de ação). Não usar direto: usar os semânticos. |
-| `--rn-sand-200` | `#ece7d1` | Bege claro do site (hover da ação). Não usar direto: usar os semânticos. |
+| `--rn-warm-50` | `#f2f0ef` | Fora do guia: off-white do texto. Não usar direto: usar os semânticos. |
+| `--rn-blue-900` | `#1a3544` | Azul da faixa da logo branca no guia da marca (header, rodapé, superfície rebaixada). Não usar direto: usar os semânticos. |
+| `--rn-blue-800` | `#223645` | Cor principal do guia da marca. Não usar direto: usar os semânticos. |
+| `--rn-blue-700` | `#32566b` | Azul claro do degradê do guia (superfícies). Não usar direto: usar os semânticos. |
+| `--rn-blue-600` | `#4a6378` | Fora do guia: fundo de controle desabilitado. Não usar direto: usar os semânticos. |
+| `--rn-blue-400` | `#8ea3b3` | Fora do guia: borda de controle. Não usar direto: usar os semânticos. |
+| `--rn-blue-200` | `#c9d4dc` | Fora do guia: texto secundário. Não usar direto: usar os semânticos. |
+| `--rn-stone-500` | `#908c7a` | Cor secundária do guia (divisórias e detalhes decorativos; nunca texto pequeno). Não usar direto: usar os semânticos. |
+| `--rn-sand-300` | `#d7d1b8` | Bege de apoio do guia (cor de ação). Não usar direto: usar os semânticos. |
+| `--rn-sand-200` | `#ece7d1` | Fora do guia: hover da ação (bege mais claro). Não usar direto: usar os semânticos. |
 | `--rn-green-300` | `#9fd8ad` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-green-900` | `#1f3d36` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-green-700` | `#3f6f5c` | Paleta de estado. Não usar direto: usar os semânticos. |
@@ -73,6 +74,7 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--rn-amber-300` | `#f3d08a` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-amber-900` | `#453a24` | Paleta de estado. Não usar direto: usar os semânticos. |
 | `--rn-amber-700` | `#85703d` | Paleta de estado. Não usar direto: usar os semânticos. |
+| `--gradient-brand` | `linear-gradient(90deg, var(--rn-blue-700), var(--rn-blue-900))` | Degradê do guia da marca; definido, sem uso em tela |
 | `--space-1` | `4px` | Espaçamento (múltiplo de 4 px) |
 | `--space-2` | `8px` | Espaçamento (múltiplo de 4 px) |
 | `--space-3` | `12px` | Espaçamento (múltiplo de 4 px) |
@@ -119,7 +121,7 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--color-bg` | `var(--rn-blue-800)` | Fundo da página |
 | `--color-surface` | `var(--rn-blue-700)` | Cards, modal, campos |
 | `--color-surface-muted` | `var(--rn-blue-900)` | Superfície secundária, linhas de tabela |
-| `--color-border` | `var(--rn-blue-600)` | Bordas e divisórias |
+| `--color-border` | `var(--rn-stone-500)` | Bordas e divisórias |
 | `--color-border-strong` | `var(--rn-blue-400)` | Borda de campo e hover |
 | `--color-text` | `var(--rn-warm-50)` | Texto principal |
 | `--color-text-muted` | `var(--rn-blue-200)` | Legenda, data, texto regulatório |

@@ -1,16 +1,17 @@
-/* Tokens do Rio Negro Family Office (export do Claude Design, ADR 0023; tema azul, ADR 0043).
+/* Tokens do Rio Negro Family Office (export do Claude Design, ADR 0023; tema azul, ADR 0043; cores do guia da marca, ADR 0045).
    Mesmos nomes e valores do export.
    Os tokens que são namespaces do Tailwind (cor, fonte, peso, raio, sombra, breakpoint)
    ficam em theme.css. */
 :root {
   --rn-warm-50: #f2f0ef;
-  --rn-blue-900: #192631;
-  --rn-blue-800: #233645;
-  --rn-blue-700: #334a5c;
+  --rn-blue-900: #1a3544;
+  --rn-blue-800: #223645;
+  --rn-blue-700: #32566b;
   --rn-blue-600: #4a6378;
   --rn-blue-400: #8ea3b3;
   --rn-blue-200: #c9d4dc;
-  --rn-sand-300: #d8d2b8;
+  --rn-stone-500: #908c7a;
+  --rn-sand-300: #d7d1b8;
   --rn-sand-200: #ece7d1;
   --rn-green-300: #9fd8ad;
   --rn-green-900: #1f3d36;
@@ -21,6 +22,8 @@
   --rn-amber-300: #f3d08a;
   --rn-amber-900: #453a24;
   --rn-amber-700: #85703d;
+
+  --gradient-brand: linear-gradient(90deg, var(--rn-blue-700), var(--rn-blue-900));
 
   --space-1: 4px;
   --space-2: 8px;
