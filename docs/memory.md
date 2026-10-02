@@ -10,10 +10,10 @@ automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é s
 
 ## Fase
 Branch `marca-oficial` (sem push): guia oficial da marca, [tasks/marca-oficial.md](tasks/marca-oficial.md).
-Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`); MO-003 logo e favicon (`b997977`).
+Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`); MO-003 logo e favicon (`b997977`); MO-004 docs (`c0268b3`, ADR 0045).
 
 ## Próxima tarefa
-MO-004 · ADR 0045 "Marca oficial conforme o guia" e contrastes na spec 06; depois o gate final.
+Gate final da branch `marca-oficial`; depois o Rafael decide o merge na `main` (push = deploy).
 
 ## Marca (guia oficial: `design/marca/INFO-RN-MFO.pdf`)
 - Logo branca e favicon "RN" recortados do PDF do guia (`logo-branco.png`, `app/icon.png` nos dois apps).
