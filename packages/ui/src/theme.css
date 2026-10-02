@@ -41,14 +41,16 @@
   --color-focus-ring: var(--rn-sand-300);
   --color-overlay: rgba(13, 20, 26, 0.64);
 
-  /* 'Inter' e 'Source Serif 4' vêm do next/font (fonts.ts), que expõe a família como variável. */
-  --font-sans: var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-serif: var(--font-source-serif), 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  /* 'Roboto' e 'Roboto Slab' vêm do next/font (fonts.ts), que expõe a família como variável.
+     font-serif é a Roboto Slab do guia: títulos (900) e subtítulos (400). */
+  --font-sans: var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: var(--font-roboto-slab), Georgia, 'Times New Roman', serif;
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-black: 900;
 
   --radius-control: 6px;
   --radius-card: 12px;

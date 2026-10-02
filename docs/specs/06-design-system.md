@@ -29,8 +29,8 @@ Home, listagem, artigo (prévia pdf e rich_text), modal de lead (todos os estado
 
 ### DS-003 · Tokens em `packages/ui` (fase 2)
 Tokens do export do Claude Design em `packages/ui` (CSS variables + `@theme` do Tailwind v4, mesmos
-nomes e valores; [ADR 0023](../adr/0023-tokens-por-export-do-claude-design.md)). Fontes Inter e Source
-Serif 4 via `next/font/google`, a partir de `@rio-negro/ui/fonts`.
+nomes e valores; [ADR 0023](../adr/0023-tokens-por-export-do-claude-design.md)). Fontes do guia da marca
+(Roboto e Roboto Slab) via `next/font/google`, a partir de `@rio-negro/ui/fonts`.
 **Aceite:** os dois apps consomem os tokens de `@rio-negro/ui`; nenhum valor de cor ou fonte
 hard-coded fora do pacote.
 
@@ -143,12 +143,13 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--color-warning-border` | `var(--rn-amber-700)` | Borda de alerta de aviso |
 | `--color-focus-ring` | `var(--rn-sand-300)` | Anel de foco |
 | `--color-overlay` | `rgba(13, 20, 26, 0.64)` | Fundo do modal |
-| `--font-sans` | `var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif` | Interface (Inter, via next/font) |
-| `--font-serif` | `var(--font-source-serif), 'Source Serif Pro', Georgia, 'Times New Roman', serif` | Corpo do artigo (Source Serif 4, via next/font) |
+| `--font-sans` | `var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif` | Família de apoio do guia: corpo, interface, textos jurídicos (Roboto, via next/font) |
+| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 900) e subtítulos (peso 400): Roboto Slab, via next/font |
 | `--font-weight-regular` | `400` | Peso da fonte |
 | `--font-weight-medium` | `500` | Peso da fonte |
 | `--font-weight-semibold` | `600` | Peso da fonte |
 | `--font-weight-bold` | `700` | Peso da fonte |
+| `--font-weight-black` | `900` | Títulos (Roboto Slab Black do guia) |
 | `--radius-control` | `6px` | Botão, campo, badge |
 | `--radius-card` | `12px` | Card e modal |
 | `--shadow-card` | `0 1px 2px rgba(13, 20, 26, 0.24), 0 1px 3px rgba(13, 20, 26, 0.16)` | Card |

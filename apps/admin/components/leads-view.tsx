@@ -136,7 +136,7 @@ function LeadCards({ leads }: { leads: LeadRow[] }) {
           className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4 shadow-card"
         >
           <div className="flex items-center justify-between gap-2">
-            <span className="text-sm font-semibold">{lead.name}</span>
+            <span className="font-serif font-black text-sm">{lead.name}</span>
             <StatusBadge status={lead.webhook_status} />
           </div>
           <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-xs">
@@ -209,8 +209,8 @@ export function LeadsView({
       ) : null}
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-2xl font-semibold">Leads</h1>
-          <p className="text-xs text-text-muted">
+          <h1 className="font-serif font-black text-2xl">Leads</h1>
+          <p className="font-serif font-regular text-xs text-text-muted">
             {total} {total === 1 ? 'lead' : 'leads'} · {scope}
           </p>
         </div>

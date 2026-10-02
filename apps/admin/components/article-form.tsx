@@ -39,7 +39,7 @@ const CONTENT_TYPES = [
 
 // Mesma aparência do Input (spec 05: "<textarea> com a aparência do Input").
 const TEXTAREA_CLASSES =
-  'w-full rounded-control border border-border-strong bg-surface p-3 font-serif text-md leading-normal text-text transition-colors duration-(--duration-fast) hover:border-text-muted aria-invalid:border-error'
+  'w-full rounded-control border border-border-strong bg-surface p-3 text-md leading-normal text-text transition-colors duration-(--duration-fast) hover:border-text-muted aria-invalid:border-error'
 
 // O tamanho é conferido antes do envio: acima do limite, o arquivo nem sai do browser (ADM-006).
 // A capa pode ter até 5 MB porque é otimizada antes do envio (ADR 0041).
@@ -110,7 +110,9 @@ export function ArticleForm({ initial, isNew }: { initial: ArticleFormValues; is
             Artigos
           </Link>
         </Button>
-        <h1 className="text-2xl font-semibold">{isNew ? 'Novo artigo' : 'Editar artigo'}</h1>
+        <h1 className="font-serif font-black text-2xl">
+          {isNew ? 'Novo artigo' : 'Editar artigo'}
+        </h1>
       </div>
 
       {state && !localErrors && Object.keys(state.fieldErrors).length === 0 ? (

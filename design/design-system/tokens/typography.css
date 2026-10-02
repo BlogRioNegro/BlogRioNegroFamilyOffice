@@ -1,11 +1,12 @@
 :root{
---font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
---font-serif:'Source Serif 4','Source Serif Pro',Georgia,'Times New Roman',serif;
+--font-sans:'Roboto',system-ui,-apple-system,'Segoe UI',sans-serif;
+--font-serif:'Roboto Slab',Georgia,'Times New Roman',serif;
 
 --font-weight-regular:400;
 --font-weight-medium:500;
 --font-weight-semibold:600;
 --font-weight-bold:700;
+--font-weight-black:900;
 
 /* Escala: tamanho / altura de linha padrão do nível */
 --font-size-xs:14px;  --line-height-xs:1.5;   /* legenda, data, texto regulatório — 400 */
