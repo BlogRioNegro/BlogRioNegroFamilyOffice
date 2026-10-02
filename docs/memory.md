@@ -10,12 +10,13 @@ automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é s
 
 ## Fase
 Branch `marca-oficial` (sem push): guia oficial da marca, [tasks/marca-oficial.md](tasks/marca-oficial.md).
-Feito: MO-001 cores (`1b0beda`).
+Feito: MO-001 cores (`1b0beda`); MO-002 fontes (`117ac30`).
 
 ## Próxima tarefa
-MO-002 · fontes do guia (Roboto Slab 900/400 e Roboto). Ler: spec 06, ADR 0023, `packages/ui/src/fonts.ts`.
+MO-003 · logo e favicon extraídos do PDF do guia (script temporário com Playwright + pdf.js da CDN).
 
 ## Marca (guia oficial: `design/marca/INFO-RN-MFO.pdf`)
+- Fontes do guia: Roboto Slab 900 (títulos), Roboto Slab 400 (subtítulos), Roboto (resto).
 - Tema azul único, site e admin (ADR 0043). Cores do guia: fundo `#223645`, superfície `#32566b`,
   header/rodapé/superfície rebaixada `#1a3544`, ação/link/foco `#d7d1b8`, divisórias `#908c7a`.
   `--gradient-brand` definido, sem uso em tela. Fora do guia: hover, bordas de controle, texto
@@ -32,6 +33,7 @@ MO-002 · fontes do guia (Roboto Slab 900/400 e Roboto). Ler: spec 06, ADR 0023,
   `pnpm exec supabase stop --project-id rio-negro`).
 - O projeto está vinculado a um Supabase remoto (`supabase link`): a stack local sobe com as versões
   do remoto. Se o Storage local der `42P10`, rodar `pnpm exec supabase db reset --local` (só o local).
+- As portas 3000/3001 podem estar com o `pnpm dev` do projeto original: usar 3200/3201 no clone.
 - `pnpm build` exige as envs dos apps: sem `.env.local`, falha em `lib/env.ts` (por desenho).
 - `tokens.test.ts` pode estourar os 5 s com a máquina carregada; rodar de novo antes de investigar.
 
