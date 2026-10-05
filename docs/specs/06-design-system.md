@@ -50,9 +50,29 @@ Contraste AA, foco visível, modal com foco preso e fechamento por Esc, labels e
 ## Tokens
 
 Fonte: `packages/ui/src/tokens.css` e `packages/ui/src/theme.css`. Utilitários do Tailwind derivados
-dos tokens: `bg-*`/`text-*`/`border-*` (cores), `font-sans`/`font-serif`, `rounded-control`/`rounded-card`,
-`shadow-card`/`shadow-modal`, `text-xs`…`text-5xl` (com a entrelinha do nível) e espaçamento em múltiplos
-de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
+dos tokens: `bg-*`/`text-*`/`border-*` (cores), `font-sans`/`font-serif`, `font-extralight`…`font-bold`,
+`rounded-control`/`rounded-card`, `shadow-card`/`shadow-modal`, `text-xs`…`text-5xl` (com a entrelinha do
+nível), `leading-section`/`tracking-section` e espaçamento em múltiplos de 4 px (`p-4` = `--space-4`). A
+paleta padrão do Tailwind é desativada. As escalas próprias estão registradas no `tailwind-merge`
+(`packages/ui/src/cn.ts`), para peso e família não se anularem.
+
+### Tipografia
+Famílias do guia da marca ([ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)); peso, entrelinha,
+espaçamento entre letras e maiúsculas medidos no site institucional
+([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md), que tem a tabela de medição).
+
+| Papel | Onde | Classes |
+|---|---|---|
+| Título principal | H1 de toda página (site e admin) | `font-serif font-extralight uppercase wrap-anywhere`, entrelinha 1,2 |
+| Título de seção | H2/H3 do artigo e de `/privacidade`, título do `Dialog` | `font-serif font-extralight uppercase leading-section tracking-section wrap-anywhere` |
+| Título de card | cards de artigo (site) e cards da lista no mobile (admin) | `font-serif font-medium leading-tight` |
+| Subtítulo | resumo do artigo, descrição do `Dialog`, linha de apoio do H1 | `font-serif font-regular`, entrelinha 1,5 |
+| Link do menu | navegação do header (site e admin) | `font-regular uppercase` |
+| Rodapé | linha de direitos reservados | `font-light` |
+| Texto | todo o resto | Roboto 400, entrelinha 1,5 |
+
+`wrap-anywhere` deixa uma palavra maior que a linha quebrar, para um título em maiúsculas não estourar a
+tela a 390 px.
 
 | Token | Valor | Uso |
 |---|---|---|
@@ -98,9 +118,9 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--font-size-sm` | `16px` | UI, botões, formulário, tabela |
 | `--line-height-sm` | `1.5` | Altura de linha |
 | `--font-size-md` | `18px` | Corpo do artigo (mobile), título de card |
-| `--line-height-md` | `1.7` | Altura de linha |
+| `--line-height-md` | `1.5` | Altura de linha (a do parágrafo do site institucional) |
 | `--font-size-lg` | `20px` | Corpo do artigo (desktop) |
-| `--line-height-lg` | `1.7` | Altura de linha |
+| `--line-height-lg` | `1.5` | Altura de linha (a do parágrafo do site institucional) |
 | `--font-size-xl` | `24px` | H3, título do modal |
 | `--line-height-xl` | `1.35` | Altura de linha |
 | `--font-size-2xl` | `30px` | H2, título do destaque |
@@ -108,15 +128,17 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--font-size-3xl` | `36px` | H1 mobile |
 | `--line-height-3xl` | `1.2` | Altura de linha |
 | `--font-size-4xl` | `48px` | H1 desktop |
-| `--line-height-4xl` | `1.15` | Altura de linha |
+| `--line-height-4xl` | `1.2` | Altura de linha (a do título do site institucional) |
 | `--font-size-5xl` | `60px` | Hero da home (desktop) |
-| `--line-height-5xl` | `1.1` | Altura de linha |
-| `--line-height-tight` | `1.2` | Altura de linha |
+| `--line-height-5xl` | `1.2` | Altura de linha (a do título do site institucional) |
+| `--line-height-tight` | `1.2` | Altura de linha: H1 e títulos de card |
 | `--line-height-snug` | `1.35` | Altura de linha |
-| `--line-height-normal` | `1.5` | Altura de linha |
+| `--line-height-normal` | `1.5` | Altura de linha: texto corrido e subtítulos |
 | `--line-height-relaxed` | `1.7` | Altura de linha |
+| `--line-height-section` | `1` | Entrelinha dos títulos de seção (`leading-section`) |
+| `--letter-spacing-section` | `10px` | Espaçamento entre letras dos títulos de seção (`tracking-section`) |
 | `--font-size-article` | `var(--font-size-md)` | Corpo do artigo (≥768px: var(--font-size-lg)) |
-| `--line-height-article` | `var(--line-height-relaxed)` | Entrelinha do artigo |
+| `--line-height-article` | `var(--line-height-normal)` | Entrelinha do artigo (a do parágrafo do site institucional) |
 | `--measure-article` | `68ch` | Largura máxima do texto do artigo |
 | `--font-size-h1` | `var(--font-size-3xl)` | H1 (≥768px: var(--font-size-4xl)) |
 | `--color-bg` | `var(--rn-blue-800)` | Fundo da página |
@@ -145,12 +167,13 @@ de 4 px (`p-4` = `--space-4`). A paleta padrão do Tailwind é desativada.
 | `--color-focus-ring` | `var(--rn-sand-300)` | Anel de foco |
 | `--color-overlay` | `rgba(13, 20, 26, 0.64)` | Fundo do modal |
 | `--font-sans` | `var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif` | Família de apoio do guia: corpo, interface, textos jurídicos (Roboto, via next/font) |
-| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 900) e subtítulos (peso 400): Roboto Slab, via next/font |
-| `--font-weight-regular` | `400` | Peso da fonte |
-| `--font-weight-medium` | `500` | Peso da fonte |
+| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 200), títulos de card (500) e subtítulos (400): Roboto Slab, via next/font |
+| `--font-weight-extralight` | `200` | H1 e títulos de seção |
+| `--font-weight-light` | `300` | Linha de direitos do rodapé |
+| `--font-weight-regular` | `400` | Texto, subtítulos e links do menu |
+| `--font-weight-medium` | `500` | Títulos de card, botões, labels |
 | `--font-weight-semibold` | `600` | Peso da fonte |
 | `--font-weight-bold` | `700` | Peso da fonte |
-| `--font-weight-black` | `900` | Títulos (Roboto Slab Black do guia) |
 | `--radius-control` | `6px` | Botão, campo, badge |
 | `--radius-card` | `12px` | Card e modal |
 | `--shadow-card` | `0 1px 2px rgba(13, 20, 26, 0.24), 0 1px 3px rgba(13, 20, 26, 0.16)` | Card |

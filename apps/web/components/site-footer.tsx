@@ -55,7 +55,7 @@ export function SiteFooter() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs text-text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs font-light text-text-muted">
           <span>{RIGHTS_NOTICE}</span>
           <Button asChild variant="secondary" size="sm">
             <Link href="/privacidade">Privacidade</Link>

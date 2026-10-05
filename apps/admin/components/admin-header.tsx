@@ -3,7 +3,7 @@ import { logout } from '@/app/auth-actions'
 import { Logo } from './logo'
 
 const LINK_CLASSES =
-  'py-2 text-sm font-medium text-link underline-offset-6 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2'
+  'py-2 text-sm font-regular text-link uppercase underline-offset-6 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2'
 
 const NAV = [
   { key: 'artigos', label: 'Artigos', href: '/artigos' },

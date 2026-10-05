@@ -12,7 +12,7 @@ export function SiteHeader({ current }: { current?: 'artigos' }) {
           <Link
             href="/artigos"
             aria-current={current === 'artigos' ? 'page' : undefined}
-            className="py-2 text-sm font-medium text-link underline-offset-6 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2"
+            className="py-2 text-sm font-regular text-link uppercase underline-offset-6 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2"
           >
             Artigos
           </Link>

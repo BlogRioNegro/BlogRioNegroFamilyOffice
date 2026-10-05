@@ -14,7 +14,7 @@ export function FeaturedArticleCard({ article }: { article: ArticleCardData }) {
         <time dateTime={article.publishedAt} className="text-xs text-text-muted">
           {article.dateLabel}
         </time>
-        <h2 className="font-serif font-black text-xl text-pretty underline-offset-4 group-hover:underline md:text-2xl">
+        <h2 className="font-serif font-medium text-xl leading-tight text-pretty underline-offset-4 group-hover:underline md:text-2xl">
           {article.title}
         </h2>
       </div>

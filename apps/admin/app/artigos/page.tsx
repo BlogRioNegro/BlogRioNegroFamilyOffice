@@ -133,7 +133,7 @@ function ArticleCards({ articles }: { articles: ArticleRow[] }) {
             <TypeBadge type={article.content_type} />
             {index === 0 ? <FeaturedBadge /> : null}
           </div>
-          <span className="font-serif font-black text-md leading-snug text-pretty">
+          <span className="font-serif font-medium text-md leading-tight text-pretty">
             {article.title}
           </span>
           <div className="flex items-end justify-between gap-3">
@@ -193,7 +193,9 @@ export default async function ArticlesPage() {
       <main className="mx-auto flex w-full max-w-(--layout-admin) flex-col gap-4 px-4 pt-6 pb-12 md:gap-6 md:px-6 md:pt-8 md:pb-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-1">
-            <h1 className="font-serif font-black text-2xl">Artigos</h1>
+            <h1 className="font-serif font-extralight text-2xl leading-tight wrap-anywhere uppercase">
+              Artigos
+            </h1>
             <p className="font-serif font-regular text-xs text-text-muted">
               {count} · o mais recente aparece em destaque no site
             </p>
