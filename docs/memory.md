@@ -9,42 +9,35 @@ trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Remote `origin`
 automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
-Branch `marca-oficial` (sem push): guia oficial da marca, [tasks/marca-oficial.md](tasks/marca-oficial.md).
-MO-001 a MO-004 `[x]`: cores `1b0beda`, fontes `117ac30`, logo e favicon `b997977`, docs `c0268b3` (ADR 0045).
-Gate de 2026-10-02: test (386 unitários + 90 de integração), test:e2e (75) e a11y (22) verdes;
-`pnpm build` falha só por falta de `.env.local` (o build do web roda dentro do e2e).
+Branch `ajuste-tipografia` (a partir da `main`, sem push): [tasks/ajuste-tipografia.md](tasks/ajuste-tipografia.md),
+[ADR 0046](adr/0046-tipografia-e-favicon-do-site-institucional.md). AJ-001 `[x]` em `9442277`.
 
 ## Próxima tarefa
-Nenhuma task aberta. O Rafael confere as capturas (`tests/e2e/__visual__/marca-*.png`) e decide o
-merge de `marca-oficial` na `main` (push na `main` = deploy na Vercel).
+AJ-002: favicon do site institucional (`https://rionegromfo.com.br/wp-content/uploads/2024/08/fav.png`)
+em `app/icon.png` dos dois apps e em `design/design-system/assets/favicon.png`. Depois, o gate final.
 
-## Marca (guia oficial: `design/marca/INFO-RN-MFO.pdf`)
-- Logo branca e favicon "RN" recortados do PDF do guia (`logo-branco.png`, `app/icon.png` nos dois apps).
-- Fontes do guia: Roboto Slab 900 (títulos), Roboto Slab 400 (subtítulos), Roboto (resto).
-- Tema azul único, site e admin (ADR 0043). Cores do guia: fundo `#223645`, superfície `#32566b`,
-  header/rodapé/superfície rebaixada `#1a3544`, ação/link/foco `#d7d1b8`, divisórias `#908c7a`.
-  `--gradient-brand` definido, sem uso em tela. Fora do guia: hover, bordas de controle, texto
-  secundário e cores de estado.
+## Marca
+- Famílias, cores e logo: guia oficial (`design/marca/INFO-RN-MFO.pdf`, ADR 0045). Tema azul único (ADR 0043).
+- Peso, entrelinha, espaçamento e maiúsculas: medidos no site institucional (ADR 0046, com a tabela).
+  H1 Roboto Slab 200 em maiúsculas; títulos de seção e de diálogo 200, maiúsculas, 10 px entre letras;
+  títulos de card 500; menu 400 em maiúsculas; rodapé 300; corpo com entrelinha 1,5.
+- Papéis e classes de tipografia: spec 06, seção Tipografia. Títulos em maiúsculas levam `wrap-anywhere`.
 - Home: só o hero, sem consulta ao banco. Redes sociais no rodapé por env opcional (ADR 0044).
-- Rodapé: "2024 RIO NEGRO FAMILY OFFICE • TODOS OS DIREITOS RESERVADOS". `policy_version = blog-2026-10-v1`.
 
 ## Regras do loop
 - Mudar cor ou fonte é só nos tokens, nos três lugares que o `tokens.test.ts` compara (ui, export, spec 06).
+- Escala nova do Tailwind (peso, entrelinha, espaçamento): registrar em `packages/ui/src/cn.ts`.
 - Código de server é duplicado por app (ADR 0021): mudar nas duas cópias.
 - E2E: web :3100/:3102, admin :3101; parar servidores antes (`taskkill //PID <pid> //T //F`).
 - Nunca ler `.env*`, nunca editar migration, nunca deploy. Push só quando o Rafael pedir.
-- `pnpm test` exige Docker + `pnpm exec supabase start` (parar antes o do original:
-  `pnpm exec supabase stop --project-id rio-negro`).
-- O projeto está vinculado a um Supabase remoto (`supabase link`): a stack local sobe com as versões
-  do remoto. Se o Storage local der `42P10`, rodar `pnpm exec supabase db reset --local` (só o local).
-- As portas 3000/3001 podem estar com o `pnpm dev` do projeto original: usar 3200/3201 no clone.
+- `pnpm test` e os E2E exigem Docker + `pnpm exec supabase start`. Testar antes com `docker info`.
+- Sem banco: subir os apps com as envs de teste do `tests/e2e/playwright.config.ts` em 3200/3201
+  (home, `/privacidade`, erro 404 e login do admin abrem sem Supabase).
 - `pnpm build` exige as envs dos apps: sem `.env.local`, falha em `lib/env.ts` (por desenho).
-- `tokens.test.ts` pode estourar os 5 s com a máquina carregada; rodar de novo antes de investigar.
 
 ## Pendências para o Rafael
+- Docker Desktop respondeu erro 500 em 2026-10-05 (virtualização do Windows): integração e E2E não rodaram.
 - Criar `.env.local` dos dois apps para o `pnpm build` local passar.
-- O `pnpm dev` do projeto original (3000/3001) fala com o Supabase local que estiver no ar: hoje é o
-  do clone. Para voltar ao original: parar o do clone e rodar `supabase start` lá.
 - Conferir `apps/*/.env.example` (o agente não lê `.env*`) e incluir as duas envs de redes sociais.
 - Dados "pendente" em `/privacidade`: razão social, CNPJ, endereço e contato do encarregado.
 - Validação jurídica dos textos pelo cliente; URLs de LinkedIn/Instagram; confirmar o "2024" do rodapé.
