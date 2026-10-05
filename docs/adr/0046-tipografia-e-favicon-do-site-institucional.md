@@ -85,6 +85,17 @@ o texto original.
 admin (500), título do `Alert` (600), `StatusBadge` e `TypeBadge` (500), negrito do artigo (700),
 datas e legendas, textos jurídicos e a nota "Esta é uma prévia…".
 
+### Favicon
+- Origem: `https://rionegromfo.com.br/wp-content/uploads/2024/08/fav.png`, o arquivo que os três
+  `<link>` de ícone do site apontam (`icon` 32×32, `icon` 192×192 e `apple-touch-icon`). Baixado em
+  2026-10-05 com um script Node temporário (não versionado), com autorização do Rafael.
+- É um PNG de **40×40 px**, RGBA, 1.107 bytes: um "R" bege sobre fundo transparente. Copiado byte a
+  byte, sem redesenhar, recolorir nem ampliar, para `app/icon.png` dos dois apps e
+  `design/design-system/assets/favicon.png`.
+- Tem menos de 180 px de lado: em atalho de tela inicial e em aba de alta densidade o navegador
+  amplia a imagem e ela perde nitidez. Para corrigir, só com um arquivo maior vindo do cliente.
+- O proxy do admin continua liberando `/icon.png` sem sessão (ADR 0045).
+
 ## Consequências
 - Um título em maiúsculas ocupa mais largura, e o de seção ainda soma 10 px por letra. Todo título
   nesses dois papéis leva `wrap-anywhere`, que deixa uma palavra maior que a linha quebrar em vez de

@@ -17,10 +17,11 @@ reimplementadas como componentes seguindo as specs 03, 04 e 05, não copiadas.
 ## Requisitos
 
 ### DS-001 · Design system no Claude Design (fase 1)
-Espaçamento, raio e componentes base, herdados do blog original. Cores, fontes, logo e favicon são
+Espaçamento, raio e componentes base, herdados do blog original. Cores, famílias de fonte e logo são
 os do guia oficial da marca (`design/marca/INFO-RN-MFO.pdf`,
 [ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)), aplicados sobre o tema azul único
-([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)).
+([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)). O favicon e os pesos da tipografia são os do
+site institucional ([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md)).
 **Aceite:** design system publicado no Claude Design e aprovado pelo responsável do projeto.
 
 ### DS-002 · Protótipos (fase 1)
