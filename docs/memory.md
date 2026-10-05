@@ -10,11 +10,14 @@ automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é s
 
 ## Fase
 Branch `ajuste-tipografia` (a partir da `main`, sem push): [tasks/ajuste-tipografia.md](tasks/ajuste-tipografia.md),
-[ADR 0046](adr/0046-tipografia-e-favicon-do-site-institucional.md). AJ-001 `[x]` em `9442277`.
+[ADR 0046](adr/0046-tipografia-e-favicon-do-site-institucional.md). AJ-001 `[x]` em `9442277`, AJ-002 `[x]` em `e46dba2`.
+Gate de 2026-10-05, sem Docker: typecheck, lint, format e 395 testes unitários verdes. Não rodaram:
+integração, E2E e a11y (Docker fora do ar) e o `pnpm build` (falta `.env.local`).
 
 ## Próxima tarefa
-AJ-002: favicon do site institucional (`https://rionegromfo.com.br/wp-content/uploads/2024/08/fav.png`)
-em `app/icon.png` dos dois apps e em `design/design-system/assets/favicon.png`. Depois, o gate final.
+Nenhuma task aberta. Com o Docker de volta: `pnpm test`, `pnpm test:e2e` e `A11Y=1 pnpm test:e2e a11y`, e as
+capturas com banco (listagem, artigo, modal de lead, lista do admin). O Rafael confere
+`tests/e2e/__visual__/tipografia-*.png` e decide o merge na `main` (push = deploy na Vercel).
 
 ## Marca
 - Famílias, cores e logo: guia oficial (`design/marca/INFO-RN-MFO.pdf`, ADR 0045). Tema azul único (ADR 0043).
@@ -22,6 +25,7 @@ em `app/icon.png` dos dois apps e em `design/design-system/assets/favicon.png`. 
   H1 Roboto Slab 200 em maiúsculas; títulos de seção e de diálogo 200, maiúsculas, 10 px entre letras;
   títulos de card 500; menu 400 em maiúsculas; rodapé 300; corpo com entrelinha 1,5.
 - Papéis e classes de tipografia: spec 06, seção Tipografia. Títulos em maiúsculas levam `wrap-anywhere`.
+- Favicon: o do site institucional, PNG de 40×40 px (`app/icon.png` nos dois apps e no export).
 - Home: só o hero, sem consulta ao banco. Redes sociais no rodapé por env opcional (ADR 0044).
 
 ## Regras do loop
@@ -36,7 +40,9 @@ em `app/icon.png` dos dois apps e em `design/design-system/assets/favicon.png`. 
 - `pnpm build` exige as envs dos apps: sem `.env.local`, falha em `lib/env.ts` (por desenho).
 
 ## Pendências para o Rafael
-- Docker Desktop respondeu erro 500 em 2026-10-05 (virtualização do Windows): integração e E2E não rodaram.
+- Consertar o Docker Desktop (erro 500 no engine em 2026-10-05, virtualização do Windows).
+- Favicon de 40 px perde nitidez em atalho e tela de alta densidade: pedir ao cliente um arquivo maior.
+- A 390 px, título de seção com palavra de mais de ~14 letras quebra no meio (ex.: "COMPARTILHAMENTO").
 - Criar `.env.local` dos dois apps para o `pnpm build` local passar.
 - Conferir `apps/*/.env.example` (o agente não lê `.env*`) e incluir as duas envs de redes sociais.
 - Dados "pendente" em `/privacidade`: razão social, CNPJ, endereço e contato do encarregado.
