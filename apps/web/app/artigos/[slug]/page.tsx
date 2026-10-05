@@ -55,7 +55,7 @@ export default async function ArticlePage({ params }: PageProps<'/artigos/[slug]
           </Link>
         </Button>
       </div>
-      <h1 className="my-6 font-serif font-black text-3xl text-balance md:my-8 md:text-4xl">
+      <h1 className="my-6 font-serif font-extralight text-3xl text-balance wrap-anywhere uppercase md:my-8 md:text-4xl">
         {article.title}
       </h1>
       <CoverImage src={coverUrl(article.cover_path)} eager className="rounded-card" />
@@ -64,7 +64,7 @@ export default async function ArticlePage({ params }: PageProps<'/artigos/[slug]
         <time dateTime={article.published_at}>{formatPublishedDate(article.published_at)}</time>
       </div>
       {article.summary ? (
-        <p className="mb-6 font-serif font-regular text-lg leading-snug text-pretty text-text-muted md:mb-8 md:text-xl">
+        <p className="mb-6 font-serif font-regular text-lg leading-normal text-pretty text-text-muted md:mb-8 md:text-xl">
           {article.summary}
         </p>
       ) : null}
