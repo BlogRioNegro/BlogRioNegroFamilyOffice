@@ -9,7 +9,7 @@ type Supabase = AdminContext['supabase']
 export type SaveArticleArgs = Database['public']['Functions']['save_article']['Args']
 
 const EDIT_COLUMNS =
-  'id, slug, title, summary, cover_path, content_type, preview_json, preview_pdf_path, published_at, article_contents(body_json, full_pdf_path)'
+  'id, slug, title, subtitle, summary, cover_path, content_type, preview_json, preview_pdf_path, published_at, article_contents(body_json, full_pdf_path)'
 
 /** ADM-004 · Artigo com o conteúdo completo, para a edição (article_contents só o admin lê). */
 export async function findArticleForEdit(supabase: Supabase, id: string) {

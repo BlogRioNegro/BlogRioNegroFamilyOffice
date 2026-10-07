@@ -25,6 +25,7 @@ import { RichTextEditor } from './rich-text-editor'
 export type ArticleFormValues = {
   id: string
   title: string
+  subtitle: string
   slug: string
   summary: string
   contentType: ArticleFields['contentType']
@@ -129,6 +130,14 @@ export function ArticleForm({ initial, isNew }: { initial: ArticleFormValues; is
             if (!slugEdited) setSlug(slugFromTitle(event.target.value))
           }}
           error={errors.title}
+        />
+        <TextField
+          label="Subtítulo"
+          name="subtitle"
+          optional
+          defaultValue={initial.subtitle}
+          error={errors.subtitle}
+          help="Aparece numa segunda linha, menor, abaixo do título. Ex.: 21 a 25 de setembro"
         />
         <TextField
           label="Slug"

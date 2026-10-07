@@ -23,6 +23,7 @@ export default async function NewArticlePage() {
           initial={{
             id: randomUUID(),
             title: '',
+            subtitle: '',
             slug: '',
             summary: '',
             contentType: 'pdf',

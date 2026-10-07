@@ -65,6 +65,12 @@ test.describe('PUB-002 · PUB-003 · Listagem', () => {
     await expect(
       page.getByRole('link', { name: /Carteira recomendada de outubro/ }),
     ).toHaveAttribute('href', '/artigos/carteira-recomendada-outubro')
+    // ADR 0048 · O subtítulo vem num <p> logo abaixo do título do card; sem subtítulo, não há <p>.
+    const cards = page.getByRole('main').getByRole('link')
+    await expect(
+      cards.filter({ hasText: 'Carteira recomendada de outubro' }).locator('h2 + p'),
+    ).toHaveText('Perfis conservador, moderado e arrojado')
+    await expect(cards.filter({ hasText: 'Renda fixa em 2026' }).locator('h2 + p')).toHaveCount(0)
   })
 })
 
@@ -291,7 +297,10 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
   test('artigo pdf com resumo: título, descrição, canonical, og e twitter', async ({ page }) => {
     await page.goto(webUrl('/artigos/carteira-recomendada-outubro'))
 
-    await expect(page).toHaveTitle('Carteira recomendada de outubro · Blog Rio Negro Family Office')
+    // ADR 0048 · Com subtítulo, <title> e Open Graph usam "Título: Subtítulo".
+    await expect(page).toHaveTitle(
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado · Blog Rio Negro Family Office',
+    )
     const description = 'Alocação sugerida por perfil de risco para o próximo mês.'
     await expect(meta(page, 'name', 'description')).toHaveAttribute('content', description)
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -301,7 +310,11 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
     await expect(meta(page, 'property', 'og:type')).toHaveAttribute('content', 'article')
     await expect(meta(page, 'property', 'og:title')).toHaveAttribute(
       'content',
-      'Carteira recomendada de outubro',
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado',
+    )
+    await expect(meta(page, 'name', 'twitter:title')).toHaveAttribute(
+      'content',
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado',
     )
     await expect(meta(page, 'property', 'og:description')).toHaveAttribute('content', description)
     await expect(meta(page, 'property', 'og:image')).toHaveAttribute(
@@ -321,6 +334,8 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
   test('rich_text sem resumo usa o texto da prévia como descrição', async ({ page }) => {
     await page.goto(webUrl('/artigos/sem-resumo'))
 
+    await expect(page).toHaveTitle('Artigo sem resumo · Blog Rio Negro Family Office')
+    await expect(meta(page, 'property', 'og:title')).toHaveAttribute('content', 'Artigo sem resumo')
     await expect(meta(page, 'name', 'description')).toHaveAttribute(
       'content',
       'Primeiro parágrafo da prévia.',
@@ -390,6 +405,11 @@ test.describe('PUB-012 · RSS', () => {
     expect(xml).toContain('<rss version="2.0"')
     expect(xml.match(/<item>/g)).toHaveLength(3)
     expect(xml).toContain(`<link>${webUrl('/artigos/renda-fixa-em-2026')}</link>`)
+    // ADR 0048 · Título do item com o subtítulo; sem subtítulo, só o título.
+    expect(xml).toContain(
+      `<title>Carteira recomendada de outubro: Perfis conservador, moderado e arrojado</title>`,
+    )
+    expect(xml).toContain('<title>Renda fixa em 2026: o que muda para o investidor</title>')
     expect(xml).toContain(
       '<description>Um panorama dos títulos públicos e privados diante da nova trajetória de juros.</description>',
     )

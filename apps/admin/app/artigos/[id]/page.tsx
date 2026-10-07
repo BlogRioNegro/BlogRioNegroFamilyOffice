@@ -36,6 +36,7 @@ export default async function EditArticlePage({ params }: PageProps<'/artigos/[i
           initial={{
             id: article.id,
             title: article.title,
+            subtitle: article.subtitle ?? '',
             slug: article.slug,
             summary: article.summary ?? '',
             contentType: article.content_type,

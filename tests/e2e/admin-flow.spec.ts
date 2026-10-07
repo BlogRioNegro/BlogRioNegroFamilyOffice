@@ -34,7 +34,7 @@ async function filesOf(id: string) {
 async function startArticle(page: Page, title: string) {
   await page.goto('/artigos/novo')
   created.push(await page.locator('input[name="id"]').inputValue())
-  await page.getByLabel('Título').fill(title)
+  await page.getByLabel('Título', { exact: true }).fill(title)
   await page.getByLabel('Capa').setInputFiles(PNG)
 }
 
@@ -91,7 +91,7 @@ test('login → criar pdf e texto → editar slug (301) → excluir', async ({ p
     .getByRole('link', { name: 'Editar' })
     .click()
   await expect(page.getByText('Se mudar, os links antigos continuarão funcionando.')).toBeVisible()
-  await page.getByLabel('Título').fill(`${PDF_ARTICLE.title} editado`)
+  await page.getByLabel('Título', { exact: true }).fill(`${PDF_ARTICLE.title} editado`)
   await expect(page.getByLabel('Slug')).toHaveValue(PDF_ARTICLE.slug)
   await page.getByLabel('Slug').fill(NEW_SLUG)
   await page.getByRole('button', { name: 'Publicar' }).click()

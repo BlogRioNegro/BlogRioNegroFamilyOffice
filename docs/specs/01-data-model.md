@@ -18,6 +18,7 @@ Políticas de acesso de cada tabela e bucket: [02-security-rls](02-security-rls.
 | `id` | uuid PK | `gen_random_uuid()` |
 | `slug` | text unique not null | `^[a-z0-9]+(-[a-z0-9]+)*$`, máx. 120 |
 | `title` | text not null | 3–160 caracteres |
+| `subtitle` | text null | 1–160 caracteres; segunda linha do título ([ADR 0048](../adr/0048-subtitulo-do-artigo.md)) |
 | `summary` | text null | máx. 160 caracteres |
 | `cover_path` | text not null | caminho no bucket `covers` |
 | `content_type` | enum `article_content_type` (`pdf`, `rich_text`) not null | |
@@ -33,6 +34,7 @@ Não existe coluna de status nem de destaque ([ADR 0004](../adr/0004-destaque-au
 - CHECK garante a combinação `content_type` × `preview_json`/`preview_pdf_path`.
 - Índice em `published_at desc, created_at desc`.
 - Nenhuma coluna guarda conteúdo completo.
+- `subtitle` nunca é string vazia: sem subtítulo, a coluna é `null` (CHECK e `save_article`).
 
 ### DATA-002 · Tabela `article_contents` (conteúdo completo, privado)
 
@@ -44,7 +46,9 @@ Não existe coluna de status nem de destaque ([ADR 0004](../adr/0004-destaque-au
 | `updated_at` | timestamptz not null | default `now()`; trigger |
 
 **Aceite:** todo artigo tem exatamente uma linha em `article_contents`, criada na mesma
-transação (função `save_article` ou Server Action transacional).
+transação (função `save_article` ou Server Action transacional). `save_article` aceita `subtitle`
+como parâmetro opcional (`default null`): quem chama sem ele continua atendido
+([ADR 0048](../adr/0048-subtitulo-do-artigo.md)).
 
 ### DATA-003 · Tabela `article_slug_history`
 
@@ -122,7 +126,8 @@ por magic bytes ([ADM-006](05-admin-panel.md)), com os mesmos números lidos de 
 **Aceite:**
 - Toda mudança de schema é uma migration em `supabase/migrations/`, versionada.
 - `pnpm db:types` gera `packages/db/src/types.gen.ts`; o arquivo gerado é commitado.
-- `supabase db reset` recria o banco local com seed (admin local + 3 artigos de exemplo, com capas e
+- `supabase db reset` recria o banco local com seed (admin local + 3 artigos de exemplo, um deles com
+  subtítulo, com capas e
   prévias pdf enviadas ao Storage a partir de `supabase/storage`; [ADR 0027](../adr/0027-seed-de-arquivos-no-storage-local.md)).
 
 ## Fora de escopo

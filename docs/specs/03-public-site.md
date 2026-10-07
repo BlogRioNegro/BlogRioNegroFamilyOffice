@@ -22,8 +22,9 @@ destaque; alterar `published_at` de outro artigo para mais recente troca o desta
 
 ### PUB-003 · Listagem `/artigos`
 Coluna única: destaque no topo; abaixo, os demais em ordem `published_at desc`, sem repetir
-o destaque. Card: capa + título (+ data).
-**Aceite:** o destaque nunca aparece duas vezes; a ordem é estável com datas iguais.
+o destaque. Card: capa + título (+ subtítulo, se houver) (+ data).
+**Aceite:** o destaque nunca aparece duas vezes; a ordem é estável com datas iguais; o subtítulo
+aparece logo abaixo do título do card e, sem subtítulo, o card não muda.
 
 ### PUB-004 · "Carregar mais"
 Lotes de 10 artigos. O botão "Carregar mais" busca o próximo lote sem recarregar a página.
@@ -32,7 +33,8 @@ Fallback para crawlers e sem JS: o botão é um link `/artigos?page=N` renderiza
 o botão some quando não há mais artigos; `page` inválido cai na página 1.
 
 ### PUB-005 · Página do artigo `/artigos/[slug]`
-Mostra título, capa, data de publicação, resumo (se houver) e a **prévia**
+Mostra título, subtítulo (se houver, numa segunda linha menor;
+[ADR 0048](../adr/0048-subtitulo-do-artigo.md)), capa, data de publicação, resumo (se houver) e a **prévia**
 ([ADR 0007](../adr/0007-conteudo-gated-previa-publica.md)), seguida do botão
 "Baixar artigo completo" que abre o modal de [04-lead-capture](04-lead-capture.md).
 A página nunca consulta `article_contents` nem `article-files`.
@@ -63,10 +65,11 @@ Rotas que leem artigos são dinâmicas, sem cache de dados
 `generateMetadata` por artigo: `title`, `description`, `canonical`, `og:title`,
 `og:description`, `og:image` (capa, URL absoluta), `og:type=article`,
 `article:published_time`, `twitter:card=summary_large_image`.
+Título: com subtítulo, "Título: Subtítulo" ([ADR 0048](../adr/0048-subtitulo-do-artigo.md)).
 Descrição: `summary`; se vazio, rich_text usa os primeiros ~160 caracteres do texto da
 prévia; pdf usa a descrição padrão do blog.
 **Aceite:** preview correto no WhatsApp e no LinkedIn Post Inspector para um artigo de cada
-tipo, com e sem resumo.
+tipo, com e sem resumo; `<title>` e `og:title` trazem "Título: Subtítulo" quando há subtítulo.
 
 ### PUB-011 · Sitemap e robots
 `/sitemap.xml` com home, `/artigos` e todos os artigos (`lastmod = updated_at`);
@@ -74,7 +77,8 @@ tipo, com e sem resumo.
 **Aceite:** sitemap válido; slugs antigos não aparecem.
 
 ### PUB-012 · RSS
-`/rss.xml` (RSS 2.0) com os 20 artigos mais recentes: título, link, data, descrição
+`/rss.xml` (RSS 2.0) com os 20 artigos mais recentes: título ("Título: Subtítulo" quando há
+subtítulo), link, data, descrição
 (mesma regra de PUB-010) e capa como `enclosure`.
 **Aceite:** feed valida no W3C Feed Validator; não inclui conteúdo completo.
 
@@ -145,9 +149,10 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 ### Listagem (`/artigos`, PUB-002 a PUB-004)
 - H1 "Artigos"; card de destaque no topo e, abaixo, os demais em **coluna única**.
 - **Card de destaque**: superfície com `--radius-card` e `--shadow-card`; capa 16:9 e texto lado a
-  lado a partir de 768 px (empilha no mobile, capa acima); título 24 px (mobile) / 30 px; data.
+  lado a partir de 768 px (empilha no mobile, capa acima); título 24 px (mobile) / 30 px; subtítulo,
+  se houver, logo abaixo (`<p>`, Roboto Slab 400, 20 / 24 px); data.
 - **Card**: o card inteiro é o link; capa 16:9 na largura toda, título (Roboto Slab 18/900, até ~3
-  linhas) e data. Sem capa: área neutra `--color-surface-muted`. Hover: borda `--color-border-strong`
+  linhas), subtítulo, se houver (`<p>`, Roboto Slab 400, 16 px), e data. Sem capa: área neutra `--color-surface-muted`. Hover: borda `--color-border-strong`
   e título sublinhado; foco: anel de 2 px.
 - **"Carregar mais"**: `Button` secundário centralizado, 44 px, largura mínima 240 px. Estados:
   carregando (`loading`, anunciado em região `aria-live`), erro ("Tentar novamente") e fim da lista
@@ -156,7 +161,8 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 
 ### Artigo (`/artigos/[slug]`, PUB-005 a PUB-007)
 - `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos`.
-- H1, capa 16:9, formato (`TypeBadge`) + data e resumo (Roboto Slab 400, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
+- H1, subtítulo se houver (`<p>` logo abaixo do H1, Roboto Slab 400, 24 px no mobile e 30 px ≥ 768 px;
+  não é heading), capa 16:9, formato (`TypeBadge`) + data e resumo (Roboto Slab 400, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
 - **Prévia `rich_text`**: texto em `--font-sans` (Roboto), `--font-size-article` (18/1.5 mobile,
   20/1.5 ≥ 768 px), largura máxima `--measure-article`; H2 (24 px) e H3 (18 px) em Roboto Slab Black;
   citações com borda

@@ -83,6 +83,7 @@ export type Database = {
           preview_pdf_path: string | null
           published_at: string
           slug: string
+          subtitle: string | null
           summary: string | null
           title: string
           updated_at: string
@@ -96,6 +97,7 @@ export type Database = {
           preview_pdf_path?: string | null
           published_at?: string
           slug: string
+          subtitle?: string | null
           summary?: string | null
           title: string
           updated_at?: string
@@ -109,6 +111,7 @@ export type Database = {
           preview_pdf_path?: string | null
           published_at?: string
           slug?: string
+          subtitle?: string | null
           summary?: string | null
           title?: string
           updated_at?: string
@@ -217,6 +220,7 @@ export type Database = {
           preview_pdf_path?: string
           published_at: string
           slug: string
+          subtitle?: string
           summary?: string
           title: string
         }

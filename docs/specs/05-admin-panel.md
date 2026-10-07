@@ -25,15 +25,18 @@ Todas as rotas exceto `/login` exigem sessão de admin.
 ## Artigos
 
 ### ADM-003 · Lista de artigos
-Tabela com título, tipo, data de publicação, nº de leads e ações (editar, ver leads, excluir),
+Tabela com título (e subtítulo, se houver), tipo, data de publicação, nº de leads e ações (editar,
+ver leads, excluir),
 ordenada por `published_at desc`.
 **Aceite:** o artigo em destaque (mais recente) é sinalizado apenas como informação.
 
 ### ADM-004 · Formulário de artigo
-Campos: título, slug, resumo (opcional), capa, `content_type`, conteúdo (editor **ou**
+Campos: título, subtítulo (opcional, [ADR 0048](../adr/0048-subtitulo-do-artigo.md)), slug, resumo
+(opcional), capa, `content_type`, conteúdo (editor **ou**
 upload de PDF, conforme o tipo), data de publicação. Salvar = publicar
 ([ADR 0005](../adr/0005-publicacao-imediata.md)). Validação Zod no client e na Server Action.
-**Aceite:** erros por campo; salvar com sucesso deixa o artigo visível no site no próximo request.
+**Aceite:** erros por campo; salvar com sucesso deixa o artigo visível no site no próximo request;
+subtítulo aparado, com até 160 caracteres, e vazio gravado como `null`.
 
 ### ADM-005 · Editor rich text
 Tiptap com: títulos (H2, H3), negrito, itálico, listas ordenada e não ordenada, link, citação
@@ -59,12 +62,12 @@ um novo PDF → `article-previews` ([ADR 0008](../adr/0008-geracao-pdf.md)).
 ### ADM-008 · Processamento de artigo `rich_text`
 Ao salvar: documento completo → `article_contents.body_json`; os **3 primeiros blocos** de
 nível superior → `articles.preview_json`; PDF completo gerado com `@react-pdf/renderer`
-(título, capa, conteúdo) → `article-files`.
+(título, subtítulo se houver, capa, conteúdo) → `article-files`.
 **Aceite:** a regra de corte é função pura testada; o PDF gerado contém todo o texto e as
 imagens; editar o conteúdo regenera prévia e PDF.
 
 ### ADM-009 · Slug
-Gerado do título na criação (minúsculo, sem acento, hífens). **Editável** a qualquer momento.
+Gerado do título na criação (minúsculo, sem acento, hífens); o subtítulo não entra no slug. **Editável** a qualquer momento.
 Ao editar, o slug anterior vai para `article_slug_history` e redireciona com 301
 ([ADR 0006](../adr/0006-slug-editavel-historico-301.md), [DATA-003](01-data-model.md), [PUB-008](03-public-site.md)).
 Editar o título **não** altera o slug.
@@ -130,7 +133,7 @@ sem "esqueci a senha". Erros em `Alert` de erro acima dos campos:
 - H1 "Artigos", subtítulo "<n> publicados · o mais recente aparece em destaque no site" e
   `Button` primário sm "Novo artigo" (ícone +).
 - Tabela (legenda "Artigos publicados"): Título (com o selo "Em destaque" no mais recente, só
-  informativo), Tipo (`TypeBadge`), Publicação, Leads (alinhado à direita) e Ações: `Button`
+  informativo, e o subtítulo abaixo, em `text-xs` e `--color-text-muted`), Tipo (`TypeBadge`), Publicação, Leads (alinhado à direita) e Ações: `Button`
   ghost sm "Editar", "Ver leads" e "Excluir".
 - Excluir: `Dialog` "Excluir artigo?" com "“<título>” será removido do site. Esta ação não pode
   ser desfeita.".
@@ -141,7 +144,8 @@ sem "esqueci a senha". Erros em `Alert` de erro acima dos campos:
 - Bloco inteiro (voltar, título, card e rodapé) na largura de leitura, centralizado na página
   ([ADR 0040](../adr/0040-formulario-de-artigo-centralizado.md)).
 - `Button` link "Artigos" (voltar), H1 "Novo artigo" ou "Editar artigo".
-- Campos, nesta ordem: Título; Slug (ajuda "Endereço do artigo: /artigos/<slug>. Gerado a partir
+- Campos, nesta ordem: Título; Subtítulo (opcional; ajuda "Aparece numa segunda linha, menor, abaixo
+  do título. Ex.: 21 a 25 de setembro"); Slug (ajuda "Endereço do artigo: /artigos/<slug>. Gerado a partir
   do título; pode ser editado."; na edição, avisa que links antigos continuarão funcionando);
   Resumo (opcional, `<textarea>` com a aparência do `Input`; ajuda "Aparece abaixo do título do
   artigo e no card de destaque."); Capa (arquivo JPG ou PNG de até 5 MB, ajuda "Proporção 16:9. JPG ou PNG de até 5 MB; a imagem

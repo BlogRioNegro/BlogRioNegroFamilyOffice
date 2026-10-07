@@ -1,4 +1,4 @@
--- Seed local (DATA-008): admin local e 3 artigos de exemplo. Capas e prévias estão em supabase/storage (config.toml); os PDFs completos não existem.
+-- Seed local (DATA-008): admin local e 3 artigos de exemplo (o 2º com subtítulo). Capas e prévias estão em supabase/storage (config.toml); os PDFs completos não existem.
 -- Cada artigo e seu conteúdo entram no mesmo statement, porque a F3-005 checa o 1:1 no commit.
 
 with article as (
@@ -23,11 +23,12 @@ select
 from article;
 
 with article as (
-  insert into public.articles (id, slug, title, summary, cover_path, content_type, preview_pdf_path, published_at)
+  insert into public.articles (id, slug, title, subtitle, summary, cover_path, content_type, preview_pdf_path, published_at)
   values (
     '22222222-2222-4222-8222-222222222222',
     'carteira-recomendada-outubro',
     'Carteira recomendada de outubro',
+    'Perfis conservador, moderado e arrojado',
     'Alocação sugerida por perfil de risco para o próximo mês.',
     '22222222-2222-4222-8222-222222222222/b1b2c3d4-0000-4000-8000-000000000001.png',
     'pdf',

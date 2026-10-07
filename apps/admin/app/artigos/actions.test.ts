@@ -38,6 +38,7 @@ const EXISTING: ArticleForEdit = {
   id: ID,
   slug: 'carteira-de-outubro',
   title: 'Carteira de outubro',
+  subtitle: null,
   summary: null,
   cover_path: `${ID}/capa-antiga.png`,
   content_type: 'pdf',
@@ -137,6 +138,7 @@ describe('saveArticle', () => {
       article_id: ID,
       slug: 'carteira-de-outubro',
       title: 'Carteira recomendada de outubro',
+      subtitle: undefined,
       summary: undefined,
       cover_path: EXISTING.cover_path,
       content_type: 'pdf',
@@ -147,6 +149,27 @@ describe('saveArticle', () => {
       full_pdf_path: `${ID}/completo.pdf`,
     })
     expect(store.uploadFile).not.toHaveBeenCalled()
+  })
+
+  it('grava o subtítulo aparado e trata o campo vazio como ausente', async () => {
+    await expect(saveArticle(null, form({ subtitle: '  21 a 25 de setembro  ' }))).rejects.toThrow(
+      'NEXT_REDIRECT',
+    )
+    await expect(saveArticle(null, form({ subtitle: '   ' }))).rejects.toThrow('NEXT_REDIRECT')
+
+    expect(store.saveArticleRecord.mock.calls[0]?.[1]).toMatchObject({
+      title: 'Carteira recomendada de outubro',
+      slug: 'carteira-de-outubro',
+      subtitle: '21 a 25 de setembro',
+    })
+    expect(store.saveArticleRecord.mock.calls[1]?.[1].subtitle).toBeUndefined()
+  })
+
+  it('recusa o subtítulo com mais de 160 caracteres, sem salvar', async () => {
+    const result = await saveArticle(null, form({ subtitle: 'x'.repeat(161) }))
+
+    expect(result?.fieldErrors).toEqual({ subtitle: ARTICLE_MESSAGES.subtitle })
+    expect(store.saveArticleRecord).not.toHaveBeenCalled()
   })
 
   it('troca a capa e remove a antiga depois de salvar', async () => {
