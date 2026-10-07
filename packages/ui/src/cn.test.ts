@@ -5,7 +5,7 @@ import { cn } from './cn'
 // utilitário de um grupo anula o de outro que tem o mesmo prefixo (font-*, text-*).
 
 describe('cn', () => {
-  it.each(['extralight', 'light', 'regular', 'medium', 'semibold', 'bold'])(
+  it.each(['light', 'regular', 'medium', 'semibold', 'bold', 'black'])(
     'o peso font-%s não anula a família font-serif',
     (weight) => {
       expect(cn('font-serif', `font-${weight}`)).toBe(`font-serif font-${weight}`)
@@ -14,17 +14,20 @@ describe('cn', () => {
   )
 
   it('o último peso vence', () => {
-    expect(cn('font-serif font-medium', 'font-extralight')).toBe('font-serif font-extralight')
+    expect(cn('font-serif font-medium', 'font-black')).toBe('font-serif font-black')
   })
 
   it('a última família vence', () => {
     expect(cn('font-sans font-light', 'font-serif')).toBe('font-light font-serif')
   })
 
-  it('a entrelinha e o espaçamento dos títulos de seção convivem com tamanho e cor', () => {
-    const classes = 'text-xl leading-section tracking-section text-text'
+  it('o tamanho do H1 convive com a cor e cede a outro tamanho', () => {
+    expect(cn('text-h1 text-text')).toBe('text-h1 text-text')
+    expect(cn('text-3xl', 'text-h1')).toBe('text-h1')
+    expect(cn('text-h1', 'text-xl')).toBe('text-xl')
+  })
 
-    expect(cn(classes)).toBe(classes)
-    expect(cn('leading-tight', 'leading-section')).toBe('leading-section')
+  it('a última entrelinha vence', () => {
+    expect(cn('leading-tight', 'leading-snug')).toBe('leading-snug')
   })
 })

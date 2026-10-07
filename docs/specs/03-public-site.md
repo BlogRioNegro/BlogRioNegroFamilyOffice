@@ -125,19 +125,18 @@ spec, vale a spec (divergências abaixo).
   de apoio. Mobile: empilha logotipo/CTA, linha de
   direitos, "Privacidade".
 - **Tipografia** (famílias do guia da marca, [ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md);
-  pesos, entrelinha, espaçamento e maiúsculas do site institucional,
-  [ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md); papéis e classes na
-  [spec 06](06-design-system.md#tipografia)): H1 em Roboto Slab 200, maiúsculas; H2/H3 em Roboto Slab 200,
-  maiúsculas com 10 px entre letras; títulos de card em Roboto Slab 500; subtítulos (resumo do artigo,
-  linha de apoio do título) em Roboto Slab 400; link do menu em Roboto 400, maiúsculas; todo o resto em
-  Roboto. H1 `--font-size-h1` (36 px mobile, 48 px ≥ 768 px); datas no formato
-  "15 set. 2026" em `text-xs` e `--color-text-muted`.
+  títulos conforme a [ADR 0047](../adr/0047-titulos-em-roboto-slab-black.md); papéis, classes e tamanhos
+  na [spec 06](06-design-system.md#tipografia)): todo título (H1, H2/H3, card, destaque e diálogo) em
+  Roboto Slab Black (900), na caixa em que foi digitado e sem espaçamento entre letras; subtítulos (resumo
+  do artigo, linha de apoio do título) em Roboto Slab 400; link do menu em Roboto 400, maiúsculas; todo o
+  resto em Roboto. H1 `--font-size-h1` (28 px mobile, 36 px ≥ 768 px), e nenhum outro título o alcança;
+  datas no formato "15 set. 2026" em `text-xs` e `--color-text-muted`.
 
 ### Home (`/`, PUB-001)
 Hero sem consulta ao banco, ocupando a altura entre o header e o rodapé, com o conteúdo centralizado
 na vertical: H1 "Artigos, estudos e perspectivas da nossa equipe
-de consultores e especialistas." em Roboto Slab (36 px no mobile, `--font-size-5xl` ≥ 768 px, peso
-200, maiúsculas, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
+de consultores e especialistas." em Roboto Slab Black, no tamanho de H1 das outras páginas (28 px no
+mobile, 36 px ≥ 768 px, até ~20 caracteres por linha), **sem subtítulo**, e `Button` primário "Ver artigos" → `/artigos`
 (100% da largura no mobile). Fundo em degradê de `--color-bg` para `--color-surface-muted` e, a partir
 de 768 px, três anéis concêntricos em `--color-border` à direita (decorativos, `aria-hidden`)
 ([ADR 0042](../adr/0042-clone-rio-negro-family-office.md),
@@ -147,7 +146,7 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 - H1 "Artigos"; card de destaque no topo e, abaixo, os demais em **coluna única**.
 - **Card de destaque**: superfície com `--radius-card` e `--shadow-card`; capa 16:9 e texto lado a
   lado a partir de 768 px (empilha no mobile, capa acima); título 24 px (mobile) / 30 px; data.
-- **Card**: o card inteiro é o link; capa 16:9 na largura toda, título (Roboto Slab 18/500, até ~3
+- **Card**: o card inteiro é o link; capa 16:9 na largura toda, título (Roboto Slab 18/900, até ~3
   linhas) e data. Sem capa: área neutra `--color-surface-muted`. Hover: borda `--color-border-strong`
   e título sublinhado; foco: anel de 2 px.
 - **"Carregar mais"**: `Button` secundário centralizado, 44 px, largura mínima 240 px. Estados:
@@ -159,8 +158,8 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 - `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos`.
 - H1, capa 16:9, formato (`TypeBadge`) + data e resumo (Roboto Slab 400, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
 - **Prévia `rich_text`**: texto em `--font-sans` (Roboto), `--font-size-article` (18/1.5 mobile,
-  20/1.5 ≥ 768 px), largura máxima `--measure-article`; H2/H3 em Roboto Slab 200, maiúsculas com 10 px
-  entre letras; citações com borda
+  20/1.5 ≥ 768 px), largura máxima `--measure-article`; H2 (24 px) e H3 (18 px) em Roboto Slab Black;
+  citações com borda
   esquerda de 2 px; imagens só com `alt`, sem legenda ([ADR 0031](../adr/0031-imagem-do-rich-text-so-com-alt.md)).
 - **Prévia `pdf`**: área neutra com borda (`--radius-card`) contendo o PDF embutido e o rótulo
   "Prévia". Fallback quando o navegador não embute: "Seu navegador não exibe o PDF nesta página."

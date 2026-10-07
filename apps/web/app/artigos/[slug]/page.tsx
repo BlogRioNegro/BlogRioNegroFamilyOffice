@@ -55,7 +55,7 @@ export default async function ArticlePage({ params }: PageProps<'/artigos/[slug]
           </Link>
         </Button>
       </div>
-      <h1 className="my-6 font-serif font-extralight text-3xl text-balance wrap-anywhere uppercase md:my-8 md:text-4xl">
+      <h1 className="my-6 font-serif font-black text-h1 text-balance wrap-anywhere md:my-8">
         {article.title}
       </h1>
       <CoverImage src={coverUrl(article.cover_path)} eager className="rounded-card" />

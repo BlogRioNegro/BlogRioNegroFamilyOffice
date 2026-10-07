@@ -6,7 +6,8 @@
   (o tema azul único de lá continua valendo)
 - Tasks: [marca-oficial](../tasks/marca-oficial.md) (MO-001 a MO-004)
 - Substituída em parte pela [ADR 0046](0046-tipografia-e-favicon-do-site-institucional.md): o peso
-  900 dos títulos e o favicon "RN" (famílias, cores e logo continuam valendo)
+  900 dos títulos e o favicon "RN" (famílias, cores e logo continuam valendo). O peso 900 dos títulos
+  voltou com a [ADR 0047](0047-titulos-em-roboto-slab-black.md)
 
 ## Contexto
 Até aqui a marca vinha do CSS do site institucional, com valores vizinhos dos oficiais (`#233645`,

@@ -60,9 +60,7 @@ export default function PrivacyPage() {
     <>
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-(--layout-reading) flex-1 flex-col px-4 pt-8 pb-16 md:px-0 md:pt-16 md:pb-24">
-        <h1 className="font-serif font-extralight text-3xl wrap-anywhere uppercase md:text-4xl">
-          Aviso de privacidade
-        </h1>
+        <h1 className="font-serif font-black text-h1 wrap-anywhere">Aviso de privacidade</h1>
         <p className="mt-3 mb-6 text-xs text-text-muted md:mb-8">
           Atualizado em <time dateTime="2026-10-01">1 out. 2026</time>
         </p>
@@ -71,7 +69,7 @@ export default function PrivacyPage() {
             <section key={title}>
               <h2
                 className={cn(
-                  'mb-[0.6em] font-serif font-extralight text-xl leading-section tracking-section wrap-anywhere uppercase',
+                  'mb-[0.6em] font-serif font-black text-xl wrap-anywhere',
                   index === 0 ? 'mt-0' : 'mt-[2em]',
                 )}
               >

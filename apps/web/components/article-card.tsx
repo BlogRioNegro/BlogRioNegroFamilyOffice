@@ -14,7 +14,7 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
         <time dateTime={article.publishedAt} className="text-xs text-text-muted">
           {article.dateLabel}
         </time>
-        <h2 className="line-clamp-3 font-serif font-medium text-md leading-tight text-pretty underline-offset-4 group-hover:underline">
+        <h2 className="line-clamp-3 font-serif font-black text-md leading-snug text-pretty wrap-anywhere underline-offset-4 group-hover:underline">
           {article.title}
         </h2>
       </div>

@@ -5,6 +5,9 @@
 - Substitui: o "Roboto Slab Black (900) em títulos" e o favicon "RN" da
   [ADR 0045](0045-marca-oficial-conforme-o-guia.md) (famílias, cores e logo de lá continuam valendo)
 - Tasks: [ajuste-tipografia](../tasks/ajuste-tipografia.md) (AJ-001 e AJ-002)
+- Substituída em parte pela [ADR 0047](0047-titulos-em-roboto-slab-black.md): peso, entrelinha,
+  espaçamento entre letras, maiúsculas e tamanho dos **títulos** (menu, rodapé, texto corrido e favicon
+  continuam valendo)
 
 ## Contexto
 Com o guia aplicado (ADR 0045), o cliente achou os títulos em Roboto Slab 900 pesados e pediu a
