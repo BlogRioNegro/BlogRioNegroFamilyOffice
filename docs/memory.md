@@ -9,20 +9,20 @@ trocada ([ADR 0042](adr/0042-clone-rio-negro-family-office.md)). Remote `origin`
 automático na Vercel.** O original em `C:\Users\Rafael\projetos\rio-negro` é somente leitura.
 
 ## Fase
-Branch `titulos-black` (a partir da `main`, sem push): [tasks/titulos-black.md](tasks/titulos-black.md), toda `[x]`.
-TB-001 `6f91dee` ([ADR 0047](adr/0047-titulos-em-roboto-slab-black.md)); TB-002 `9e77489`
-([ADR 0048](adr/0048-subtitulo-do-artigo.md), migration `20261007120000_article_subtitle.sql`); TB-003 `d32a738`
-([ADR 0049](adr/0049-voltar-no-cabecalho-do-site.md)). Gate completo com Docker em 2026-10-07: typecheck, lint,
-format, `pnpm test`, `pnpm test:e2e` e `A11Y=1 pnpm test:e2e a11y` verdes; `pnpm db:types` sem diff.
-`pnpm build` compila, mas falha na coleta de páginas por falta de `.env.local`.
+Branch `main`. A `titulos-black` entrou pelo PR #3 (`4dcfc8e`): TB-001 ([ADR 0047](adr/0047-titulos-em-roboto-slab-black.md)),
+TB-002 ([ADR 0048](adr/0048-subtitulo-do-artigo.md)) e TB-003 ([ADR 0049](adr/0049-voltar-no-cabecalho-do-site.md)).
+Depois, `c16a0df` (local, **sem push**): títulos em Roboto Slab Bold, `--font-weight-black` de 900 para 700.
+Gate rápido em 2026-10-07: typecheck, lint, format e `tokens.test.ts` verdes. `pnpm build` compila, mas
+falha na coleta de páginas (`/sitemap.xml`) por falta de `.env.local`. Integração, E2E e a11y não rodaram.
 
 ## Próxima tarefa
-Nenhuma task aberta. Aguardando o Rafael conferir no navegador e decidir o merge (ver Pendências).
+Nenhuma task aberta. Falta o `git push origin main` do `c16a0df` (ver Pendências).
 
 ## Marca e navegação
 - Famílias, cores e logo: guia oficial (`design/marca/INFO-RN-MFO.pdf`, ADR 0045). Tema azul único (ADR 0043).
-- Títulos (ADR 0047): Roboto Slab 900, caixa digitada, letras juntas. H1 de toda página (site e admin,
-  hero e login inclusive) com `text-h1`: 28 px / 36 px ≥ 768 px. Nenhum outro título alcança o H1.
+- Títulos (ADR 0047): Roboto Slab 700 (classe `font-black`, token em 700), caixa digitada, letras juntas.
+  H1 de toda página (site e admin, hero e login inclusive) com `text-h1`: 28 px / 36 px ≥ 768 px.
+  Nenhum outro título alcança o H1.
 - Menu (400, maiúsculas), rodapé (300), texto corrido (entrelinha 1,5) e favicon: ADR 0046. Tipografia: spec 06.
 - Subtítulo do artigo (ADR 0048): `<p>` em Roboto Slab 400 abaixo do título; "Título: Subtítulo" em
   `<title>`, OG e RSS (`articleFullTitle`). Nos E2E, `getByLabel('Título', { exact: true })`.
@@ -39,8 +39,9 @@ Nenhuma task aberta. Aguardando o Rafael conferir no navegador e decidir o merge
 - `pnpm test` e os E2E exigem Docker + `pnpm exec supabase start`. Testar antes com `docker info`.
 
 ## Pendências para o Rafael
-- **ANTES do merge na main: (1) gate completo com Docker verde; (2) o Rafael aplica a migration do
-  subtítulo no Supabase de PRODUÇÃO (`supabase db push`). Código novo sem a coluna em produção derruba o site.**
+- **Push do `c16a0df` na `main` (publica na Vercel): não foi feito, porque o `pnpm build` local não fecha
+  sem `.env.local`. Decidir: criar o `.env.local` e repetir o build, ou liberar o push assim mesmo.**
+- `tests/e2e/titles.spec.ts` passou a esperar peso 700, mas os E2E não rodaram depois da troca.
 - Criar `.env.local` dos dois apps: sem ele o `pnpm build` não fecha e o `pnpm dev` precisa das envs à mão.
 - Hero da home: com o H1 em 36 px, os anéis de 720 px ficaram grandes ao lado do título. Reduzir é layout.
 - Login do admin: "Entrar no painel" em 36 px pode quebrar em duas linhas no cartão.
