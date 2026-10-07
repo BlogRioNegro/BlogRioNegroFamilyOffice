@@ -42,8 +42,8 @@
   --color-overlay: rgba(13, 20, 26, 0.64);
 
   /* 'Roboto' e 'Roboto Slab' vêm do next/font (fonts.ts), que expõe a família como variável.
-     font-serif é a Roboto Slab do guia: títulos em Black (900) e subtítulos em Regular
-     (400), como manda o guia (ADR 0047). */
+     font-serif é a Roboto Slab do guia: títulos em Bold (700, no token --font-weight-black, por
+     decisão do cliente) e subtítulos em Regular (400) (ADR 0047). */
   --font-sans: var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: var(--font-roboto-slab), Georgia, 'Times New Roman', serif;
 
@@ -52,7 +52,7 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-weight-black: 900;
+  --font-weight-black: 700;
 
   --radius-control: 6px;
   --radius-card: 12px;

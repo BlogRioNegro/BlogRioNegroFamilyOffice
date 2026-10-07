@@ -61,7 +61,7 @@ paleta padrão do Tailwind é desativada. As escalas próprias estão registrada
 
 ### Tipografia
 Famílias do guia da marca ([ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)). Títulos em Roboto
-Slab Black e subtítulos em Roboto Slab Regular, como manda o guia
+Slab Bold (peso 700, por decisão do cliente) e subtítulos em Roboto Slab Regular
 ([ADR 0047](../adr/0047-titulos-em-roboto-slab-black.md)); menu, rodapé e texto corrido como no site
 institucional ([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md)).
 
@@ -77,7 +77,7 @@ institucional ([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional
 | Rodapé | linha de direitos reservados | `font-light` | 14 px |
 | Texto | todo o resto | Roboto 400 | entrelinha 1,5 |
 
-Todo título usa peso 900, caixa como foi digitada (sem `uppercase`) e espaçamento entre letras normal.
+Todo título usa peso 700 (`font-black`, cujo token vale 700), caixa como foi digitada (sem `uppercase`) e espaçamento entre letras normal.
 Nenhum título é maior nem igual ao H1 da página. `wrap-anywhere` deixa uma palavra maior que a linha
 quebrar, para um título longo não estourar a tela a 390 px (teste em `tests/e2e/titles.spec.ts`).
 
@@ -168,13 +168,13 @@ quebrar, para um título longo não estourar a tela a 390 px (teste em `tests/e2
 | `--color-focus-ring` | `var(--rn-sand-300)` | Anel de foco |
 | `--color-overlay` | `rgba(13, 20, 26, 0.64)` | Fundo do modal |
 | `--font-sans` | `var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif` | Família de apoio do guia: corpo, interface, textos jurídicos (Roboto, via next/font) |
-| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 900) e subtítulos (400): Roboto Slab, via next/font |
+| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 700) e subtítulos (400): Roboto Slab, via next/font |
 | `--font-weight-light` | `300` | Linha de direitos do rodapé |
 | `--font-weight-regular` | `400` | Texto, subtítulos e links do menu |
 | `--font-weight-medium` | `500` | Botões, labels, badges |
 | `--font-weight-semibold` | `600` | Peso da fonte |
 | `--font-weight-bold` | `700` | Peso da fonte |
-| `--font-weight-black` | `900` | Todos os títulos (Roboto Slab Black) |
+| `--font-weight-black` | `700` | Todos os títulos (Roboto Slab Bold; o nome do token ficou da ADR 0047) |
 | `--radius-control` | `6px` | Botão, campo, badge |
 | `--radius-card` | `12px` | Card e modal |
 | `--shadow-card` | `0 1px 2px rgba(13, 20, 26, 0.24), 0 1px 3px rgba(13, 20, 26, 0.16)` | Card |

@@ -3,7 +3,7 @@ import { executeLocalSql } from '../integration/support/local-supabase'
 import { signInAsAdmin } from './support/admin'
 import { webUrl } from './support/urls'
 
-// DS-003 · Títulos em Roboto Slab Black, sem maiúsculas forçadas nem espaçamento entre letras, com o
+// DS-003 · Títulos em Roboto Slab Bold, sem maiúsculas forçadas nem espaçamento entre letras, com o
 // H1 em 36 px (28 px no celular) e nenhum outro título maior ou igual a ele (ADR 0047).
 
 const MOBILE = { width: 390, height: 844 }
@@ -39,7 +39,7 @@ test.afterAll(() => {
 
 async function expectTitleStyle(title: Locator, fontSize: string) {
   await expect(title).toHaveCSS('font-size', fontSize)
-  await expect(title).toHaveCSS('font-weight', '900')
+  await expect(title).toHaveCSS('font-weight', '700')
   await expect(title).toHaveCSS('text-transform', 'none')
   await expect(title).toHaveCSS('letter-spacing', 'normal')
   await expect(title).toHaveCSS('font-family', /Roboto Slab/)
@@ -127,7 +127,7 @@ for (const { name, viewport, h1, lineHeight } of [
   })
 }
 
-test('o título do Dialog é Black, menor que o H1 e sem maiúsculas forçadas', async ({ page }) => {
+test('o título do Dialog é Bold, menor que o H1 e sem maiúsculas forçadas', async ({ page }) => {
   await page.setViewportSize(MOBILE)
   await page.goto(webUrl(`/artigos/${SLUG}`))
   await page.getByRole('button', { name: 'Baixar artigo completo' }).click()

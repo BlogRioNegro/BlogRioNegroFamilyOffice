@@ -1,5 +1,5 @@
 ﻿/* Tokens do Rio Negro Family Office (export do Claude Design, ADR 0023; tema azul, ADR 0043; cores do guia da marca, ADR 0045;
-   tipografia do site institucional, ADR 0046; títulos em Roboto Slab Black, ADR 0047).
+   tipografia do site institucional, ADR 0046; títulos em Roboto Slab Bold, ADR 0047).
    Mesmos nomes e valores do export.
    Os tokens que são namespaces do Tailwind (cor, fonte, peso, raio, sombra, breakpoint)
    ficam em theme.css. */

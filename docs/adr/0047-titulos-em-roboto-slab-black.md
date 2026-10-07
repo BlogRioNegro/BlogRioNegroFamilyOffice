@@ -53,6 +53,12 @@ no export do design e na spec 06. `text-h1` e `font-black` estão no `tailwind-m
 Famílias, cores, tema, texto corrido (entrelinha 1,5), menu e botões (com as maiúsculas e o peso de
 hoje), rodapé (peso 300), layout e as tags HTML.
 
+### Atualização: peso 700
+Por decisão do cliente, o peso dos títulos passou a 700 (Bold). O token `--font-weight-black` passou de
+900 a 700 nos três lugares (`packages/ui`, export do design e spec 06); o nome do token e a classe
+`font-black` ficam. Onde este documento diz 900, vale 700. Tamanho, caixa, espaçamento entre letras e
+entrelinha não mudaram.
+
 ## Consequências
 - O hero da home ficou com o título no tamanho das outras páginas. O espaçamento vertical não foi
   alterado: o bloco continua centralizado na altura livre, com 32 px entre título e botão. Os anéis
