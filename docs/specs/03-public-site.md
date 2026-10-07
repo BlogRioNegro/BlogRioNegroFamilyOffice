@@ -104,6 +104,17 @@ Renderiza o texto definido em [LEAD-013](04-lead-capture.md).
 `not-found` e `error` com o layout do site e link para `/artigos`.
 **Aceite:** erro de banco mostra a página de erro sem vazar detalhes ([SEC-008](02-security-rls.md)).
 
+### PUB-016 · "Voltar" no cabeçalho
+O cabeçalho tem um único item de menu. Na home é "Artigos", que leva a `/artigos`. Nas outras páginas
+(lista, artigo, privacidade, 404 e erro) é "Voltar": um link para o nível acima (`/artigos` no artigo,
+`/` nas demais) que, com JavaScript, volta à tela anterior se a pessoa já navegou dentro do blog nesta
+visita. O controle é em memória, sem `localStorage`, `sessionStorage` nem cookie
+([ADR 0049](../adr/0049-voltar-no-cabecalho-do-site.md)).
+**Aceite:** a home mostra "Artigos" e não mostra "Voltar"; home → lista → artigo → "Voltar" volta à
+lista e "Voltar" de novo volta à home; artigo aberto direto pela URL → "Voltar" leva a `/artigos`; sem
+JavaScript e com Ctrl/Cmd + clique o link segue o nível acima; nome acessível "Voltar para a página
+anterior", área de toque de 44 px e foco visível.
+
 ## UI
 
 Referência: `design/prototipo/Site Publico.dc.html` (desktop 1440 px e mobile 390 px), só com
@@ -115,8 +126,9 @@ spec, vale a spec (divergências abaixo).
   `--color-bg`, texto claro, ações e links no bege do site.
 - **Header** (`SiteHeader`): 64 px, fundo `--color-surface-muted` (o azul da faixa da logo no guia), borda inferior; logotipo branco de 40 px de
   altura à esquerda
-  (link para `/`) e link "Artigos" à direita, com sublinhado de 2 px quando ativo (`aria-current`).
-  Mobile: igual, sem menu hambúrguer.
+  (link para `/`) e, à direita, um item de menu: "Artigos" na home e "Voltar" nas outras páginas
+  (PUB-016), os dois em Roboto 400, maiúsculas, `--color-link`, sublinhado no hover; sem seta, fundo ou
+  contorno. Mobile: igual, sem menu hambúrguer.
 - **Conteúdo**: coluna de leitura de `--layout-reading` (720 px), centralizada. Mobile: margem
   lateral de 16 px, sem rolagem horizontal.
 - **Rodapé** (`SiteFooter`, PUB-013): fundo `--color-surface-muted`; logotipo + `Button` primário
@@ -160,7 +172,8 @@ de 768 px, três anéis concêntricos em `--color-border` à direita (decorativo
 - **Vazio**: superfície (`--color-surface`) com borda e o texto "Nenhum artigo publicado ainda".
 
 ### Artigo (`/artigos/[slug]`, PUB-005 a PUB-007)
-- `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos`.
+- `Button` link "Todos os artigos" (ícone seta à esquerda) → `/artigos` (já existia; o "Voltar" de
+  PUB-016 fica só no cabeçalho).
 - H1, subtítulo se houver (`<p>` logo abaixo do H1, Roboto Slab 400, 24 px no mobile e 30 px ≥ 768 px;
   não é heading), capa 16:9, formato (`TypeBadge`) + data e resumo (Roboto Slab 400, `text-lg` no mobile e `text-xl` ≥ 768 px, `--color-text-muted`), nesta ordem, como no protótipo ([ADR 0026](../adr/0026-ordem-da-pagina-do-artigo.md)).
 - **Prévia `rich_text`**: texto em `--font-sans` (Roboto), `--font-size-article` (18/1.5 mobile,

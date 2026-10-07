@@ -58,7 +58,7 @@ const SECTIONS: { title: string; body: ReactNode }[] = [
 export default function PrivacyPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader back="/" />
       <main className="mx-auto flex w-full max-w-(--layout-reading) flex-1 flex-col px-4 pt-8 pb-16 md:px-0 md:pt-16 md:pb-24">
         <h1 className="font-serif font-black text-h1 wrap-anywhere">Aviso de privacidade</h1>
         <p className="mt-3 mb-6 text-xs text-text-muted md:mb-8">
