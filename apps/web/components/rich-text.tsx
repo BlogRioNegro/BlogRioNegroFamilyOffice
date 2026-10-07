@@ -49,14 +49,14 @@ function renderBlock(block: RichTextBlock, key: number, inList: boolean): ReactN
       return block.level === 2 ? (
         <h2
           key={key}
-          className="mt-[2em] mb-[0.6em] font-serif font-extralight text-xl leading-section tracking-section wrap-anywhere uppercase first:mt-0"
+          className="mt-[2em] mb-[0.6em] font-serif font-black text-xl wrap-anywhere first:mt-0"
         >
           {renderInlines(block.content)}
         </h2>
       ) : (
         <h3
           key={key}
-          className="mt-[1.6em] mb-[0.5em] font-serif font-extralight text-md leading-section tracking-section wrap-anywhere uppercase first:mt-0"
+          className="mt-[1.6em] mb-[0.5em] font-serif font-black text-md leading-snug wrap-anywhere first:mt-0"
         >
           {renderInlines(block.content)}
         </h3>

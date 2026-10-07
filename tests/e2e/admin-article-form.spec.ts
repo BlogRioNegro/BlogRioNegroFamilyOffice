@@ -88,7 +88,7 @@ test.describe('formulário de artigo', () => {
 
     await page.getByRole('button', { name: 'Publicar' }).click()
 
-    await expect(page.getByLabel('Título')).toHaveAttribute('aria-invalid', 'true')
+    await expect(page.getByLabel('Título', { exact: true })).toHaveAttribute('aria-invalid', 'true')
     await expect(page.getByText('Informe um título de 3 a 160 caracteres.')).toBeVisible()
     await expect(page.getByText('Envie a capa do artigo.')).toBeVisible()
   })
@@ -220,7 +220,7 @@ test.describe('formulário de artigo', () => {
     await page.goto('/artigos/novo')
     const articleId = await page.locator('input[name="id"]').inputValue()
 
-    await page.getByLabel('Título').fill('Artigo com capa pesada')
+    await page.getByLabel('Título', { exact: true }).fill('Artigo com capa pesada')
     await page.getByLabel('Slug').fill(`capa-pesada-e2e-${Date.now()}`)
     await page
       .getByLabel('Capa')
@@ -259,7 +259,7 @@ test.describe('formulário de artigo', () => {
     await page.goto('/artigos/novo')
     const articleId = await page.locator('input[name="id"]').inputValue()
 
-    await page.getByLabel('Título').fill('Artigo PDF criado no E2E')
+    await page.getByLabel('Título', { exact: true }).fill('Artigo PDF criado no E2E')
     await page.getByLabel('Slug').fill(slug)
     await page.getByLabel('Capa').setInputFiles(SEED_PNG)
     await page.getByLabel('Arquivo PDF').setInputFiles(SEED_PDF)
@@ -309,7 +309,7 @@ test.describe('formulário de artigo', () => {
     await page.goto('/artigos/novo')
     const articleId = await page.locator('input[name="id"]').inputValue()
 
-    await page.getByLabel('Título').fill('Artigo Texto criado no E2E')
+    await page.getByLabel('Título', { exact: true }).fill('Artigo Texto criado no E2E')
     await page.getByLabel('Slug').fill(slug)
     await page.getByLabel('Capa').setInputFiles(SEED_PNG)
     await page.getByRole('group', { name: 'Tipo' }).getByRole('button', { name: 'Texto' }).click()
@@ -361,7 +361,9 @@ test.describe('formulário de artigo', () => {
     await page.goto(`/artigos/${SEED.id}`)
     await expect(page.getByRole('heading', { name: 'Editar artigo' })).toBeVisible()
 
-    await page.getByLabel('Título').fill('Carteira recomendada de outubro (revisada)')
+    await page
+      .getByLabel('Título', { exact: true })
+      .fill('Carteira recomendada de outubro (revisada)')
     await page.getByRole('button', { name: 'Publicar' }).click()
 
     await expect(page).toHaveURL(/\/artigos$/)
@@ -421,7 +423,9 @@ test.describe('Visual · Formulário', () => {
       })
 
       await page.goto('/artigos/novo')
-      await page.getByLabel('Título').fill('Tesouro IPCA+ ou prefixado: como comparar')
+      await page
+        .getByLabel('Título', { exact: true })
+        .fill('Tesouro IPCA+ ou prefixado: como comparar')
       await page.getByLabel('Slug').fill('tesouro-ipca-ou-prefixado-como-comparar')
       await page.getByRole('group', { name: 'Tipo' }).getByRole('button', { name: 'Texto' }).click()
       const toolbar = page.getByRole('toolbar', { name: 'Formatação' })

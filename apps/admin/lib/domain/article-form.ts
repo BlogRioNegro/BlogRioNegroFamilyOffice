@@ -5,6 +5,7 @@ import { z } from 'zod'
 
 export const ARTICLE_MESSAGES = {
   title: 'Informe um título de 3 a 160 caracteres.',
+  subtitle: 'O subtítulo tem no máximo 160 caracteres.',
   slug: 'Use só letras minúsculas sem acento, números e hífens (até 120 caracteres).',
   slugTaken: 'Este slug já é (ou já foi) usado por outro artigo. Escolha outro.',
   summary: 'O resumo tem no máximo 160 caracteres.',
@@ -32,6 +33,11 @@ export function slugFromTitle(title: string): string {
 export const articleFieldsSchema = z.object({
   id: z.uuid(),
   title: z.string().trim().min(3, ARTICLE_MESSAGES.title).max(160, ARTICLE_MESSAGES.title),
+  subtitle: z
+    .string()
+    .trim()
+    .max(160, ARTICLE_MESSAGES.subtitle)
+    .transform((subtitle) => subtitle || null),
   slug: z
     .string()
     .trim()
@@ -52,7 +58,14 @@ export type ArticleField = Exclude<keyof ArticleFields, 'id'> | 'cover' | 'conte
 
 export type FieldErrors = Partial<Record<ArticleField, string>>
 
-const TEXT_FIELDS = ['title', 'slug', 'summary', 'contentType', 'publishedDate'] as const
+const TEXT_FIELDS = [
+  'title',
+  'subtitle',
+  'slug',
+  'summary',
+  'contentType',
+  'publishedDate',
+] as const
 
 /** Valores crus do FormData para o schema (campo ausente vira string vazia). */
 export function articleFieldsFrom(formData: FormData): Record<string, string> {

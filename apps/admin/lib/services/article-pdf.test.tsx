@@ -85,6 +85,7 @@ describe('renderArticlePdf', () => {
   it('contém o título, todo o texto, a capa e as imagens', async () => {
     const pdf = await renderArticlePdf({
       title: 'Renda fixa em 2026',
+      subtitle: null,
       cover: { data: PNG, format: 'png' },
       doc: DOC,
       images: new Map([[SRC, { data: OTHER_PNG, format: 'png' }]]),
@@ -105,9 +106,25 @@ describe('renderArticlePdf', () => {
     expect(imageCount(pdf)).toBe(2)
   })
 
+  it('com subtítulo, ele entra no PDF; sem subtítulo, não', async () => {
+    const input = { title: 'O que moveu o mercado', cover: null, doc: DOC, images: new Map() }
+    const subtitle = withoutSpaces('21 a 25 de setembro')
+
+    const withSubtitle = pdfText(
+      await renderArticlePdf({ ...input, subtitle: '21 a 25 de setembro' }),
+    )
+    const without = pdfText(await renderArticlePdf({ ...input, subtitle: null }))
+
+    expect(withSubtitle).toContain(withoutSpaces('O que moveu o mercado'))
+    expect(withSubtitle).toContain(subtitle)
+    expect(without).toContain(withoutSpaces('O que moveu o mercado'))
+    expect(without).not.toContain(subtitle)
+  })
+
   it('imagem que não pôde ser embutida entra como texto alternativo', async () => {
     const pdf = await renderArticlePdf({
       title: 'Artigo',
+      subtitle: null,
       cover: null,
       doc: {
         type: 'doc',

@@ -7,11 +7,10 @@ import { extendTailwindMerge } from 'tailwind-merge'
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'],
+      text: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'h1'],
       font: ['sans', 'serif'],
-      'font-weight': ['extralight', 'light', 'regular', 'medium', 'semibold', 'bold'],
-      leading: ['tight', 'snug', 'normal', 'relaxed', 'section'],
-      tracking: ['section'],
+      'font-weight': ['light', 'regular', 'medium', 'semibold', 'bold', 'black'],
+      leading: ['tight', 'snug', 'normal', 'relaxed'],
       radius: ['control', 'card'],
       shadow: ['card', 'modal'],
       color: [

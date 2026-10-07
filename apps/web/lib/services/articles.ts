@@ -6,7 +6,8 @@ import { createPublicClient } from './supabase-public'
 
 // PUB-009 · Leitura pública de artigos: só colunas de `articles` (ADR 0007). O conteúdo
 // completo e o PDF completo nunca são lidos por este módulo.
-const LIST_COLUMNS = 'id, slug, title, summary, cover_path, content_type, published_at, created_at'
+const LIST_COLUMNS =
+  'id, slug, title, subtitle, summary, cover_path, content_type, published_at, created_at'
 const DETAIL_COLUMNS = `${LIST_COLUMNS}, preview_json, preview_pdf_path`
 
 export type ArticleListItem = Awaited<ReturnType<typeof listArticles>>[number]
@@ -123,6 +124,7 @@ export function previewPdfUrl(previewPdfPath: string): string {
 export type ArticleCardData = {
   slug: string
   title: string
+  subtitle: string | null
   coverUrl: string
   publishedAt: string
   dateLabel: string
@@ -132,6 +134,7 @@ export function toArticleCard(article: ArticleListItem): ArticleCardData {
   return {
     slug: article.slug,
     title: article.title,
+    subtitle: article.subtitle,
     coverUrl: coverUrl(article.cover_path),
     publishedAt: article.published_at,
     dateLabel: formatPublishedDate(article.published_at),

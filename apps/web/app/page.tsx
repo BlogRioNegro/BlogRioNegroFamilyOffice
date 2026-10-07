@@ -20,7 +20,7 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto w-full max-w-(--layout-admin) px-4 py-16 md:px-6 md:py-24">
           <div className="flex flex-col items-start gap-8">
-            <h1 className="max-w-[20ch] font-serif font-extralight text-3xl text-balance wrap-anywhere uppercase md:text-5xl">
+            <h1 className="max-w-[20ch] font-serif font-black text-h1 text-balance wrap-anywhere">
               Artigos, estudos e perspectivas da nossa equipe de consultores e especialistas.
             </h1>
             <Button asChild className="w-full md:w-auto">

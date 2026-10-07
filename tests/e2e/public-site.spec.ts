@@ -53,10 +53,6 @@ test.describe('PUB-002 · PUB-003 · Listagem', () => {
       'Carteira recomendada de outubro',
       'Renda fixa em 2026: o que muda para o investidor',
     ])
-    await expect(page.getByRole('link', { name: 'Artigos' })).toHaveAttribute(
-      'aria-current',
-      'page',
-    )
   })
 
   test('o card leva à página do artigo', async ({ page }) => {
@@ -65,6 +61,12 @@ test.describe('PUB-002 · PUB-003 · Listagem', () => {
     await expect(
       page.getByRole('link', { name: /Carteira recomendada de outubro/ }),
     ).toHaveAttribute('href', '/artigos/carteira-recomendada-outubro')
+    // ADR 0048 · O subtítulo vem num <p> logo abaixo do título do card; sem subtítulo, não há <p>.
+    const cards = page.getByRole('main').getByRole('link')
+    await expect(
+      cards.filter({ hasText: 'Carteira recomendada de outubro' }).locator('h2 + p'),
+    ).toHaveText('Perfis conservador, moderado e arrojado')
+    await expect(cards.filter({ hasText: 'Renda fixa em 2026' }).locator('h2 + p')).toHaveCount(0)
   })
 })
 
@@ -291,7 +293,10 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
   test('artigo pdf com resumo: título, descrição, canonical, og e twitter', async ({ page }) => {
     await page.goto(webUrl('/artigos/carteira-recomendada-outubro'))
 
-    await expect(page).toHaveTitle('Carteira recomendada de outubro · Blog Rio Negro Family Office')
+    // ADR 0048 · Com subtítulo, <title> e Open Graph usam "Título: Subtítulo".
+    await expect(page).toHaveTitle(
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado · Blog Rio Negro Family Office',
+    )
     const description = 'Alocação sugerida por perfil de risco para o próximo mês.'
     await expect(meta(page, 'name', 'description')).toHaveAttribute('content', description)
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -301,7 +306,11 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
     await expect(meta(page, 'property', 'og:type')).toHaveAttribute('content', 'article')
     await expect(meta(page, 'property', 'og:title')).toHaveAttribute(
       'content',
-      'Carteira recomendada de outubro',
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado',
+    )
+    await expect(meta(page, 'name', 'twitter:title')).toHaveAttribute(
+      'content',
+      'Carteira recomendada de outubro: Perfis conservador, moderado e arrojado',
     )
     await expect(meta(page, 'property', 'og:description')).toHaveAttribute('content', description)
     await expect(meta(page, 'property', 'og:image')).toHaveAttribute(
@@ -321,6 +330,8 @@ test.describe('PUB-010 · Metadata e Open Graph', () => {
   test('rich_text sem resumo usa o texto da prévia como descrição', async ({ page }) => {
     await page.goto(webUrl('/artigos/sem-resumo'))
 
+    await expect(page).toHaveTitle('Artigo sem resumo · Blog Rio Negro Family Office')
+    await expect(meta(page, 'property', 'og:title')).toHaveAttribute('content', 'Artigo sem resumo')
     await expect(meta(page, 'name', 'description')).toHaveAttribute(
       'content',
       'Primeiro parágrafo da prévia.',
@@ -390,6 +401,11 @@ test.describe('PUB-012 · RSS', () => {
     expect(xml).toContain('<rss version="2.0"')
     expect(xml.match(/<item>/g)).toHaveLength(3)
     expect(xml).toContain(`<link>${webUrl('/artigos/renda-fixa-em-2026')}</link>`)
+    // ADR 0048 · Título do item com o subtítulo; sem subtítulo, só o título.
+    expect(xml).toContain(
+      `<title>Carteira recomendada de outubro: Perfis conservador, moderado e arrojado</title>`,
+    )
+    expect(xml).toContain('<title>Renda fixa em 2026: o que muda para o investidor</title>')
     expect(xml).toContain(
       '<description>Um panorama dos títulos públicos e privados diante da nova trajetória de juros.</description>',
     )
@@ -500,5 +516,177 @@ test.describe('PUB-013 · Rodapé em todas as páginas', () => {
       footer.getByRole('link', { name: /Conheça a Rio Negro Family Office/ }),
     ).toBeVisible()
     await expect(footer.getByRole('list', { name: 'Redes sociais' })).toHaveCount(0)
+  })
+})
+
+test.describe('PUB-016 · "Voltar" no cabeçalho', () => {
+  // PUB-016 · No cabeçalho do site, a home mostra "Artigos"; as outras páginas mostram "Voltar", que
+  // volta à tela anterior do blog ou, se a página foi a primeira aberta, sobe um nível.
+
+  const ARTICLE = '/artigos/renda-fixa-em-2026'
+  const ARTICLE_TITLE = 'Renda fixa em 2026: o que muda para o investidor'
+
+  const nav = (page: Page) => page.getByRole('navigation', { name: 'Principal' })
+  const back = (page: Page) =>
+    nav(page).getByRole('link', { name: 'Voltar para a página anterior' })
+  const articles = (page: Page) => nav(page).getByRole('link', { name: 'Artigos' })
+
+  test('a home mostra "Artigos", que leva a /artigos, e não mostra "Voltar"', async ({ page }) => {
+    await page.goto(webUrl('/'))
+
+    await expect(articles(page)).toHaveAttribute('href', '/artigos')
+    await expect(back(page)).toHaveCount(0)
+    await articles(page).click()
+    await expect(page).toHaveURL(webUrl('/artigos'))
+  })
+
+  for (const { path, fallback } of [
+    { path: '/artigos', fallback: '/' },
+    { path: ARTICLE, fallback: '/artigos' },
+    { path: '/privacidade', fallback: '/' },
+    { path: '/pagina-que-nao-existe', fallback: '/' },
+  ]) {
+    test(`${path} mostra "Voltar" no lugar de "Artigos", com reserva em ${fallback}`, async ({
+      page,
+    }) => {
+      await page.goto(webUrl(path))
+
+      await expect(nav(page).getByRole('link')).toHaveCount(1)
+      await expect(back(page)).toHaveText('Voltar')
+      await expect(back(page)).toHaveAttribute('href', fallback)
+      await expect(back(page)).not.toHaveAttribute('aria-current')
+    })
+  }
+
+  test('home → lista → artigo → Voltar → lista → Voltar → home', async ({ page }) => {
+    await page.goto(webUrl('/'))
+    await articles(page).click()
+    await expect(page).toHaveURL(webUrl('/artigos'))
+    await page
+      .getByRole('main')
+      .getByRole('link', { name: new RegExp(ARTICLE_TITLE) })
+      .click()
+    await expect(page).toHaveURL(webUrl(ARTICLE))
+    await page.evaluate(() => Object.assign(window, { semRecarregar: true }))
+
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl('/artigos'))
+    await expect(page.getByRole('heading', { level: 1, name: 'Artigos' })).toBeVisible()
+
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl('/'))
+    await expect(articles(page)).toBeVisible()
+    await expect(back(page)).toHaveCount(0)
+    // Voltou pelo histórico, sem carregar a página de novo.
+    expect(await page.evaluate(() => 'semRecarregar' in window)).toBe(true)
+  })
+
+  test('artigo aberto direto pela URL: Voltar leva para /artigos e não sai do blog', async ({
+    page,
+  }) => {
+    await page.goto('about:blank')
+    await page.goto(webUrl(ARTICLE))
+
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl('/artigos'))
+
+    // Da lista, a tela anterior é o artigo; nele, de novo sem tela anterior do blog, sobe um nível
+    // em vez de voltar para fora do site.
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl(ARTICLE))
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl('/artigos'))
+  })
+
+  test('lista aberta direto pela URL: Voltar leva para a home', async ({ page }) => {
+    await page.goto(webUrl('/artigos'))
+
+    await back(page).click()
+    await expect(page).toHaveURL(webUrl('/'))
+  })
+
+  test('Ctrl/Cmd + clique abre o destino de reserva em nova aba, mesmo depois de navegar', async ({
+    page,
+    context,
+  }) => {
+    await page.goto(webUrl('/'))
+    await articles(page).click()
+    await page
+      .getByRole('main')
+      .getByRole('link', { name: new RegExp(ARTICLE_TITLE) })
+      .click()
+    await expect(page).toHaveURL(webUrl(ARTICLE))
+
+    const [newTab] = await Promise.all([
+      context.waitForEvent('page'),
+      back(page).click({ modifiers: ['ControlOrMeta'] }),
+    ])
+
+    await expect(newTab).toHaveURL(webUrl('/artigos'))
+    await expect(page).toHaveURL(webUrl(ARTICLE))
+  })
+
+  test.describe('sem JavaScript', () => {
+    test.use({ javaScriptEnabled: false })
+
+    test('Voltar é um link de verdade para o nível acima', async ({ page }) => {
+      await page.goto(webUrl(ARTICLE))
+      await back(page).click()
+      await expect(page).toHaveURL(webUrl('/artigos'))
+
+      await back(page).click()
+      await expect(page).toHaveURL(webUrl('/'))
+    })
+  })
+
+  test('Voltar tem o estilo de texto do item "Artigos", 44 px de toque e foco visível', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto(webUrl('/'))
+    const style = (link: ReturnType<typeof back>) =>
+      link.evaluate((element) => {
+        const computed = getComputedStyle(element)
+        return {
+          fontFamily: computed.fontFamily,
+          fontSize: computed.fontSize,
+          fontWeight: computed.fontWeight,
+          textTransform: computed.textTransform,
+          color: computed.color,
+          backgroundColor: computed.backgroundColor,
+          borderTopWidth: computed.borderTopWidth,
+          textDecorationLine: computed.textDecorationLine,
+        }
+      })
+    const articlesStyle = await style(articles(page))
+    const articlesBox = await articles(page).boundingBox()
+
+    await page.goto(webUrl('/artigos'))
+
+    expect(await style(back(page))).toEqual(articlesStyle)
+    expect(articlesStyle.textTransform).toBe('uppercase')
+    expect(articlesStyle.textDecorationLine).toBe('none')
+    await expect(back(page).locator('svg')).toHaveCount(0)
+    const box = await back(page).boundingBox()
+    expect(box?.height).toBeGreaterThanOrEqual(44)
+    expect(box?.width).toBeGreaterThanOrEqual(44)
+    // Mesma posição do item "Artigos": encostado à direita e centralizado na altura do cabeçalho.
+    expect((box?.x ?? 0) + (box?.width ?? 0)).toBeCloseTo(
+      (articlesBox?.x ?? 0) + (articlesBox?.width ?? 0),
+      0,
+    )
+    expect((box?.y ?? 0) + (box?.height ?? 0) / 2).toBeCloseTo(
+      (articlesBox?.y ?? 0) + (articlesBox?.height ?? 0) / 2,
+      0,
+    )
+
+    await back(page).hover()
+    await expect(back(page)).toHaveCSS('text-decoration-line', 'underline')
+    await page.mouse.move(0, 300)
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Tab')
+    await expect(back(page)).toBeFocused()
+    await expect(back(page)).toHaveCSS('outline-style', 'solid')
+    await expect(back(page)).toHaveCSS('outline-width', '2px')
   })
 })

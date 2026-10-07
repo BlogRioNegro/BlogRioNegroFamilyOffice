@@ -6,7 +6,7 @@ import type { AdminContext } from './require-admin'
 export async function listArticlesWithLeadCount(supabase: AdminContext['supabase']) {
   const { data, error } = await supabase
     .from('articles')
-    .select('id, title, content_type, published_at, leads(count)')
+    .select('id, title, subtitle, content_type, published_at, leads(count)')
     .order('published_at', { ascending: false })
     .order('created_at', { ascending: false })
     .order('id', { ascending: false })

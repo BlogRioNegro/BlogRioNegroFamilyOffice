@@ -20,8 +20,10 @@ reimplementadas como componentes seguindo as specs 03, 04 e 05, não copiadas.
 Espaçamento, raio e componentes base, herdados do blog original. Cores, famílias de fonte e logo são
 os do guia oficial da marca (`design/marca/INFO-RN-MFO.pdf`,
 [ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)), aplicados sobre o tema azul único
-([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)). O favicon e os pesos da tipografia são os do
-site institucional ([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md)).
+([ADR 0043](../adr/0043-tema-azul-em-todo-o-sistema.md)). O favicon e a tipografia de menu, rodapé e
+texto corrido são os do site institucional
+([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md)); os títulos seguem o guia
+([ADR 0047](../adr/0047-titulos-em-roboto-slab-black.md)).
 **Aceite:** design system publicado no Claude Design e aprovado pelo responsável do projeto.
 
 ### DS-002 · Protótipos (fase 1)
@@ -51,29 +53,33 @@ Contraste AA, foco visível, modal com foco preso e fechamento por Esc, labels e
 ## Tokens
 
 Fonte: `packages/ui/src/tokens.css` e `packages/ui/src/theme.css`. Utilitários do Tailwind derivados
-dos tokens: `bg-*`/`text-*`/`border-*` (cores), `font-sans`/`font-serif`, `font-extralight`…`font-bold`,
-`rounded-control`/`rounded-card`, `shadow-card`/`shadow-modal`, `text-xs`…`text-5xl` (com a entrelinha do
-nível), `leading-section`/`tracking-section` e espaçamento em múltiplos de 4 px (`p-4` = `--space-4`). A
+dos tokens: `bg-*`/`text-*`/`border-*` (cores), `font-sans`/`font-serif`, `font-light`…`font-black`,
+`rounded-control`/`rounded-card`, `shadow-card`/`shadow-modal`, `text-xs`…`text-3xl` e `text-h1` (com a
+entrelinha do nível) e espaçamento em múltiplos de 4 px (`p-4` = `--space-4`). A
 paleta padrão do Tailwind é desativada. As escalas próprias estão registradas no `tailwind-merge`
 (`packages/ui/src/cn.ts`), para peso e família não se anularem.
 
 ### Tipografia
-Famílias do guia da marca ([ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)); peso, entrelinha,
-espaçamento entre letras e maiúsculas medidos no site institucional
-([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md), que tem a tabela de medição).
+Famílias do guia da marca ([ADR 0045](../adr/0045-marca-oficial-conforme-o-guia.md)). Títulos em Roboto
+Slab Black e subtítulos em Roboto Slab Regular, como manda o guia
+([ADR 0047](../adr/0047-titulos-em-roboto-slab-black.md)); menu, rodapé e texto corrido como no site
+institucional ([ADR 0046](../adr/0046-tipografia-e-favicon-do-site-institucional.md)).
 
-| Papel | Onde | Classes |
-|---|---|---|
-| Título principal | H1 de toda página (site e admin) | `font-serif font-extralight uppercase wrap-anywhere`, entrelinha 1,2 |
-| Título de seção | H2/H3 do artigo e de `/privacidade`, título do `Dialog` | `font-serif font-extralight uppercase leading-section tracking-section wrap-anywhere` |
-| Título de card | cards de artigo (site) e cards da lista no mobile (admin) | `font-serif font-medium leading-tight` |
-| Subtítulo | resumo do artigo, descrição do `Dialog`, linha de apoio do H1 | `font-serif font-regular`, entrelinha 1,5 |
-| Link do menu | navegação do header (site e admin) | `font-regular uppercase` |
-| Rodapé | linha de direitos reservados | `font-light` |
-| Texto | todo o resto | Roboto 400, entrelinha 1,5 |
+| Papel | Onde | Classes | Tamanho (celular / ≥ 768 px) |
+|---|---|---|---|
+| Título principal | H1 de toda página, site e admin (inclui o hero da home e o login) | `font-serif font-black text-h1 wrap-anywhere` | 28 px / 36 px, entrelinha 1,2 |
+| Título do destaque | card de destaque da listagem | `font-serif font-black text-xl md:text-2xl wrap-anywhere` | 24 px / 30 px, entrelinha 1,35 / 1,3 |
+| Título de seção | H2 do artigo e de `/privacidade`, título do `Dialog` | `font-serif font-black text-xl wrap-anywhere` | 24 px, entrelinha 1,35 |
+| Título de seção menor | H3 do artigo | `font-serif font-black text-md leading-snug wrap-anywhere` | 18 px, entrelinha 1,35 |
+| Título de card | cards de artigo (site) e cards das listas no mobile (admin) | `font-serif font-black leading-snug wrap-anywhere` | 18 px (16 px no card de lead) |
+| Subtítulo | resumo do artigo, descrição do `Dialog`, linha de apoio do H1 | `font-serif font-regular` | entrelinha 1,5 |
+| Link do menu | navegação do header (site e admin) | `font-regular uppercase` | 16 px |
+| Rodapé | linha de direitos reservados | `font-light` | 14 px |
+| Texto | todo o resto | Roboto 400 | entrelinha 1,5 |
 
-`wrap-anywhere` deixa uma palavra maior que a linha quebrar, para um título em maiúsculas não estourar a
-tela a 390 px.
+Todo título usa peso 900, caixa como foi digitada (sem `uppercase`) e espaçamento entre letras normal.
+Nenhum título é maior nem igual ao H1 da página. `wrap-anywhere` deixa uma palavra maior que a linha
+quebrar, para um título longo não estourar a tela a 390 px (teste em `tests/e2e/titles.spec.ts`).
 
 | Token | Valor | Uso |
 |---|---|---|
@@ -122,26 +128,20 @@ tela a 390 px.
 | `--line-height-md` | `1.5` | Altura de linha (a do parágrafo do site institucional) |
 | `--font-size-lg` | `20px` | Corpo do artigo (desktop) |
 | `--line-height-lg` | `1.5` | Altura de linha (a do parágrafo do site institucional) |
-| `--font-size-xl` | `24px` | H3, título do modal |
+| `--font-size-xl` | `24px` | H2 do artigo, título do modal, título do destaque (mobile) |
 | `--line-height-xl` | `1.35` | Altura de linha |
-| `--font-size-2xl` | `30px` | H2, título do destaque |
+| `--font-size-2xl` | `30px` | Título do destaque (desktop) |
 | `--line-height-2xl` | `1.3` | Altura de linha |
-| `--font-size-3xl` | `36px` | H1 mobile |
+| `--font-size-3xl` | `36px` | H1 desktop |
 | `--line-height-3xl` | `1.2` | Altura de linha |
-| `--font-size-4xl` | `48px` | H1 desktop |
-| `--line-height-4xl` | `1.2` | Altura de linha (a do título do site institucional) |
-| `--font-size-5xl` | `60px` | Hero da home (desktop) |
-| `--line-height-5xl` | `1.2` | Altura de linha (a do título do site institucional) |
-| `--line-height-tight` | `1.2` | Altura de linha: H1 e títulos de card |
-| `--line-height-snug` | `1.35` | Altura de linha |
+| `--line-height-tight` | `1.2` | Altura de linha do H1 (`text-h1`) |
+| `--line-height-snug` | `1.35` | Altura de linha: títulos de card e H3 do artigo |
 | `--line-height-normal` | `1.5` | Altura de linha: texto corrido e subtítulos |
 | `--line-height-relaxed` | `1.7` | Altura de linha |
-| `--line-height-section` | `1` | Entrelinha dos títulos de seção (`leading-section`) |
-| `--letter-spacing-section` | `10px` | Espaçamento entre letras dos títulos de seção (`tracking-section`) |
 | `--font-size-article` | `var(--font-size-md)` | Corpo do artigo (≥768px: var(--font-size-lg)) |
 | `--line-height-article` | `var(--line-height-normal)` | Entrelinha do artigo (a do parágrafo do site institucional) |
 | `--measure-article` | `68ch` | Largura máxima do texto do artigo |
-| `--font-size-h1` | `var(--font-size-3xl)` | H1 (≥768px: var(--font-size-4xl)) |
+| `--font-size-h1` | `28px` | H1 de toda página, `text-h1` (≥768px: var(--font-size-3xl)) |
 | `--color-bg` | `var(--rn-blue-800)` | Fundo da página |
 | `--color-surface` | `var(--rn-blue-700)` | Cards, modal, campos |
 | `--color-surface-muted` | `var(--rn-blue-900)` | Superfície secundária, linhas de tabela |
@@ -168,13 +168,13 @@ tela a 390 px.
 | `--color-focus-ring` | `var(--rn-sand-300)` | Anel de foco |
 | `--color-overlay` | `rgba(13, 20, 26, 0.64)` | Fundo do modal |
 | `--font-sans` | `var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif` | Família de apoio do guia: corpo, interface, textos jurídicos (Roboto, via next/font) |
-| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 200), títulos de card (500) e subtítulos (400): Roboto Slab, via next/font |
-| `--font-weight-extralight` | `200` | H1 e títulos de seção |
+| `--font-serif` | `var(--font-roboto-slab), Georgia, 'Times New Roman', serif` | Títulos (peso 900) e subtítulos (400): Roboto Slab, via next/font |
 | `--font-weight-light` | `300` | Linha de direitos do rodapé |
 | `--font-weight-regular` | `400` | Texto, subtítulos e links do menu |
-| `--font-weight-medium` | `500` | Títulos de card, botões, labels |
+| `--font-weight-medium` | `500` | Botões, labels, badges |
 | `--font-weight-semibold` | `600` | Peso da fonte |
 | `--font-weight-bold` | `700` | Peso da fonte |
+| `--font-weight-black` | `900` | Todos os títulos (Roboto Slab Black) |
 | `--radius-control` | `6px` | Botão, campo, badge |
 | `--radius-card` | `12px` | Card e modal |
 | `--shadow-card` | `0 1px 2px rgba(13, 20, 26, 0.24), 0 1px 3px rgba(13, 20, 26, 0.16)` | Card |

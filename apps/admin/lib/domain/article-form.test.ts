@@ -10,6 +10,7 @@ import {
 const VALID = {
   id: '4b4f7c5e-2d7a-4c1e-9d55-0a3f5c1e8b21',
   title: '  Cenário macro para o 4º trimestre  ',
+  subtitle: '',
   slug: 'cenario-macro-4t',
   summary: '',
   contentType: 'pdf',
@@ -22,10 +23,25 @@ function errorsFor(values: Record<string, string>) {
 }
 
 describe('articleFieldsSchema', () => {
-  it('aceita os campos válidos, com título aparado e resumo vazio como null', () => {
+  it('aceita os campos válidos, com título aparado e resumo e subtítulo vazios como null', () => {
     expect(articleFieldsSchema.parse(VALID)).toMatchObject({
       title: 'Cenário macro para o 4º trimestre',
+      subtitle: null,
       summary: null,
+    })
+  })
+
+  it('apara o subtítulo e trata só espaços como ausente', () => {
+    expect(
+      articleFieldsSchema.parse({ ...VALID, subtitle: '  21 a 25 de setembro  ' }).subtitle,
+    ).toBe('21 a 25 de setembro')
+    expect(articleFieldsSchema.parse({ ...VALID, subtitle: '   ' }).subtitle).toBeNull()
+  })
+
+  it('aceita o subtítulo de 160 caracteres e recusa o de 161', () => {
+    expect(errorsFor({ ...VALID, subtitle: 'x'.repeat(160) })).toEqual({})
+    expect(errorsFor({ ...VALID, subtitle: 'x'.repeat(161) })).toEqual({
+      subtitle: ARTICLE_MESSAGES.subtitle,
     })
   })
 
@@ -59,7 +75,7 @@ describe('articleFieldsFrom', () => {
     formData.set('title', 'Título')
     formData.set('cover', new File(['x'], 'capa.png'))
 
-    expect(articleFieldsFrom(formData)).toMatchObject({ title: 'Título', slug: '' })
+    expect(articleFieldsFrom(formData)).toMatchObject({ title: 'Título', subtitle: '', slug: '' })
   })
 })
 

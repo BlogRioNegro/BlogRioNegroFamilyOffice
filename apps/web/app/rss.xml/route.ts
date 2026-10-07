@@ -1,5 +1,6 @@
 import { connection } from 'next/server'
 import { articleDescription, BLOG_DESCRIPTION } from '@/lib/domain/article-description'
+import { articleFullTitle } from '@/lib/domain/article-title'
 import { buildRssFeed, FEED_SIZE } from '@/lib/domain/rss'
 import { env } from '@/lib/env'
 import { coverUrl, listFeedArticles } from '@/lib/services/articles'
@@ -19,7 +20,7 @@ export async function GET() {
     },
     articles.map((article) => ({
       id: article.id,
-      title: article.title,
+      title: articleFullTitle(article),
       url: new URL(`/artigos/${article.slug}`, site).href,
       publishedAt: article.published_at,
       description: articleDescription(article),

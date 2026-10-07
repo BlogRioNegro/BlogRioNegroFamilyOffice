@@ -1,7 +1,13 @@
 import Link from 'next/link'
+import { BackLink } from './back-link'
 import { Logo } from './logo'
 
-export function SiteHeader({ current }: { current?: 'artigos' }) {
+const NAV_ITEM_CLASSES =
+  'py-2 text-sm font-regular text-link uppercase underline-offset-6 hover:underline'
+
+// PUB-016 · Na home (sem `back`) o item do menu é "Artigos". Nas outras páginas ele dá lugar ao
+// "Voltar", e `back` é o destino de reserva: o nível acima da página.
+export function SiteHeader({ back }: { back?: '/' | '/artigos' }) {
   return (
     <header className="border-b border-border bg-surface-muted">
       <div className="mx-auto flex h-16 max-w-(--layout-admin) items-center justify-between gap-6 px-4 md:px-6">
@@ -9,13 +15,16 @@ export function SiteHeader({ current }: { current?: 'artigos' }) {
           <Logo alt="" />
         </Link>
         <nav aria-label="Principal" className="flex gap-6">
-          <Link
-            href="/artigos"
-            aria-current={current === 'artigos' ? 'page' : undefined}
-            className="py-2 text-sm font-regular text-link uppercase underline-offset-6 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2"
-          >
-            Artigos
-          </Link>
+          {back ? (
+            <BackLink
+              fallback={back}
+              className={`inline-flex min-h-(--control-height) items-center ${NAV_ITEM_CLASSES}`}
+            />
+          ) : (
+            <Link href="/artigos" className={NAV_ITEM_CLASSES}>
+              Artigos
+            </Link>
+          )}
         </nav>
       </div>
     </header>

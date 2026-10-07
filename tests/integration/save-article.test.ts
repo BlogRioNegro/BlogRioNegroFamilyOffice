@@ -93,6 +93,100 @@ describe('save_article', () => {
     expect(history).toEqual([{ old_slug: `antigo-${id}` }])
   })
 
+  // ADR 0048 · O subtítulo é opcional: quem chama sem o parâmetro continua atendido.
+  async function subtitleOf(id: string) {
+    const { data } = await service.from('articles').select('subtitle').eq('id', id).single()
+    return data?.subtitle
+  }
+
+  it('sem o parâmetro subtitle, o artigo fica sem subtítulo', async () => {
+    const id = newId()
+    const { error } = await admin.rpc('save_article', pdfArticle(id, `sem-subtitulo-${id}`))
+
+    expect(error).toBeNull()
+    expect(await subtitleOf(id)).toBeNull()
+  })
+
+  it('admin grava, troca e remove o subtítulo', async () => {
+    const id = newId()
+    const article = pdfArticle(id, `com-subtitulo-${id}`)
+
+    const created = await admin.rpc('save_article', { ...article, subtitle: '21 a 25 de setembro' })
+    expect(created.error).toBeNull()
+    expect(await subtitleOf(id)).toBe('21 a 25 de setembro')
+
+    await admin.rpc('save_article', { ...article, subtitle: '28 de setembro a 2 de outubro' })
+    expect(await subtitleOf(id)).toBe('28 de setembro a 2 de outubro')
+
+    const removed = await admin.rpc('save_article', article)
+    expect(removed.error).toBeNull()
+    expect(await subtitleOf(id)).toBeNull()
+  })
+
+  it.each(['', '   '])('subtítulo vazio (%j) vira null', async (subtitle) => {
+    const id = newId()
+    const { error } = await admin.rpc('save_article', {
+      ...pdfArticle(id, `vazio-${id}`),
+      subtitle,
+    })
+
+    expect(error).toBeNull()
+    expect(await subtitleOf(id)).toBeNull()
+  })
+
+  it('subtítulo acima de 160 caracteres é recusado pelo CHECK e desfaz o artigo', async () => {
+    const id = newId()
+    const { error } = await admin.rpc('save_article', {
+      ...pdfArticle(id, `longo-${id}`),
+      subtitle: 'x'.repeat(161),
+    })
+
+    expect(error?.code).toBe('23514')
+    expect(await articleExists(id)).toBe(false)
+  })
+
+  it('o CHECK recusa subtítulo vazio gravado direto na tabela', async () => {
+    const id = newId()
+    await admin.rpc('save_article', pdfArticle(id, `check-${id}`))
+
+    const { error } = await service.from('articles').update({ subtitle: '' }).eq('id', id)
+
+    expect(error?.code).toBe('23514')
+  })
+
+  it('anon e autenticado fora de admin_users continuam barrados com o subtítulo', async () => {
+    const id = newId()
+    const article = { ...pdfArticle(id, `negado-${id}`), subtitle: '21 a 25 de setembro' }
+
+    const anon = await anonClient().rpc('save_article', article)
+    const common = await user.client.rpc('save_article', article)
+
+    expect(anon.error?.code).toBe('42501')
+    expect(common.error?.code).toBe('42501')
+    expect(await articleExists(id)).toBe(false)
+  })
+
+  it('autenticado fora de admin_users não troca o subtítulo de artigo existente', async () => {
+    const id = newId()
+    const article = pdfArticle(id, `protegido-${id}`)
+    await admin.rpc('save_article', { ...article, subtitle: 'Original' })
+
+    const { error } = await user.client.rpc('save_article', { ...article, subtitle: 'Invadido' })
+
+    expect(error?.code).toBe('42501')
+    expect(await subtitleOf(id)).toBe('Original')
+  })
+
+  it('anon lê o subtítulo pela leitura pública de articles', async () => {
+    const { data } = await anonClient()
+      .from('articles')
+      .select('subtitle')
+      .eq('slug', 'carteira-recomendada-outubro')
+      .single()
+
+    expect(data?.subtitle).toBe('Perfis conservador, moderado e arrojado')
+  })
+
   // ADM-009 · Slug em uso (atual ou histórico de outro artigo) é rejeitado com 23505, que a
   // Server Action mostra como erro no campo Slug.
   it('rejeita o slug atual de outro artigo', async () => {

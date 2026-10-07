@@ -15,6 +15,7 @@ function rows(count: number) {
     id: `id-${index}`,
     slug: `artigo-${index}`,
     title: `Artigo ${index}`,
+    subtitle: null,
     summary: null,
     cover_path: `id-${index}/capa.jpg`,
     content_type: 'pdf' as const,

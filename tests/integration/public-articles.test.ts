@@ -30,6 +30,7 @@ const LIST_COLUMNS = [
   'id',
   'published_at',
   'slug',
+  'subtitle',
   'summary',
   'title',
 ]

@@ -15,12 +15,10 @@ export function ErrorState({
 }) {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader back="/" />
       <main className="mx-auto flex w-full max-w-(--layout-reading) flex-1 flex-col items-start gap-4 px-4 py-16 md:px-0 md:py-24">
         {label ? <p className="text-xs text-text-muted">{label}</p> : null}
-        <h1 className="font-serif font-extralight text-3xl wrap-anywhere uppercase md:text-4xl">
-          {title}
-        </h1>
+        <h1 className="font-serif font-black text-h1 wrap-anywhere">{title}</h1>
         <p className="mb-4 font-serif font-regular text-md leading-normal text-text-muted">
           {text}
         </p>

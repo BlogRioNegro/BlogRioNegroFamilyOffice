@@ -124,7 +124,7 @@ async function coverBytes(
 }
 
 // ADM-008 · Rich text: documento completo em body_json, 3 primeiros blocos em preview_json e PDF
-// completo gerado (título, capa e conteúdo) em article-files. Regenerado a cada salvamento.
+// completo gerado (título, subtítulo, capa e conteúdo) em article-files. Regenerado a cada salvamento.
 async function richTextContent(
   supabase: Supabase,
   fields: ArticleFields,
@@ -146,6 +146,7 @@ async function richTextContent(
 
   const pdf = await renderArticlePdf({
     title: fields.title,
+    subtitle: fields.subtitle,
     cover: cover ? await pdfImage(cover) : null,
     doc,
     images,
@@ -277,6 +278,7 @@ export async function saveArticle(
     article_id: fields.id,
     slug: fields.slug,
     title: fields.title,
+    subtitle: fields.subtitle ?? undefined,
     summary: fields.summary ?? undefined,
     cover_path: coverPath,
     content_type: fields.contentType,

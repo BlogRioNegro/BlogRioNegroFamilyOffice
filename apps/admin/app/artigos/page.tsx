@@ -81,6 +81,9 @@ function ArticlesTable({ articles }: { articles: ArticleRow[] }) {
                 <span className="font-medium">{article.title}</span>
                 {index === 0 ? <FeaturedBadge /> : null}
               </div>
+              {article.subtitle ? (
+                <p className="text-xs text-text-muted">{article.subtitle}</p>
+              ) : null}
             </TableCell>
             <TableCell>
               <TypeBadge type={article.content_type} />
@@ -133,9 +136,16 @@ function ArticleCards({ articles }: { articles: ArticleRow[] }) {
             <TypeBadge type={article.content_type} />
             {index === 0 ? <FeaturedBadge /> : null}
           </div>
-          <span className="font-serif font-medium text-md leading-tight text-pretty">
-            {article.title}
-          </span>
+          <div className="flex flex-col gap-1">
+            <span className="font-serif font-black text-md leading-snug text-pretty wrap-anywhere">
+              {article.title}
+            </span>
+            {article.subtitle ? (
+              <p className="font-serif font-regular text-sm wrap-anywhere text-text-muted">
+                {article.subtitle}
+              </p>
+            ) : null}
+          </div>
           <div className="flex items-end justify-between gap-3">
             <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-xs">
               <dt className="text-text-muted">Publicação</dt>
@@ -193,9 +203,7 @@ export default async function ArticlesPage() {
       <main className="mx-auto flex w-full max-w-(--layout-admin) flex-col gap-4 px-4 pt-6 pb-12 md:gap-6 md:px-6 md:pt-8 md:pb-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-1">
-            <h1 className="font-serif font-extralight text-2xl leading-tight wrap-anywhere uppercase">
-              Artigos
-            </h1>
+            <h1 className="font-serif font-black text-h1 wrap-anywhere">Artigos</h1>
             <p className="font-serif font-regular text-xs text-text-muted">
               {count} · o mais recente aparece em destaque no site
             </p>

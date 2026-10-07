@@ -10,7 +10,6 @@
   --breakpoint-*: initial;
   --text-*: initial;
   --leading-*: initial;
-  --tracking-*: initial;
 
   --color-bg: var(--rn-blue-800);
   --color-surface: var(--rn-blue-700);
@@ -43,17 +42,17 @@
   --color-overlay: rgba(13, 20, 26, 0.64);
 
   /* 'Roboto' e 'Roboto Slab' vêm do next/font (fonts.ts), que expõe a família como variável.
-     font-serif é a Roboto Slab do guia: títulos (200), títulos de card (500) e subtítulos (400),
-     com os pesos do site institucional (ADR 0046). */
+     font-serif é a Roboto Slab do guia: títulos em Black (900) e subtítulos em Regular
+     (400), como manda o guia (ADR 0047). */
   --font-sans: var(--font-roboto), system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: var(--font-roboto-slab), Georgia, 'Times New Roman', serif;
 
-  --font-weight-extralight: 200;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-black: 900;
 
   --radius-control: 6px;
   --radius-card: 12px;
@@ -84,16 +83,11 @@
   --text-2xl--line-height: var(--line-height-2xl);
   --text-3xl: var(--font-size-3xl);
   --text-3xl--line-height: var(--line-height-3xl);
-  --text-4xl: var(--font-size-4xl);
-  --text-4xl--line-height: var(--line-height-4xl);
-  --text-5xl: var(--font-size-5xl);
-  --text-5xl--line-height: var(--line-height-5xl);
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--line-height-tight);
 
   --leading-tight: var(--line-height-tight);
   --leading-snug: var(--line-height-snug);
   --leading-normal: var(--line-height-normal);
   --leading-relaxed: var(--line-height-relaxed);
-  --leading-section: var(--line-height-section);
-
-  --tracking-section: var(--letter-spacing-section);
 }
